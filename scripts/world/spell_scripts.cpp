@@ -50,48 +50,6 @@ EndContentData */
 
 enum
 {
-    // quest 9452
-    SPELL_CAST_FISHING_NET      = 29866,
-    GO_RED_SNAPPER              = 181616,
-    NPC_ANGRY_MURLOC            = 17102,
-    ITEM_RED_SNAPPER            = 23614,
-    //SPELL_SUMMON_TEST           = 49214                   // ! Just wrong spell name? It summon correct creature (17102)but does not appear to be used.
-};
-
-bool EffectDummyGameObj_spell_dummy_go(Unit* pCaster, uint32 uiSpellId, SpellEffectIndex uiEffIndex, GameObject* pGOTarget)
-{
-    switch(uiSpellId)
-    {
-        case SPELL_CAST_FISHING_NET:
-        {
-            if (uiEffIndex == EFFECT_INDEX_0)
-            {
-                if (pGOTarget->GetRespawnTime() != 0 || pGOTarget->GetEntry() != GO_RED_SNAPPER || pCaster->GetTypeId() != TYPEID_PLAYER)
-                    return true;
-
-                if (urand(0, 2))
-                {
-                    if (Creature* pMurloc = pCaster->SummonCreature(NPC_ANGRY_MURLOC, pCaster->GetPositionX(), pCaster->GetPositionY()+20.0f, pCaster->GetPositionZ(), 0.0f, TEMPSUMMON_TIMED_DESPAWN_OUT_OF_COMBAT, 10000))
-                        pMurloc->AI()->AttackStart(pCaster);
-                }
-                else
-                {
-                    if (Item* pItem = ((Player*)pCaster)->StoreNewItemInInventorySlot(ITEM_RED_SNAPPER, 1))
-                        ((Player*)pCaster)->SendNewItem(pItem, 1, true, false);
-                }
-
-                pGOTarget->SetLootState(GO_JUST_DEACTIVATED);
-                return true;
-            }
-            return true;
-        }
-    }
-
-    return false;
-}
-
-enum
-{
     // quest 9629
     SPELL_TAG_MURLOC                    = 30877,
     SPELL_TAG_MURLOC_PROC               = 30875,
@@ -434,11 +392,6 @@ bool EffectDummyCreature_spell_dummy_npc(Unit* pCaster, uint32 uiSpellId, SpellE
 void AddSC_spell_scripts()
 {
     Script* pNewScript;
-
-    pNewScript = new Script;
-    pNewScript->Name = "spell_dummy_go";
-    pNewScript->pEffectDummyGO = &EffectDummyGameObj_spell_dummy_go;
-    pNewScript->RegisterSelf();
 
     pNewScript = new Script;
     pNewScript->Name = "spell_dummy_npc";

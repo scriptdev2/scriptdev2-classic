@@ -23,9 +23,6 @@ EndScriptData */
 
 /* ContentData
 go_barov_journal
-go_ethereum_prison
-go_ethereum_stasis
-go_shrine_of_the_birds
 go_andorhal_tower
 EndContentData */
 
@@ -48,147 +45,6 @@ bool GOUse_go_barov_journal(Player* pPlayer, GameObject* pGo)
         pPlayer->CastSpell(pPlayer, SPELL_LEARN_FELCLOTH_BAG, false);
     }
     return true;
-}
-
-/*######
-## go_ethereum_prison
-######*/
-
-enum
-{
-    FACTION_LC     = 1011,
-    FACTION_SHAT   = 935,
-    FACTION_CE     = 942,
-    FACTION_CON    = 933,
-    FACTION_KT     = 989,
-    FACTION_SPOR   = 970,
-
-    SPELL_REP_LC   = 39456,
-    SPELL_REP_SHAT = 39457,
-    SPELL_REP_CE   = 39460,
-    SPELL_REP_CON  = 39474,
-    SPELL_REP_KT   = 39475,
-    SPELL_REP_SPOR = 39476
-};
-
-const uint32 uiNpcPrisonEntry[] =
-{
-    22810, 22811, 22812, 22813, 22814, 22815,               //good guys
-    20783, 20784, 20785, 20786, 20788, 20789, 20790         //bad guys
-};
-
-bool GOUse_go_ethereum_prison(Player* pPlayer, GameObject* pGo)
-{
-    uint8 uiRandom = urand(0, countof(uiNpcPrisonEntry) - 1);
-
-    if (Creature* pCreature = pPlayer->SummonCreature(uiNpcPrisonEntry[uiRandom],
-        pGo->GetPositionX(), pGo->GetPositionY(), pGo->GetPositionZ(), pGo->GetAngle(pPlayer),
-        TEMPSUMMON_TIMED_DESPAWN_OUT_OF_COMBAT, 30000))
-    {
-        if (!pCreature->IsHostileTo(pPlayer))
-        {
-            uint32 uiSpell = 0;
-
-            if (FactionTemplateEntry const* pFaction = pCreature->getFactionTemplateEntry())
-            {
-                switch(pFaction->faction)
-                {
-                    case FACTION_LC:   uiSpell = SPELL_REP_LC;   break;
-                    case FACTION_SHAT: uiSpell = SPELL_REP_SHAT; break;
-                    case FACTION_CE:   uiSpell = SPELL_REP_CE;   break;
-                    case FACTION_CON:  uiSpell = SPELL_REP_CON;  break;
-                    case FACTION_KT:   uiSpell = SPELL_REP_KT;   break;
-                    case FACTION_SPOR: uiSpell = SPELL_REP_SPOR; break;
-                }
-
-                if (uiSpell)
-                    pCreature->CastSpell(pPlayer,uiSpell,false);
-                else
-                    error_log("SD2: go_ethereum_prison summoned creature (entry %u) but faction (%u) are not expected by script.",pCreature->GetEntry(),pCreature->getFaction());
-            }
-        }
-    }
-
-    return false;
-}
-
-/*######
-## go_ethereum_stasis
-######*/
-
-const uint32 uiNpcStasisEntry[] =
-{
-    22825, 20888, 22827, 22826, 22828
-};
-
-bool GOUse_go_ethereum_stasis(Player* pPlayer, GameObject* pGo)
-{
-    uint8 uiRandom = urand(0, countof(uiNpcStasisEntry) - 1);
-
-    pPlayer->SummonCreature(uiNpcStasisEntry[uiRandom],
-        pGo->GetPositionX(), pGo->GetPositionY(), pGo->GetPositionZ(), pGo->GetAngle(pPlayer),
-        TEMPSUMMON_TIMED_DESPAWN_OUT_OF_COMBAT, 30000);
-
-    return false;
-}
-
-/*######
-## go_jump_a_tron
-######*/
-
-enum
-{
-    SPELL_JUMP_A_TRON = 33382,
-    NPC_JUMP_A_TRON   = 19041
-};
-
-bool GOUse_go_jump_a_tron(Player* pPlayer, GameObject* pGo)
-{
-    if (Creature* pCreature = GetClosestCreatureWithEntry(pGo, NPC_JUMP_A_TRON, INTERACTION_DISTANCE))
-        pCreature->CastSpell(pPlayer, SPELL_JUMP_A_TRON, false);
-
-    return false;
-}
-
-
-/*######
-## go_shrine_of_the_birds
-######*/
-
-enum
-{
-    NPC_HAWK_GUARD   = 22992,
-    NPC_EAGLE_GUARD  = 22993,
-    NPC_FALCON_GUARD = 22994,
-    GO_SHRINE_HAWK   = 185551,
-    GO_SHRINE_EAGLE  = 185547,
-    GO_SHRINE_FALCON = 185553
-};
-
-bool GOUse_go_shrine_of_the_birds(Player* pPlayer, GameObject* pGo)
-{
-    uint32 uiBirdEntry = 0;
-
-    float fX,fY,fZ;
-    pGo->GetClosePoint(fX, fY, fZ, pGo->GetObjectBoundingRadius(), INTERACTION_DISTANCE);
-
-    switch(pGo->GetEntry())
-    {
-        case GO_SHRINE_HAWK:
-            uiBirdEntry = NPC_HAWK_GUARD;
-            break;
-        case GO_SHRINE_EAGLE:
-            uiBirdEntry = NPC_EAGLE_GUARD;
-            break;
-        case GO_SHRINE_FALCON:
-            uiBirdEntry = NPC_FALCON_GUARD;
-            break;
-    }
-
-    if (uiBirdEntry)
-        pPlayer->SummonCreature(uiBirdEntry, fX, fY, fZ, pGo->GetOrientation(), TEMPSUMMON_TIMED_DESPAWN_OUT_OF_COMBAT, 60000);
-
-    return false;
 }
 
 /*######
@@ -234,26 +90,6 @@ void AddSC_go_scripts()
     pNewScript = new Script;
     pNewScript->Name = "go_barov_journal";
     pNewScript->pGOUse =          &GOUse_go_barov_journal;
-    pNewScript->RegisterSelf();
-
-    pNewScript = new Script;
-    pNewScript->Name = "go_ethereum_prison";
-    pNewScript->pGOUse =          &GOUse_go_ethereum_prison;
-    pNewScript->RegisterSelf();
-
-    pNewScript = new Script;
-    pNewScript->Name = "go_ethereum_stasis";
-    pNewScript->pGOUse =          &GOUse_go_ethereum_stasis;
-    pNewScript->RegisterSelf();
-
-    pNewScript = new Script;
-    pNewScript->Name = "go_jump_a_tron";
-    pNewScript->pGOUse =          &GOUse_go_jump_a_tron;
-    pNewScript->RegisterSelf();
-
-    pNewScript = new Script;
-    pNewScript->Name = "go_shrine_of_the_birds";
-    pNewScript->pGOUse =          &GOUse_go_shrine_of_the_birds;
     pNewScript->RegisterSelf();
 
     pNewScript = new Script;

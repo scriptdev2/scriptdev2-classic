@@ -20,16 +20,11 @@ enum
     NPC_BOLVAR                  = 1748,
     NPC_PRESTOR                 = 1749,
     NPC_WINDSOR                 = 12580,
-
-    // Quest 11538
-    NPC_EMISSARY_OF_HATE        = 25003,
-    NPC_IRESPEAKER              = 24999,
-    NPC_UNLEASHED_HELLION       = 25002,
 };
 
 enum SpawnIndexes
 {
-    POS_IDX_EMISSARY_SPAWN      = 0,
+    POS_IDX_EMISSARY_SPAWN      = 0,                        // Not used in Classic, but keep here for code change simplification
     POS_IDX_MURKDEEP_SPAWN      = 1,
     POS_IDX_MURKDEEP_MOVE       = 2,
     POS_IDX_MAX                 = 3

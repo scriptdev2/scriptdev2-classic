@@ -23,7 +23,6 @@ EndScriptData */
 
 /* ContentData
 mob_aquementas
-npc_custodian_of_time
 npc_marin_noggenfogger
 npc_oox17tn
 npc_stone_watcher_of_norgannon
@@ -127,95 +126,6 @@ struct MANGOS_DLL_DECL mob_aquementasAI : public ScriptedAI
 CreatureAI* GetAI_mob_aquementas(Creature* pCreature)
 {
     return new mob_aquementasAI(pCreature);
-}
-
-/*######
-## npc_custodian_of_time
-######*/
-
-enum
-{
-    WHISPER_CUSTODIAN_1         = -1000217,
-    WHISPER_CUSTODIAN_2         = -1000218,
-    WHISPER_CUSTODIAN_3         = -1000219,
-    WHISPER_CUSTODIAN_4         = -1000220,
-    WHISPER_CUSTODIAN_5         = -1000221,
-    WHISPER_CUSTODIAN_6         = -1000222,
-    WHISPER_CUSTODIAN_7         = -1000223,
-    WHISPER_CUSTODIAN_8         = -1000224,
-    WHISPER_CUSTODIAN_9         = -1000225,
-    WHISPER_CUSTODIAN_10        = -1000226,
-    WHISPER_CUSTODIAN_11        = -1000227,
-    WHISPER_CUSTODIAN_12        = -1000228,
-    WHISPER_CUSTODIAN_13        = -1000229,
-    WHISPER_CUSTODIAN_14        = -1000230,
-
-    SPELL_CUSTODIAN_OF_TIME     = 34877,
-    SPELL_QID_10277             = 34883,
-
-    QUEST_ID_CAVERNS_OF_TIME    = 10277,
-};
-
-struct MANGOS_DLL_DECL npc_custodian_of_timeAI : public npc_escortAI
-{
-    npc_custodian_of_timeAI(Creature* pCreature) : npc_escortAI(pCreature) { Reset(); }
-
-    void WaypointReached(uint32 uiPointId)
-    {
-        Player* pPlayer = GetPlayerForEscort();
-
-        if (!pPlayer)
-            return;
-
-        switch(uiPointId)
-        {
-            case 0: DoScriptText(WHISPER_CUSTODIAN_1, m_creature, pPlayer); break;
-            case 1: DoScriptText(WHISPER_CUSTODIAN_2, m_creature, pPlayer); break;
-            case 2: DoScriptText(WHISPER_CUSTODIAN_3, m_creature, pPlayer); break;
-            case 3: DoScriptText(WHISPER_CUSTODIAN_4, m_creature, pPlayer); break;
-            case 5: DoScriptText(WHISPER_CUSTODIAN_5, m_creature, pPlayer); break;
-            case 6: DoScriptText(WHISPER_CUSTODIAN_6, m_creature, pPlayer); break;
-            case 7: DoScriptText(WHISPER_CUSTODIAN_7, m_creature, pPlayer); break;
-            case 8: DoScriptText(WHISPER_CUSTODIAN_8, m_creature, pPlayer); break;
-            case 9: DoScriptText(WHISPER_CUSTODIAN_9, m_creature, pPlayer); break;
-            case 10: DoScriptText(WHISPER_CUSTODIAN_4, m_creature, pPlayer); break;
-            case 13: DoScriptText(WHISPER_CUSTODIAN_10, m_creature, pPlayer); break;
-            case 14: DoScriptText(WHISPER_CUSTODIAN_4, m_creature, pPlayer); break;
-            case 16: DoScriptText(WHISPER_CUSTODIAN_11, m_creature, pPlayer); break;
-            case 17: DoScriptText(WHISPER_CUSTODIAN_12, m_creature, pPlayer); break;
-            case 18: DoScriptText(WHISPER_CUSTODIAN_4, m_creature, pPlayer); break;
-            case 22: DoScriptText(WHISPER_CUSTODIAN_13, m_creature, pPlayer); break;
-            case 23: DoScriptText(WHISPER_CUSTODIAN_4, m_creature, pPlayer); break;
-            case 24:
-                DoScriptText(WHISPER_CUSTODIAN_14, m_creature, pPlayer);
-                DoCastSpellIfCan(pPlayer, SPELL_QID_10277);
-                break;
-        }
-    }
-
-    void MoveInLineOfSight(Unit* pWho)
-    {
-        if (HasEscortState(STATE_ESCORT_ESCORTING))
-            return;
-
-        if (pWho->GetTypeId() == TYPEID_PLAYER)
-        {
-            if (pWho->HasAura(SPELL_CUSTODIAN_OF_TIME) && ((Player*)pWho)->GetQuestStatus(QUEST_ID_CAVERNS_OF_TIME) == QUEST_STATUS_INCOMPLETE)
-            {
-                float fRadius = 10.0f;
-
-                if (m_creature->IsWithinDistInMap(pWho, fRadius))
-                    Start(false, (Player*)pWho);
-            }
-        }
-    }
-
-    void Reset() { }
-};
-
-CreatureAI* GetAI_npc_custodian_of_time(Creature* pCreature)
-{
-    return new npc_custodian_of_timeAI(pCreature);
 }
 
 /*######
@@ -567,11 +477,6 @@ void AddSC_tanaris()
     pNewScript = new Script;
     pNewScript->Name = "mob_aquementas";
     pNewScript->GetAI = &GetAI_mob_aquementas;
-    pNewScript->RegisterSelf();
-
-    pNewScript = new Script;
-    pNewScript->Name = "npc_custodian_of_time";
-    pNewScript->GetAI = &GetAI_npc_custodian_of_time;
     pNewScript->RegisterSelf();
 
     pNewScript = new Script;

@@ -22,8 +22,6 @@ SDCategory: Areatrigger
 EndScriptData */
 
 /* ContentData
-at_coilfang_waterfall           4591
-at_legion_teleporter            4560 Teleporter TO Invasion Point: Cataclysm
 at_ravenholdt
 at_childrens_week_spot          3546,3547,3548,3552,3549,3550
 at_scent_larkorwi               1726,1727,1728,1729,1730,1731,1732,1733,1734,1735,1736,1737,1738,1739,1740
@@ -53,58 +51,6 @@ bool AreaTrigger_at_childrens_week_spot(Player* pPlayer, AreaTriggerEntry const*
             pPlayer->CastSpell(pPlayer, TriggerOrphanSpell[i][2], true);
             return true;
         }
-    }
-    return false;
-}
-
-/*######
-## at_coilfang_waterfall
-######*/
-
-enum
-{
-    GO_COILFANG_WATERFALL   = 184212
-};
-
-bool AreaTrigger_at_coilfang_waterfall(Player* pPlayer, AreaTriggerEntry const* pAt)
-{
-    if (GameObject* pGo = GetClosestGameObjectWithEntry(pPlayer, GO_COILFANG_WATERFALL, 35.0f))
-    {
-        if (pGo->getLootState() == GO_READY)
-            pGo->UseDoorOrButton();
-    }
-    return false;
-}
-
-/*######
-## at_legion_teleporter
-######*/
-
-enum
-{
-    SPELL_TELE_A_TO         = 37387,
-    QUEST_GAINING_ACCESS_A  = 10589,
-
-    SPELL_TELE_H_TO         = 37389,
-    QUEST_GAINING_ACCESS_H  = 10604
-};
-
-bool AreaTrigger_at_legion_teleporter(Player* pPlayer, AreaTriggerEntry const* pAt)
-{
-    if (pPlayer->isAlive() && !pPlayer->isInCombat())
-    {
-        if (pPlayer->GetTeam() == ALLIANCE && pPlayer->GetQuestRewardStatus(QUEST_GAINING_ACCESS_A))
-        {
-            pPlayer->CastSpell(pPlayer, SPELL_TELE_A_TO, false);
-            return true;
-        }
-
-        if (pPlayer->GetTeam() == HORDE && pPlayer->GetQuestRewardStatus(QUEST_GAINING_ACCESS_H))
-        {
-            pPlayer->CastSpell(pPlayer, SPELL_TELE_H_TO, false);
-            return true;
-        }
-        return false;
     }
     return false;
 }
@@ -195,16 +141,6 @@ void AddSC_areatrigger_scripts()
     pNewScript = new Script;
     pNewScript->Name = "at_childrens_week_spot";
     pNewScript->pAreaTrigger = &AreaTrigger_at_childrens_week_spot;
-    pNewScript->RegisterSelf();
-
-    pNewScript = new Script;
-    pNewScript->Name = "at_coilfang_waterfall";
-    pNewScript->pAreaTrigger = &AreaTrigger_at_coilfang_waterfall;
-    pNewScript->RegisterSelf();
-
-    pNewScript = new Script;
-    pNewScript->Name = "at_legion_teleporter";
-    pNewScript->pAreaTrigger = &AreaTrigger_at_legion_teleporter;
     pNewScript->RegisterSelf();
 
     pNewScript = new Script;

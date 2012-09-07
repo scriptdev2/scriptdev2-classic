@@ -137,53 +137,6 @@ InstanceData* GetInstanceData_world_map_kalimdor(Map* pMap)
     return new world_map_kalimdor(pMap);
 }
 
-/* *********************************************************
- *                     OUTLAND
- */
-struct MANGOS_DLL_DECL world_map_outland : public ScriptedMap
-{
-    world_map_outland(Map* pMap) : ScriptedMap(pMap) { Initialize(); }
-
-    uint8 m_uiEmissaryOfHate_KilledAddCount;
-
-    void Initialize()
-    {
-        m_uiEmissaryOfHate_KilledAddCount = 0;
-    }
-
-    void OnCreatureCreate(Creature* pCreature)
-    {
-        if (pCreature->GetEntry() == NPC_EMISSARY_OF_HATE)
-            m_mNpcEntryGuidStore[NPC_EMISSARY_OF_HATE] = pCreature->GetObjectGuid();
-    }
-
-    void OnCreatureDeath(Creature* pCreature)
-    {
-        switch (pCreature->GetEntry())
-        {
-            case NPC_IRESPEAKER:
-            case NPC_UNLEASHED_HELLION:
-                if (!GetSingleCreatureFromStorage(NPC_EMISSARY_OF_HATE, true))
-                {
-                    ++m_uiEmissaryOfHate_KilledAddCount;
-                    if (m_uiEmissaryOfHate_KilledAddCount == 6)
-                    {
-                        pCreature->SummonCreature(NPC_EMISSARY_OF_HATE, aSpawnLocations[POS_IDX_EMISSARY_SPAWN][0], aSpawnLocations[POS_IDX_EMISSARY_SPAWN][1], aSpawnLocations[POS_IDX_EMISSARY_SPAWN][2], aSpawnLocations[POS_IDX_EMISSARY_SPAWN][3], TEMPSUMMON_DEAD_DESPAWN, 0);
-                        m_uiEmissaryOfHate_KilledAddCount = 0;
-                    }
-                }
-                break;
-        }
-    }
-
-    void SetData(uint32 uiType, uint32 uiData) {}
-};
-
-InstanceData* GetInstanceData_world_map_outland(Map* pMap)
-{
-    return new world_map_outland(pMap);
-}
-
 void AddSC_world_map_scripts()
 {
     Script* pNewScript;
@@ -196,10 +149,5 @@ void AddSC_world_map_scripts()
     pNewScript = new Script;
     pNewScript->Name = "world_map_kalimdor";
     pNewScript->GetInstanceData = &GetInstanceData_world_map_kalimdor;
-    pNewScript->RegisterSelf();
-
-    pNewScript = new Script;
-    pNewScript->Name = "world_map_outland";
-    pNewScript->GetInstanceData = &GetInstanceData_world_map_outland;
     pNewScript->RegisterSelf();
 }
