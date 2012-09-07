@@ -739,19 +739,19 @@ asciidoc.install();
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_clean_install_of_scriptdev2">1. Clean install of ScriptDev2</h2>
+<h2 id="_clean_install_of_scriptdev2_for_classic">1. Clean install of ScriptDev2 (for Classic)</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_download_mangos_using_git_clone">1.1. Download MaNGOS (using git clone)</h3>
-<div class="paragraph"><p>See their <a href="http://getmangos.com/community">forum</a> or <a href="http://getmangos.com/wiki">wiki</a> for more details</p></div>
+<h3 id="_download_c_mangos_using_git_clone">1.1. Download C-MaNGOS (using git clone)</h3>
+<div class="paragraph"><p>See their <a href="http://www.ru-mangos.ru/">forum</a> or <a href="https://github.com/cmangos/mangos-classic/wiki">wiki</a> for more details</p></div>
 </div>
 <div class="sect2">
 <h3 id="_get_the_sources">1.2. Get the sources</h3>
-<div class="paragraph"><p>Clone ScriptDev2 <tt>git clone git://github.com/scriptdev2/scriptdev2.git ScriptDev2</tt> - execute from within src/bindings directory</p></div>
+<div class="paragraph"><p>Clone ScriptDev2 <tt>git clone git://github.com/scriptdev2/scriptdev2-classic.git ScriptDev2</tt> - execute from within src/bindings directory</p></div>
 <div class="paragraph"><p><strong>MS Windows:</strong><br />
 Compile ScriptDev2 using the scriptVC80, scriptVC90 or scriptVC100 Solution within the ScriptDev2 folder (this will overwrite the Mangoscript dll in the output directory)</p></div>
 <div class="paragraph"><p><strong>GNU/Linux or CMake:</strong><br />
-Apply the Git patch to Mangos - <tt>git am src/bindings/ScriptDev2/patches/MaNGOS-11167-ScriptDev2.patch</tt><br />
+Apply the Git patch to Mangos - <tt>git am src/bindings/ScriptDev2/patches/CMaNGOS-classic-ScriptDev2.patch</tt><br />
 Compile MaNGOS (ScriptDev2 will automatically be built when compiling Mangos from here on)</p></div>
 </div>
 <div class="sect2">
@@ -839,7 +839,8 @@ reapply "mangos_scriptname_full.sql" to your MaNGOS database. - WARNING this wil
 <div class="sect1">
 <h2 id="_scriptdev2_change_log">3. ScriptDev2 Change Log</h2>
 <div class="sectionbody">
-<div class="paragraph"><p>You can view the ScriptDev2 change log on the <a href="https://github.com/scriptdev2/scriptdev2/commits/master">ScriptDev2 Github Repository</a>.</p></div>
+<div class="paragraph"><p>You can view the ScriptDev2 change log on the <a href="https://github.com/scriptdev2/scriptdev2/commits/master">ScriptDev2 Github Repository</a>.
+You can view the ScriptDev2-classic change log on the <a href="https://github.com/scriptdev2/scriptdev2-classic/commits/master">ScriptDev2 (Classic) Github Repository</a>.</p></div>
 <div class="paragraph"><p>Or of course locally with your Git GUI tools or with <tt>git log</tt> (Note that it should be up to date before looking into your local log)</p></div>
 </div>
 </div>
@@ -847,7 +848,7 @@ reapply "mangos_scriptname_full.sql" to your MaNGOS database. - WARNING this wil
 <div id="footnotes"><hr /></div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2012-05-10 14:38:20 Mitteleuropäische Sommerzeit
+Last updated 2012-09-08 11:23:54 Mitteleuropäische Sommerzeit
 </div>
 </div>
 </body>
