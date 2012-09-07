@@ -99,7 +99,7 @@ bool EffectDummyCreature_lazy_peon_awake(Unit* pCaster, uint32 uiSpellId, SpellE
             ((Player*)pCaster)->KilledMonsterCredit(pCreatureTarget->GetEntry());
 
             float fX, fY, fZ;
-            pCreatureTarget->SetWalk(false);
+            pCreatureTarget->SetWalkFALSE;
             pLumber->GetContactPoint(pCreatureTarget, fX, fY, fZ, CONTACT_DISTANCE);
             pCreatureTarget->GetMotionMaster()->MovePoint(1, fX, fY, fZ);
         }

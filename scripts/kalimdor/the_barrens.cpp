@@ -379,7 +379,7 @@ struct MANGOS_DLL_DECL npc_twiggy_flatheadAI : public ScriptedAI
         {
             m_bigWillGuid = pSummoned->GetObjectGuid();
             pSummoned->setFaction(FACTION_FRIENDLY);
-            pSummoned->SetWalk(false);
+            pSummoned->SetWalkFALSE;
             pSummoned->GetMotionMaster()->MovePoint(1, aAffrayChallengerLoc[7][0], aAffrayChallengerLoc[7][1], aAffrayChallengerLoc[7][2]);
         }
         else

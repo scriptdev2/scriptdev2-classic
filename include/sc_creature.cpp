@@ -237,8 +237,8 @@ SpellEntry const* ScriptedAI::SelectSpell(Unit* pTarget, int32 uiSchool, int32 i
             continue;
 
         //Check for school if specified
-        if (uiSchool >= 0 && pTempSpell->SchoolMask & uiSchool)
-            continue;
+        //if (uiSchool >= 0 && pTempSpell->SchoolMask & uiSchool)
+        //    continue;
 
         //Check for spell mechanic if specified
         if (iMechanic >= 0 && pTempSpell->Mechanic != (uint32)iMechanic)

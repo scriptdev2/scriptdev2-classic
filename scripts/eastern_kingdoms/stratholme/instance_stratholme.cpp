@@ -333,7 +333,7 @@ void instance_stratholme::SetData(uint32 uiType, uint32 uiData)
                 if (pBarthilas && pBarthilas->isAlive() && !pBarthilas->isInCombat())
                 {
                     DoScriptText(SAY_WARN_BARON, pBarthilas);
-                    pBarthilas->SetWalk(false);
+                    pBarthilas->SetWalkFALSE;
                     pBarthilas->GetMotionMaster()->MovePoint(0, aStratholmeLocation[0].m_fX, aStratholmeLocation[0].m_fY, aStratholmeLocation[0].m_fZ);
 
                     m_uiBarthilasRunTimer = 8000;

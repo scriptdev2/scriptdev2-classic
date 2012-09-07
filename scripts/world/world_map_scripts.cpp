@@ -91,7 +91,7 @@ struct MANGOS_DLL_DECL world_map_kalimdor : public ScriptedMap
 
                             if (Creature* pTemp = pCreature->SummonCreature(NPC_GREYMIST_WARRIOR, fX, fY, fZ, aSpawnLocations[POS_IDX_MURKDEEP_SPAWN][3], TEMPSUMMON_DEAD_DESPAWN, 0))
                             {
-                                pTemp->SetWalk(false);
+                                pTemp->SetWalkFALSE;
                                 pTemp->GetRandomPoint(aSpawnLocations[POS_IDX_MURKDEEP_MOVE][0], aSpawnLocations[POS_IDX_MURKDEEP_MOVE][1], aSpawnLocations[POS_IDX_MURKDEEP_MOVE][2], 5.0f, fX, fY, fZ);
                                 pTemp->GetMotionMaster()->MovePoint(0, fX, fY, fZ);
                             }
@@ -116,7 +116,7 @@ struct MANGOS_DLL_DECL world_map_kalimdor : public ScriptedMap
 
                             if (Creature* pTemp = pCreature->SummonCreature(!i ? NPC_MURKDEEP : NPC_GREYMIST_HUNTER, fX, fY, fZ, aSpawnLocations[POS_IDX_MURKDEEP_SPAWN][3], TEMPSUMMON_DEAD_DESPAWN, 0))
                             {
-                                pTemp->SetWalk(false);
+                                pTemp->SetWalkFALSE;
                                 pTemp->GetRandomPoint(aSpawnLocations[POS_IDX_MURKDEEP_MOVE][0], aSpawnLocations[POS_IDX_MURKDEEP_MOVE][1], aSpawnLocations[POS_IDX_MURKDEEP_MOVE][2], 5.0f, fX, fY, fZ);
                                 pTemp->GetMotionMaster()->MovePoint(0, fX, fY, fZ);
                             }

@@ -216,7 +216,7 @@ struct MANGOS_DLL_DECL mob_arugal_voidwalkerAI : public ScriptedAI
 
     void Reset()
     {
-        m_creature->SetWalk(true);
+        m_creature->SetWalkTRUE;
         m_uiDarkOffering = urand(4400, 12500);
         m_bWPDone = true;
 

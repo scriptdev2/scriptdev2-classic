@@ -28,7 +28,7 @@ Creature* GetClosestCreatureWithEntry(WorldObject* pSource, uint32 uiEntry, floa
 {
     Creature* pCreature = NULL;
 
-    MaNGOS::NearestCreatureEntryWithLiveStateInObjectRangeCheck creature_check(*pSource, uiEntry, bOnlyAlive, bOnlyDead, fMaxSearchRange);
+    MaNGOS::NearestCreatureEntryWithLiveStateInObjectRangeCheck creature_check(*pSource, uiEntry, bOnlyAlive, /*bOnlyDead,*/ fMaxSearchRange);
     MaNGOS::CreatureLastSearcher<MaNGOS::NearestCreatureEntryWithLiveStateInObjectRangeCheck> searcher(pCreature, creature_check);
 
     Cell::VisitGridObjects(pSource, searcher, fMaxSearchRange);
@@ -44,10 +44,31 @@ void GetGameObjectListWithEntryInGrid(std::list<GameObject*>& lList , WorldObjec
     Cell::VisitGridObjects(pSource, searcher, fMaxSearchRange);
 }
 
+// Backporting Core MaNGOS 11962
+class AllCreaturesOfEntryInRangeCheck
+{
+    public:
+        AllCreaturesOfEntryInRangeCheck(const WorldObject* pObject, uint32 uiEntry, float fMaxRange) : m_pObject(pObject), m_uiEntry(uiEntry), m_fRange(fMaxRange) {}
+        WorldObject const& GetFocusObject() const { return *m_pObject; }
+        bool operator() (Unit* pUnit)
+        {
+            if (pUnit->GetEntry() == m_uiEntry && m_pObject->IsWithinDist(pUnit,m_fRange,false))
+                return true;
+
+            return false;
+        }
+
+    private:
+        const WorldObject* m_pObject;
+        uint32 m_uiEntry;
+        float m_fRange;
+};
+
 void GetCreatureListWithEntryInGrid(std::list<Creature*>& lList, WorldObject* pSource, uint32 uiEntry, float fMaxSearchRange)
 {
-    MaNGOS::AllCreaturesOfEntryInRangeCheck check(pSource, uiEntry, fMaxSearchRange);
-    MaNGOS::CreatureListSearcher<MaNGOS::AllCreaturesOfEntryInRangeCheck> searcher(lList, check);
+    // Backporting Core MaNGOS 11962
+    AllCreaturesOfEntryInRangeCheck check(pSource, uiEntry, fMaxSearchRange);
+    MaNGOS::CreatureListSearcher<AllCreaturesOfEntryInRangeCheck> searcher(lList, check);
 
     Cell::VisitGridObjects(pSource, searcher, fMaxSearchRange);
 }

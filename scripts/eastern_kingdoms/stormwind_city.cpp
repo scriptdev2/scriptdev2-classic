@@ -266,7 +266,7 @@ struct MANGOS_DLL_DECL npc_squire_roweAI : public npc_escortAI, private Dialogue
     {
         if (pSummoned->GetEntry() == NPC_WINDSOR)
         {
-            pSummoned->SetWalk(false);
+            pSummoned->SetWalkFALSE;
             pSummoned->GetMotionMaster()->MovePoint(1, aWindsorMoveLoc[0], aWindsorMoveLoc[1], aWindsorMoveLoc[2]);
 
             m_windsorGuid = pSummoned->GetObjectGuid();
@@ -331,7 +331,7 @@ struct MANGOS_DLL_DECL npc_squire_roweAI : public npc_escortAI, private Dialogue
             {
                 if (Creature* pHorse = m_creature->GetMap()->GetCreature(m_horseGuid))
                 {
-                    pHorse->SetWalk(false);
+                    pHorse->SetWalkFALSE;
                     pHorse->GetMotionMaster()->MovePoint(1, aWindsorSpawnLoc[0], aWindsorSpawnLoc[1], aWindsorSpawnLoc[2]);
                 }
                 break;
@@ -636,7 +636,7 @@ struct MANGOS_DLL_DECL npc_reginald_windsorAI : public npc_escortAI, private Dia
                             m_guardsGuid[i] = pTemp->GetObjectGuid();
                     }
 
-                    pJonathan->SetWalk(false);
+                    pJonathan->SetWalkFALSE;
                     pJonathan->Unmount();
                     pJonathan->GetMotionMaster()->MovePoint(0, aMoveLocations[0][0], aMoveLocations[0][1], aMoveLocations[0][2]);
                 }
@@ -654,7 +654,7 @@ struct MANGOS_DLL_DECL npc_reginald_windsorAI : public npc_escortAI, private Dia
                 // We can reset Jonathan now
                 if (Creature* pJonathan = m_pScriptedMap->GetSingleCreatureFromStorage(NPC_JONATHAN))
                 {
-                    pJonathan->SetWalk(true);
+                    pJonathan->SetWalkTRUE;
                     pJonathan->SetStandState(UNIT_STAND_STATE_STAND);
                     pJonathan->GetMotionMaster()->MoveTargetedHome();
                 }
@@ -750,7 +750,7 @@ struct MANGOS_DLL_DECL npc_reginald_windsorAI : public npc_escortAI, private Dia
             case NPC_JONATHAN:
                 if (Creature* pJonathan = m_pScriptedMap->GetSingleCreatureFromStorage(NPC_JONATHAN))
                 {
-                    pJonathan->SetWalk(true);
+                    pJonathan->SetWalkTRUE;
                     pJonathan->GetMotionMaster()->MovePoint(0, aMoveLocations[5][0], aMoveLocations[5][1], aMoveLocations[5][2]);
                 }
                 break;
@@ -793,7 +793,7 @@ struct MANGOS_DLL_DECL npc_reginald_windsorAI : public npc_escortAI, private Dia
             case SAY_BOLVAR_KEEP_2:
                 if (Creature* pWrynn = m_pScriptedMap->GetSingleCreatureFromStorage(NPC_WRYNN))
                 {
-                    pWrynn->SetWalk(false);
+                    pWrynn->SetWalkFALSE;
                     pWrynn->ForcedDespawn(15000);
                     pWrynn->GetMotionMaster()->MovePoint(0, aMoveLocations[6][0], aMoveLocations[6][1], aMoveLocations[6][2]);
 
@@ -820,7 +820,7 @@ struct MANGOS_DLL_DECL npc_reginald_windsorAI : public npc_escortAI, private Dia
             case SAY_PRESTOR_KEEP_9:
                 if (Creature* pBolvar = m_pScriptedMap->GetSingleCreatureFromStorage(NPC_BOLVAR))
                 {
-                    pBolvar->SetWalk(false);
+                    pBolvar->SetWalkFALSE;
                     pBolvar->GetMotionMaster()->MovePoint(0, aMoveLocations[7][0], aMoveLocations[7][1], aMoveLocations[7][2]);
                 }
                 break;
@@ -888,7 +888,7 @@ struct MANGOS_DLL_DECL npc_reginald_windsorAI : public npc_escortAI, private Dia
             case NPC_BOLVAR:
                 if (Creature* pBolvar = m_pScriptedMap->GetSingleCreatureFromStorage(NPC_BOLVAR))
                 {
-                    pBolvar->SetWalk(true);
+                    pBolvar->SetWalkTRUE;
                     pBolvar->GetMotionMaster()->MovePoint(0, aMoveLocations[8][0], aMoveLocations[8][1], aMoveLocations[8][2]);
                 }
                 break;
@@ -914,7 +914,7 @@ struct MANGOS_DLL_DECL npc_reginald_windsorAI : public npc_escortAI, private Dia
                 {
                     pWrynn->SetFlag(UNIT_NPC_FLAGS, UNIT_NPC_FLAG_QUESTGIVER);
                     pWrynn->Respawn();
-                    pWrynn->SetWalk(true);
+                    pWrynn->SetWalkTRUE;
                     pWrynn->GetMotionMaster()->MoveTargetedHome();
                 }
                 // Onyxia will respawn by herself in about 30 min, so just reset flags
