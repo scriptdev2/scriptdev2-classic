@@ -2,6 +2,9 @@
 *.sln        eol=crlf
 *.vcproj     eol=crlf
 *.vcxproj*   eol=crlf
+*.sh         eol=lf
+
+tool/backporting/todo_tbc_commits.log   eol=lf
 
 # Whitespace rules
 # strict (no trailing, no tabs)
