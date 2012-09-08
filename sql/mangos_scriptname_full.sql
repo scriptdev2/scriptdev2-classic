@@ -195,6 +195,7 @@ UPDATE creature_template SET ScriptName='boss_nefarian' WHERE entry=11583;
 
 /* BLASTED LANDS */
 UPDATE creature_template SET ScriptName='npc_fallen_hero_of_horde' WHERE entry=7572;
+UPDATE creature_template SET ScriptName='boss_kazzak' WHERE entry=12397;
 
 /* BURNING STEPPES */
 UPDATE creature_template SET ScriptName='npc_ragged_john' WHERE entry=9563;

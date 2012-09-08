@@ -135,6 +135,9 @@
     <ClCompile Include="..\scripts\eastern_kingdoms\blasted_lands.cpp">
       <Filter>scripts\eastern_kingdoms</Filter>
     </ClCompile>
+    <ClCompile Include="..\scripts\eastern_kingdoms\boss_kazzak.cpp">
+      <Filter>scripts\eastern_kingdoms</Filter>
+    </ClCompile>
     <ClCompile Include="..\scripts\eastern_kingdoms\burning_steppes.cpp">
       <Filter>scripts\eastern_kingdoms</Filter>
     </ClCompile>

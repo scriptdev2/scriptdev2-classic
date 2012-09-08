@@ -218,6 +218,7 @@
     <ClCompile Include="..\scripts\eastern_kingdoms\alterac_mountains.cpp" />
     <ClCompile Include="..\scripts\eastern_kingdoms\arathi_highlands.cpp" />
     <ClCompile Include="..\scripts\eastern_kingdoms\blasted_lands.cpp" />
+    <ClCompile Include="..\scripts\eastern_kingdoms\boss_kazzak.cpp" />
     <ClCompile Include="..\scripts\eastern_kingdoms\burning_steppes.cpp" />
     <ClCompile Include="..\scripts\eastern_kingdoms\dun_morogh.cpp" />
     <ClCompile Include="..\scripts\eastern_kingdoms\eastern_plaguelands.cpp" />

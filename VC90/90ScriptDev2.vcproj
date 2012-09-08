@@ -420,6 +420,10 @@
 					>
 				</File>
 				<File
+					RelativePath="..\sscripts\eastern_kingdoms\boss_kazzak.cpp"
+					>
+				</File>
+				<File
 					RelativePath="..\scripts\eastern_kingdoms\burning_steppes.cpp"
 					>
 				</File>
