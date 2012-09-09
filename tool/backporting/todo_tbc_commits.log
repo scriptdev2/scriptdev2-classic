@@ -10,16 +10,6 @@
 ##
 ####################################################################################################
 
-TBC_COMMIT 5c99ae6 by NeatElves (commiter Salja) " [s2598] Drop gossip for npc 11064. Will be handled in DB. "
-  74.8% scripts/eastern_kingdoms/
-   7.3% sql/updates/
-   9.9% sql/
-
-TBC_COMMIT 98a5122 by NeatElves (commiter Salja) " [s2599] Drop gossip for npcs 3442 and 7564. Will be handled in DB "
-  87.1% scripts/kalimdor/
-   4.4% sql/updates/
-   5.8% sql/
-
 TBC_COMMIT 9981c55 by Xfurry (commiter Salja) " [s2603] Drop script support for Vectus - Scholomance. "
    7.0% VC100/
   83.0% scripts/eastern_kingdoms/scholomance/
