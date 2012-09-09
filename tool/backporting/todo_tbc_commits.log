@@ -10,9 +10,5 @@
 ##
 ####################################################################################################
 
-TBC_COMMIT 9981c55 by Xfurry (commiter Salja) " [s2603] Drop script support for Vectus - Scholomance. "
-   7.0% VC100/
-  83.0% scripts/eastern_kingdoms/scholomance/
-   3.6% sql/
+FILE LAST UPDATE BASED ON e2db3fa (by Xfurry) " [s2614] Cleanup and improve script for Jan'alai - Zul'aman "
 
-FILE LAST UPDATE BASED ON 450b938 (by evil-at-wow) " Fix missing value/timer in the Illidan/Maiev conversation data "

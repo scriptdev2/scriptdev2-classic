@@ -89,7 +89,6 @@ extern void AddSC_boss_mograine_and_whitemane();
 extern void AddSC_instance_scarlet_monastery();
 extern void AddSC_boss_darkmaster_gandling();               // scholomance
 extern void AddSC_boss_jandicebarov();
-extern void AddSC_boss_vectus();
 extern void AddSC_instance_scholomance();
 extern void AddSC_shadowfang_keep();                        // shadowfang_keep
 extern void AddSC_instance_shadowfang_keep();
@@ -289,7 +288,6 @@ void AddScripts()
     AddSC_instance_scarlet_monastery();
     AddSC_boss_darkmaster_gandling();                       // scholomance
     AddSC_boss_jandicebarov();
-    AddSC_boss_vectus();
     AddSC_instance_scholomance();
     AddSC_shadowfang_keep();                                // shadowfang_keep
     AddSC_instance_shadowfang_keep();
