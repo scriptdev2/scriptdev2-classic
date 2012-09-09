@@ -51,9 +51,6 @@ enum EscortFaction
 
     FACTION_ESCORT_A_PASSIVE            = 774,
     FACTION_ESCORT_H_PASSIVE            = 775,
-
-    FACTION_ESCORT_N_ACTIVE             = 1986,
-    FACTION_ESCORT_H_ACTIVE             = 2046
 };
 
 // *********************************************************
