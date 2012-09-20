@@ -16,153 +16,169 @@
 
 /* ScriptData
 SDName: Boss_Kazzak
-SD%Complete: 10
-SDComment: Port of old and dropped Kruul script. Needs heavily rework
+SD%Complete: 80
+SDComment: Spells and timers need to be confirmed.
 SDCategory: Bosses
 EndScriptData */
 
 #include "precompiled.h"
 
-#define SPELL_SHADOWVOLLEY          21341
-#define SPELL_CLEAVE                20677
-#define SPELL_THUNDERCLAP           23931
-#define SPELL_TWISTEDREFLECTION     21063
-#define SPELL_VOIDBOLT              21066
-#define SPELL_RAGE                  21340
-#define SPELL_CAPTURESOUL           21054
+enum
+{
+    SAY_INTRO                 = -1000147,
+    SAY_AGGRO1                = -1000148,
+    SAY_AGGRO2                = -1000149,
+    SAY_SURPREME1             = -1000150,
+    SAY_SURPREME2             = -1000151,
+    SAY_KILL1                 = -1000152,
+    SAY_KILL2                 = -1000153,
+    SAY_KILL3                 = -1000154,
+    SAY_DEATH                 = -1000155,
+    EMOTE_FRENZY              = -1000002,
+    SAY_RAND1                 = -1000157,
+    SAY_RAND2                 = -1000158,
+
+    SPELL_SHADOW_VOLLEY       = 21341,
+    SPELL_BERSERK             = 21340,
+    SPELL_CLEAVE              = 20691,
+    SPELL_THUNDERCLAP         = 26554,
+    SPELL_VOIDBOLT            = 21066,
+    SPELL_MARK_OF_KAZZAK      = 21056,                  // triggers 21058 when target gets to 0 mana
+    SPELL_CAPTURESOUL         = 21053,                  // procs 21054 on kill
+    SPELL_TWISTEDREFLECTION   = 21063
+};
 
 struct MANGOS_DLL_DECL boss_kazzakAI : public ScriptedAI
 {
-    boss_kazzakAI(Creature* pCreature) : ScriptedAI(pCreature) {Reset();}
+    boss_kazzakAI(Creature* pCreature) : ScriptedAI(pCreature) { Reset(); }
 
-    uint32 ShadowVolley_Timer;
-    uint32 Cleave_Timer;
-    uint32 ThunderClap_Timer;
-    uint32 TwistedReflection_Timer;
-    uint32 VoidBolt_Timer;
-    uint32 Rage_Timer;
-    uint32 Hound_Timer;
-    int Rand;
-    int RandX;
-    int RandY;
-    Creature* Summoned;
+    uint32 m_uiShadowVolleyTimer;
+    uint32 m_uiCleaveTimer;
+    uint32 m_uiThunderClapTimer;
+    uint32 m_uiVoidBoltTimer;
+    uint32 m_uiMarkOfKazzakTimer;
+    uint32 m_uiTwistedReflectionTimer;
+    uint32 m_uiSupremeTimer;
 
     void Reset()
     {
-        ShadowVolley_Timer = 10000;
-        Cleave_Timer = 14000;
-        ThunderClap_Timer = 20000;
-        TwistedReflection_Timer = 25000;
-        VoidBolt_Timer = 30000;
-        Rage_Timer = 60000;                                 //Cast rage after 1 minute
-        Hound_Timer = 8000;
+        m_uiShadowVolleyTimer       = urand(3000,12000);
+        m_uiCleaveTimer             = 7000;
+        m_uiThunderClapTimer        = urand(16000,20000);
+        m_uiVoidBoltTimer           = 30000;
+        m_uiMarkOfKazzakTimer       = 25000;
+        m_uiTwistedReflectionTimer  = 33000;
+        m_uiSupremeTimer            = 3*MINUTE*IN_MILLISECONDS;
+    }
+
+    void JustRespawned()
+    {
+        DoScriptText(SAY_INTRO, m_creature);
+    }
+
+    void Aggro(Unit* pWho)
+    {
+        DoCastSpellIfCan(m_creature, SPELL_CAPTURESOUL, CAST_TRIGGERED);
+        DoScriptText(urand(0, 1) ? SAY_AGGRO1 : SAY_AGGRO2, m_creature);
     }
 
     void KilledUnit(Unit* pVictim)
     {
-        // When a player, pet or totem gets killed, Lord Kazzak casts this spell to instantly regenerate 70,000 health.
-        DoCastSpellIfCan(m_creature,SPELL_CAPTURESOUL);
+        if (pVictim->GetTypeId() != TYPEID_PLAYER)
+            return;
 
+        switch (urand(0, 3))
+        {
+            case 0: DoScriptText(SAY_KILL1, m_creature); break;
+            case 1: DoScriptText(SAY_KILL2, m_creature); break;
+            case 2: DoScriptText(SAY_KILL3, m_creature); break;
+        }
     }
 
-    void SummonHounds(Unit* victim)
+    void JustDied(Unit* pKiller)
     {
-        Rand = rand()%10;
-        switch(urand(0, 1))
-        {
-            case 0: RandX = 0 - Rand; break;
-            case 1: RandX = 0 + Rand; break;
-        }
-        Rand = 0;
-        Rand = rand()%10;
-        switch(urand(0, 1))
-        {
-            case 0: RandY = 0 - Rand; break;
-            case 1: RandY = 0 + Rand; break;
-        }
-        Rand = 0;
-        Summoned = DoSpawnCreature(19207, RandX, RandY, 0, 0, TEMPSUMMON_TIMED_OR_CORPSE_DESPAWN, 300000);
-        if (Summoned)
-            Summoned->AI()->AttackStart(victim);
+        DoScriptText(SAY_DEATH, m_creature);
     }
 
-    void UpdateAI(const uint32 diff)
+    void UpdateAI(const uint32 uiDiff)
     {
-        //Return since we have no target
         if (!m_creature->SelectHostileTarget() || !m_creature->getVictim())
             return;
 
-        //ShadowVolley_Timer
-        if (ShadowVolley_Timer < diff)
+        if (m_uiSupremeTimer)
         {
-            if (rand()%100 < 46)
+            // Enrage - cast shadowbolt volley every second
+            if (m_uiSupremeTimer <= uiDiff)
             {
-                DoCastSpellIfCan(m_creature->getVictim(),SPELL_SHADOWVOLLEY);
+                if (DoCastSpellIfCan(m_creature, SPELL_BERSERK) == CAST_OK)
+                {
+                    DoScriptText(urand(0, 1) ? SAY_SURPREME1 : SAY_SURPREME2, m_creature);
+                    m_uiSupremeTimer = 0;
+                }
             }
+            else
+                m_uiSupremeTimer -= uiDiff;
 
-            ShadowVolley_Timer = 5000;
-        }else ShadowVolley_Timer -= diff;
-
-        //Cleave_Timer
-        if (Cleave_Timer < diff)
-        {
-            if (rand()%100 < 50)
+            // Cast shadowbolt volley on timer before Berserk
+            if (m_uiShadowVolleyTimer < uiDiff)
             {
-                DoCastSpellIfCan(m_creature->getVictim(),SPELL_CLEAVE);
+                if (DoCastSpellIfCan(m_creature, SPELL_SHADOW_VOLLEY) == CAST_OK)
+                    m_uiShadowVolleyTimer = urand(4000, 20000);
             }
+            else
+                m_uiShadowVolleyTimer -= uiDiff;
+        }
 
-            Cleave_Timer = 10000;
-        }else Cleave_Timer -= diff;
-
-        //ThunderClap_Timer
-        if (ThunderClap_Timer < diff)
+        if (m_uiCleaveTimer < uiDiff)
         {
-            if (rand()%100 < 20)
+            if (DoCastSpellIfCan(m_creature->getVictim(), SPELL_CLEAVE) == CAST_OK)
+                m_uiCleaveTimer = urand(8000, 12000);
+        }
+        else
+            m_uiCleaveTimer -= uiDiff;
+
+        if (m_uiThunderClapTimer < uiDiff)
+        {
+            if (DoCastSpellIfCan(m_creature, SPELL_THUNDERCLAP) == CAST_OK)
+                m_uiThunderClapTimer = urand(10000, 14000);
+        }
+        else
+            m_uiThunderClapTimer -= uiDiff;
+
+        if (m_uiVoidBoltTimer < uiDiff)
+        {
+            if (DoCastSpellIfCan(m_creature->getVictim(), SPELL_VOIDBOLT) == CAST_OK)
+                m_uiVoidBoltTimer = urand(15000, 28000);
+        }
+        else
+            m_uiVoidBoltTimer -= uiDiff;
+
+        if (m_uiMarkOfKazzakTimer < uiDiff)
+        {
+            if (Unit* pTarget = m_creature->SelectAttackingTarget(ATTACKING_TARGET_RANDOM, 0, SPELL_MARK_OF_KAZZAK, SELECT_FLAG_POWER_MANA))
             {
-                DoCastSpellIfCan(m_creature->getVictim(),SPELL_THUNDERCLAP);
+                if (DoCastSpellIfCan(pTarget, SPELL_MARK_OF_KAZZAK) == CAST_OK)
+                    m_uiMarkOfKazzakTimer = 20000;
             }
+        }
+        else
+            m_uiMarkOfKazzakTimer -= uiDiff;
 
-            ThunderClap_Timer = 12000;
-        }else ThunderClap_Timer -= diff;
-
-        //TwistedReflection_Timer
-        if (TwistedReflection_Timer < diff)
+        if (m_uiTwistedReflectionTimer < uiDiff)
         {
-            DoCastSpellIfCan(m_creature->getVictim(),SPELL_TWISTEDREFLECTION);
-            TwistedReflection_Timer = 30000;
-        }else TwistedReflection_Timer -= diff;
-
-        //VoidBolt_Timer
-        if (VoidBolt_Timer < diff)
-        {
-            if (rand()%100 < 40)
+            if (Unit* pTarget = m_creature->SelectAttackingTarget(ATTACKING_TARGET_RANDOM, 0))
             {
-                DoCastSpellIfCan(m_creature->getVictim(),SPELL_VOIDBOLT);
+                if (DoCastSpellIfCan(pTarget, SPELL_TWISTEDREFLECTION) == CAST_OK)
+                    m_uiTwistedReflectionTimer = 15000;
             }
-
-            VoidBolt_Timer = 18000;
-        }else VoidBolt_Timer -= diff;
-
-        //Rage_Timer
-        if (Rage_Timer < diff)
-        {
-            DoCastSpellIfCan(m_creature,SPELL_RAGE);
-            Rage_Timer = 70000;
-        }else Rage_Timer -= diff;
-
-        //Hound_Timer
-        if (Hound_Timer < diff)
-        {
-            SummonHounds(m_creature->getVictim());
-            SummonHounds(m_creature->getVictim());
-            SummonHounds(m_creature->getVictim());
-
-            Hound_Timer = 45000;
-        }else Hound_Timer -= diff;
+        }
+        else
+            m_uiTwistedReflectionTimer -= uiDiff;
 
         DoMeleeAttackIfReady();
     }
 };
+
 CreatureAI* GetAI_boss_kazzak(Creature* pCreature)
 {
     return new boss_kazzakAI(pCreature);
