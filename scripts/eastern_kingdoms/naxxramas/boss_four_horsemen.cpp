@@ -32,9 +32,9 @@ enum
     SAY_BLAU_SPECIAL        = -1533048,
     SAY_BLAU_SLAY           = -1533049,
     SAY_BLAU_DEATH          = -1533050,
-    //EMOTE_UNYIELDING_PAIN = -1533156,
+    // EMOTE_UNYIELDING_PAIN = -1533156,
 
-    //alexandros mograine
+    // alexandros mograine
     SAY_MORG_AGGRO1         = -1533065,
     SAY_MORG_AGGRO2         = -1533066,
     SAY_MORG_AGGRO3         = -1533067,
@@ -54,7 +54,7 @@ enum
     SAY_ZELI_SPECIAL        = -1533062,
     SAY_ZELI_SLAY           = -1533063,
     SAY_ZELI_DEATH          = -1533064,
-    //EMOTE_CONDEMATION     = -1533157,
+    // EMOTE_CONDEMATION     = -1533157,
 
     // ***** Spells *****
     // all horsemen
@@ -191,7 +191,7 @@ struct MANGOS_DLL_DECL boss_alexandros_mograineAI : public ScriptedAI
 
     void Aggro(Unit* pWho)
     {
-        switch(urand(0, 2))
+        switch (urand(0, 2))
         {
             case 0: DoScriptText(SAY_MORG_AGGRO1, m_creature); break;
             case 1: DoScriptText(SAY_MORG_AGGRO2, m_creature); break;

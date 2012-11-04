@@ -112,7 +112,7 @@ struct MANGOS_DLL_DECL mobs_spitelashesAI : public ScriptedAI
 
         // Creature get polymorphed into a sheep and after 5 secs despawns
         if (pCaster->GetTypeId() == TYPEID_PLAYER && ((Player*)pCaster)->GetQuestStatus(QUEST_FRAGMENTED_MAGIC) == QUEST_STATUS_INCOMPLETE &&
-            (pSpell->Id==118 || pSpell->Id== 12824 || pSpell->Id== 12825 || pSpell->Id== 12826))
+                (pSpell->Id == 118 || pSpell->Id == 12824 || pSpell->Id == 12825 || pSpell->Id == 12826))
             m_uiMorphTimer = 5000;
     }
 
@@ -120,7 +120,7 @@ struct MANGOS_DLL_DECL mobs_spitelashesAI : public ScriptedAI
     {
         Unit* pTarget = NULL;
 
-        switch(m_aSpitelashAbility[uiIndex].m_uiTargetType)
+        switch (m_aSpitelashAbility[uiIndex].m_uiTargetType)
         {
             case TARGET_TYPE_SELF:
                 pTarget = m_creature;
@@ -197,10 +197,10 @@ bool GossipHello_npc_loramus_thalipedes(Player* pPlayer, Creature* pCreature)
         pPlayer->PrepareQuestMenu(pCreature->GetObjectGuid());
 
     if (pPlayer->GetQuestStatus(2744) == QUEST_STATUS_INCOMPLETE)
-        pPlayer->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "Can you help me?", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF+1);
+        pPlayer->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "Can you help me?", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 1);
 
     if (pPlayer->GetQuestStatus(3141) == QUEST_STATUS_INCOMPLETE)
-        pPlayer->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "Tell me your story", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF+2);
+        pPlayer->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "Tell me your story", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 2);
 
     pPlayer->SEND_GOSSIP_MENU(pPlayer->GetGossipTextId(pCreature), pCreature->GetObjectGuid());
 
@@ -209,7 +209,7 @@ bool GossipHello_npc_loramus_thalipedes(Player* pPlayer, Creature* pCreature)
 
 bool GossipSelect_npc_loramus_thalipedes(Player* pPlayer, Creature* pCreature, uint32 uiSender, uint32 uiAction)
 {
-    switch(uiAction)
+    switch (uiAction)
     {
         case GOSSIP_ACTION_INFO_DEF+1:
             pPlayer->CLOSE_GOSSIP_MENU();

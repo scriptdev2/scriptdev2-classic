@@ -39,9 +39,9 @@ enum
     SPELL_NECROTICPOISON        = 28776,
     SPELL_FRENZY                = 28747,
 
-    //SPELL_SUMMON_SPIDERLING_1 = 29434,                    // removed from dbc. Summons 10 spiderlings
-    //SPELL_SUMMON_SPIDERLING_2 = 30076,                    // removed from dbc. Summons 3 spiderlings
-    //SPELL_SUMMON_WEB_WRAP     = 28627,                    // removed from dbc. Summons one web wrap and transforms it into creature 17286
+    // SPELL_SUMMON_SPIDERLING_1 = 29434,                   // removed from dbc. Summons 10 spiderlings
+    // SPELL_SUMMON_SPIDERLING_2 = 30076,                   // removed from dbc. Summons 3 spiderlings
+    // SPELL_SUMMON_WEB_WRAP     = 28627,                   // removed from dbc. Summons one web wrap and transforms it into creature 17286
 
     NPC_WEB_WRAP                = 16486,
     NPC_SPIDERLING              = 17055,
@@ -96,8 +96,8 @@ struct MANGOS_DLL_DECL npc_web_wrapAI : public ScriptedAI
             ((Player*)pVictim)->KnockBackFrom(m_creature, -fDist, uiEffectMiscValue * 0.033f);
 
             // Jump movement not supported on 2.4.3
-            //float fSpeed = fDist * (uiEffectMiscValue * 0.01f);
-            //pVictim->GetMotionMaster()->MoveJump(m_creature->GetPositionX(), m_creature->GetPositionY(), m_creature->GetPositionZ(), fSpeed, 0.0f);
+            // float fSpeed = fDist * (uiEffectMiscValue * 0.01f);
+            // pVictim->GetMotionMaster()->MoveJump(m_creature->GetPositionX(), m_creature->GetPositionY(), m_creature->GetPositionZ(), fSpeed, 0.0f);
 
             m_victimGuid = pVictim->GetObjectGuid();
             m_uiWebWrapTimer = uiEffectMiscValue == 200 ? 1000 : 2000;

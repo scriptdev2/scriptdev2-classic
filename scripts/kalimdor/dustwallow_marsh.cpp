@@ -59,7 +59,7 @@ struct MANGOS_DLL_DECL npc_morokkAI : public npc_escortAI
 
     void WaypointReached(uint32 uiPointId)
     {
-        switch(uiPointId)
+        switch (uiPointId)
         {
             case 0:
                 SetEscortPaused(true);
@@ -87,7 +87,7 @@ struct MANGOS_DLL_DECL npc_morokkAI : public npc_escortAI
         AttackStart(pAttacker);
     }
 
-    void DamageTaken(Unit* pDoneBy, uint32 &uiDamage)
+    void DamageTaken(Unit* pDoneBy, uint32& uiDamage)
     {
         if (HasEscortState(STATE_ESCORT_ESCORTING))
         {
@@ -193,8 +193,8 @@ enum
     PHASE_COMPLETE                      = 3
 };
 
-static float m_afSpawn[] = {-3383.501953f, -3203.383301f, 36.149f};
-static float m_afMoveTo[] = {-3371.414795f, -3212.179932f, 34.210f};
+static float m_afSpawn[] = { -3383.501953f, -3203.383301f, 36.149f};
+static float m_afMoveTo[] = { -3371.414795f, -3212.179932f, 34.210f};
 
 struct MANGOS_DLL_DECL npc_ogronAI : public npc_escortAI
 {
@@ -239,7 +239,7 @@ struct MANGOS_DLL_DECL npc_ogronAI : public npc_escortAI
     {
         if (!lCreatureList.empty())
         {
-            for(std::list<Creature*>::iterator itr = lCreatureList.begin(); itr != lCreatureList.end(); ++itr)
+            for (std::list<Creature*>::iterator itr = lCreatureList.begin(); itr != lCreatureList.end(); ++itr)
             {
                 if ((*itr)->GetEntry() == uiCreatureEntry && (*itr)->isAlive())
                     return (*itr);
@@ -251,7 +251,7 @@ struct MANGOS_DLL_DECL npc_ogronAI : public npc_escortAI
 
     void WaypointReached(uint32 uiPointId)
     {
-        switch(uiPointId)
+        switch (uiPointId)
         {
             case 9:
                 DoScriptText(SAY_OGR_SPOT, m_creature);
@@ -278,9 +278,9 @@ struct MANGOS_DLL_DECL npc_ogronAI : public npc_escortAI
         {
             if (Creature* pCaldwell = GetCreature(NPC_CALDWELL))
             {
-                //will this conversion work without compile warning/error?
+                // will this conversion work without compile warning/error?
                 size_t iSize = lCreatureList.size();
-                pSummoned->GetMotionMaster()->MoveFollow(pCaldwell, 0.5f, (M_PI/2)*(int)iSize);
+                pSummoned->GetMotionMaster()->MoveFollow(pCaldwell, 0.5f, (M_PI / 2) * (int)iSize);
             }
         }
     }
@@ -289,7 +289,7 @@ struct MANGOS_DLL_DECL npc_ogronAI : public npc_escortAI
     {
         if (!lCreatureList.empty())
         {
-            for(std::list<Creature*>::iterator itr = lCreatureList.begin(); itr != lCreatureList.end(); ++itr)
+            for (std::list<Creature*>::iterator itr = lCreatureList.begin(); itr != lCreatureList.end(); ++itr)
             {
                 if ((*itr)->GetEntry() == NPC_REETHE)
                     continue;
@@ -313,11 +313,11 @@ struct MANGOS_DLL_DECL npc_ogronAI : public npc_escortAI
                 {
                     m_uiGlobalTimer = 5000;
 
-                    switch(m_uiPhase)
+                    switch (m_uiPhase)
                     {
                         case PHASE_INTRO:
                         {
-                            switch(m_uiPhaseCounter)
+                            switch (m_uiPhaseCounter)
                             {
                                 case 0:
                                     if (Creature* pReethe = GetCreature(NPC_REETHE))
@@ -355,7 +355,7 @@ struct MANGOS_DLL_DECL npc_ogronAI : public npc_escortAI
                         }
                         case PHASE_GUESTS:
                         {
-                            switch(m_uiPhaseCounter)
+                            switch (m_uiPhaseCounter)
                             {
                                 case 6:
                                     if (Creature* pCaldwell = GetCreature(NPC_CALDWELL))
@@ -396,7 +396,7 @@ struct MANGOS_DLL_DECL npc_ogronAI : public npc_escortAI
                         }
                         case PHASE_COMPLETE:
                         {
-                            switch(m_uiPhaseCounter)
+                            switch (m_uiPhaseCounter)
                             {
                                 case 12:
                                     if (Player* pPlayer = GetPlayerForEscort())
@@ -465,14 +465,14 @@ enum
     EMOTE_SURRENDER             = -1000415,
 
     QUEST_MISSING_DIPLO_PT16    = 1324,
-    FACTION_HOSTILE             = 168,                      //guessed, may be different
+    FACTION_HOSTILE             = 168,                      // guessed, may be different
 
-    NPC_SENTRY                  = 5184,                     //helps hendel
-    NPC_JAINA                   = 4968,                     //appears once hendel gives up
+    NPC_SENTRY                  = 5184,                     // helps hendel
+    NPC_JAINA                   = 4968,                     // appears once hendel gives up
     NPC_TERVOSH                 = 4967
 };
 
-//TODO: develop this further, end event not created
+// TODO: develop this further, end event not created
 struct MANGOS_DLL_DECL npc_private_hendelAI : public ScriptedAI
 {
     npc_private_hendelAI(Creature* pCreature) : ScriptedAI(pCreature) { Reset(); }
@@ -494,7 +494,7 @@ struct MANGOS_DLL_DECL npc_private_hendelAI : public ScriptedAI
         AttackStart(pAttacker);
     }
 
-    void DamageTaken(Unit* pDoneBy, uint32 &uiDamage)
+    void DamageTaken(Unit* pDoneBy, uint32& uiDamage)
     {
         if (uiDamage > m_creature->GetHealth() || m_creature->GetHealthPercent() < 20.0f)
         {

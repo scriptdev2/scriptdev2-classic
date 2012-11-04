@@ -42,7 +42,7 @@ enum
     SPELL_REJUVENATION          = 20664,
     SPELL_STARFIRE              = 21668,
     SPELL_ERANIKUS_REDEEMED     = 25846,            // transform Eranikus
-    //SPELL_MOONGLADE_TRANQUILITY = unk,            // spell which acts as a spotlight over Eranikus after he is redeemed
+    // SPELL_MOONGLADE_TRANQUILITY = unk,            // spell which acts as a spotlight over Eranikus after he is redeemed
 
     NPC_ERANIKUS_TYRANT         = 15491,
     NPC_NIGHTMARE_PHANTASM      = 15629,            // shadows summoned during the event - should cast 17228 and 21307
@@ -109,10 +109,10 @@ enum
 
 static const DialogueEntry aIntroDialogue[] =
 {
-    {NPC_REMULOS,           0,                   14000},        // target player
+    {NPC_REMULOS,           0,                   14000},    // target player
     {SAY_REMULOS_INTRO_4,   NPC_REMULOS,         12000},
     {SAY_REMULOS_INTRO_5,   NPC_REMULOS,         5000},
-    {SPELL_CONJURE_RIFT,    0,                   13000},        // conjure rift spell
+    {SPELL_CONJURE_RIFT,    0,                   13000},    // conjure rift spell
     {SAY_ERANIKUS_SPAWN,    NPC_ERANIKUS_TYRANT, 11000},
     {SAY_REMULOS_TAUNT_1,   NPC_REMULOS,         5000},
     {EMOTE_ERANIKUS_LAUGH,  NPC_ERANIKUS_TYRANT, 3000},
@@ -120,8 +120,8 @@ static const DialogueEntry aIntroDialogue[] =
     {SAY_REMULOS_TAUNT_3,   NPC_REMULOS,         12000},
     {SAY_ERANIKUS_TAUNT_4,  NPC_ERANIKUS_TYRANT, 6000},
     {EMOTE_ERANIKUS_ATTACK, NPC_ERANIKUS_TYRANT, 7000},
-    {NPC_ERANIKUS_TYRANT,   0,                   0},            // target player - restart the escort and move Eranikus above the village
-    {SAY_REMULOS_DEFEND_2,  NPC_REMULOS,         6000},         // face Eranikus
+    {NPC_ERANIKUS_TYRANT,   0,                   0},        // target player - restart the escort and move Eranikus above the village
+    {SAY_REMULOS_DEFEND_2,  NPC_REMULOS,         6000},     // face Eranikus
     {SAY_ERANIKUS_SHADOWS,  NPC_ERANIKUS_TYRANT, 4000},
     {SAY_REMULOS_DEFEND_3,  NPC_REMULOS,         0},
     {0, 0, 0},
@@ -200,13 +200,13 @@ struct MANGOS_DLL_DECL npc_keeper_remulosAI : public npc_escortAI, private Dialo
 
     void JustSummoned(Creature* pSummoned)
     {
-        switch(pSummoned->GetEntry())
+        switch (pSummoned->GetEntry())
         {
             case NPC_ERANIKUS_TYRANT:
                 m_eranikusGuid = pSummoned->GetObjectGuid();
                 // Make Eranikus unattackable first
                 // ToDo: uncomment the fly effect when it will be possible to cancel it properly
-                //pSummoned->SetByteValue(UNIT_FIELD_BYTES_1, 3, UNIT_BYTE1_FLAG_ALWAYS_STAND | UNIT_BYTE1_FLAG_UNK_2);
+                // pSummoned->SetByteValue(UNIT_FIELD_BYTES_1, 3, UNIT_BYTE1_FLAG_ALWAYS_STAND | UNIT_BYTE1_FLAG_UNK_2);
                 pSummoned->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NON_ATTACKABLE);
                 pSummoned->SetLevitateTRUE;
                 break;
@@ -223,7 +223,7 @@ struct MANGOS_DLL_DECL npc_keeper_remulosAI : public npc_escortAI, private Dialo
         if (uiType != POINT_MOTION_TYPE || pSummoned->GetEntry() != NPC_ERANIKUS_TYRANT)
             return;
 
-        switch(uiPointId)
+        switch (uiPointId)
         {
             case POINT_ID_ERANIKUS_FLIGHT:
                 // Set Eranikus to face Remulos
@@ -249,7 +249,7 @@ struct MANGOS_DLL_DECL npc_keeper_remulosAI : public npc_escortAI, private Dialo
 
     void WaypointReached(uint32 uiPointId)
     {
-        switch(uiPointId)
+        switch (uiPointId)
         {
             case 0:
                 if (Player* pPlayer = GetPlayerForEscort())
@@ -286,7 +286,7 @@ struct MANGOS_DLL_DECL npc_keeper_remulosAI : public npc_escortAI, private Dialo
 
     void JustDidDialogueStep(int32 iEntry)
     {
-        switch(iEntry)
+        switch (iEntry)
         {
             case NPC_REMULOS:
                 if (Player* pPlayer = GetPlayerForEscort())
@@ -297,7 +297,7 @@ struct MANGOS_DLL_DECL npc_keeper_remulosAI : public npc_escortAI, private Dialo
                 break;
             case SAY_ERANIKUS_SPAWN:
                 // This big yellow emote was removed at some point in WotLK
-                //DoScriptText(EMOTE_SUMMON_ERANIKUS, pEranikus);
+                // DoScriptText(EMOTE_SUMMON_ERANIKUS, pEranikus);
                 break;
             case NPC_ERANIKUS_TYRANT:
                 if (Player* pPlayer = GetPlayerForEscort())
@@ -333,7 +333,7 @@ struct MANGOS_DLL_DECL npc_keeper_remulosAI : public npc_escortAI, private Dialo
         {
             if (m_uiOutroTimer <= uiDiff)
             {
-                switch(m_uiOutroPhase)
+                switch (m_uiOutroPhase)
                 {
                     case 0:
                         DoScriptText(SAY_REMULOS_OUTRO_1, m_creature);
@@ -342,7 +342,7 @@ struct MANGOS_DLL_DECL npc_keeper_remulosAI : public npc_escortAI, private Dialo
                     case 1:
                         // Despawn Remulos after the outro is finished - he will respawn automatically at his home position after a few min
                         DoScriptText(SAY_REMULOS_OUTRO_2, m_creature);
-                        m_creature->SetRespawnDelay(1*MINUTE);
+                        m_creature->SetRespawnDelay(1 * MINUTE);
                         m_creature->ForcedDespawn(3000);
                         m_uiOutroTimer = 0;
                         break;
@@ -363,7 +363,7 @@ struct MANGOS_DLL_DECL npc_keeper_remulosAI : public npc_escortAI, private Dialo
                 {
                     // summon 3 shades inside the house
                     for (uint8 i = 0; i < MAX_SHADOWS; ++i)
-                        m_creature->SummonCreature(NPC_NIGHTMARE_PHANTASM, aShadowsLocations[i].m_fX, aShadowsLocations[i].m_fY, aShadowsLocations[i].m_fZ, 0,TEMPSUMMON_DEAD_DESPAWN, 0);
+                        m_creature->SummonCreature(NPC_NIGHTMARE_PHANTASM, aShadowsLocations[i].m_fX, aShadowsLocations[i].m_fY, aShadowsLocations[i].m_fZ, 0, TEMPSUMMON_DEAD_DESPAWN, 0);
 
                     if (Creature* pEranikus = m_creature->GetMap()->GetCreature(m_eranikusGuid))
                         DoScriptText(SAY_ERANIKUS_ATTACK_1, pEranikus);
@@ -417,7 +417,7 @@ struct MANGOS_DLL_DECL npc_keeper_remulosAI : public npc_escortAI, private Dialo
         {
             if (Unit* pTarget = DoSelectLowestHpFriendly(DEFAULT_VISIBILITY_DISTANCE))
             {
-                switch(urand(0, 2))
+                switch (urand(0, 2))
                 {
                     case 0: DoCastSpellIfCan(pTarget, SPELL_HEALING_TOUCH); break;
                     case 1: DoCastSpellIfCan(pTarget, SPELL_REJUVENATION);  break;
@@ -465,12 +465,12 @@ bool QuestAccept_npc_keeper_remulos(Player* pPlayer, Creature* pCreature, const 
 
 bool EffectDummyCreature_conjure_rift(Unit* pCaster, uint32 uiSpellId, SpellEffectIndex uiEffIndex, Creature* pCreatureTarget)
 {
-    //always check spellid and effectindex
+    // always check spellid and effectindex
     if (uiSpellId == SPELL_CONJURE_RIFT && uiEffIndex == EFFECT_INDEX_0)
     {
         pCaster->SummonCreature(NPC_ERANIKUS_TYRANT, aEranikusLocations[0].m_fX, aEranikusLocations[0].m_fY, aEranikusLocations[0].m_fZ, aEranikusLocations[0].m_fO, TEMPSUMMON_DEAD_DESPAWN, 0);
 
-        //always return true when we are handling this spell and effect
+        // always return true when we are handling this spell and effect
         return true;
     }
 
@@ -590,7 +590,7 @@ struct MANGOS_DLL_DECL boss_eranikusAI : public ScriptedAI
 
     void JustSummoned(Creature* pSummoned)
     {
-        switch(pSummoned->GetEntry())
+        switch (pSummoned->GetEntry())
         {
             case NPC_TYRANDE_WHISPERWIND:
                 m_tyrandeGuid = pSummoned->GetObjectGuid();
@@ -609,7 +609,7 @@ struct MANGOS_DLL_DECL boss_eranikusAI : public ScriptedAI
 
     void DoDespawnSummoned()
     {
-        for(GuidList::const_iterator itr = m_lPriestessList.begin(); itr != m_lPriestessList.end(); ++itr)
+        for (GuidList::const_iterator itr = m_lPriestessList.begin(); itr != m_lPriestessList.end(); ++itr)
         {
             if (Creature* pTemp = m_creature->GetMap()->GetCreature(*itr))
                 pTemp->ForcedDespawn();
@@ -621,7 +621,7 @@ struct MANGOS_DLL_DECL boss_eranikusAI : public ScriptedAI
         if (uiType != POINT_MOTION_TYPE)
             return;
 
-        switch(uiPointId)
+        switch (uiPointId)
         {
             case POINT_ID_TYRANDE_HEAL:
                 if (pSummoned->GetEntry() == NPC_TYRANDE_WHISPERWIND)
@@ -660,7 +660,7 @@ struct MANGOS_DLL_DECL boss_eranikusAI : public ScriptedAI
         {
             if (m_uiEventTimer <= uiDiff)
             {
-                switch(m_uiEventPhase)
+                switch (m_uiEventPhase)
                 {
                     case 0:
                         // Eranikus is redeemed - make Tyrande kneel and stop casting
@@ -674,7 +674,7 @@ struct MANGOS_DLL_DECL boss_eranikusAI : public ScriptedAI
                             pRemulos->SetFacingToObject(m_creature);
                         // Note: this emote was a world wide yellow emote before WotLK
                         DoScriptText(EMOTE_ERANIKUS_REDEEM, m_creature);
-                        //DoCastSpellIfCan(m_creature, SPELL_MOONGLADE_TRANQUILITY);        // spell id unk for the moment
+                        // DoCastSpellIfCan(m_creature, SPELL_MOONGLADE_TRANQUILITY);        // spell id unk for the moment
                         m_creature->SetStandState(UNIT_STAND_STATE_DEAD);
                         m_uiEventTimer = 5000;
                         break;
@@ -746,7 +746,7 @@ struct MANGOS_DLL_DECL boss_eranikusAI : public ScriptedAI
         // Not sure if this should be handled by health percent, but this is the only reasonable way
         if (m_creature->GetHealthPercent() < m_uiHealthCheck)
         {
-            switch(m_uiHealthCheck)
+            switch (m_uiHealthCheck)
             {
                 case 85:
                     DoScriptText(SAY_ERANIKUS_ATTACK_3, m_creature);

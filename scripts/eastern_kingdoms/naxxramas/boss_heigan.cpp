@@ -42,13 +42,13 @@ enum
     EMOTE_TELEPORT          = -1533136,
     EMOTE_RETURN            = -1533137,
 
-    //Spells by boss
+    // Spells by boss
     SPELL_DECREPIT_FEVER    = 29998,
     SPELL_DISRUPTION        = 29310,
     SPELL_TELEPORT          = 30211,
     SPELL_PLAGUE_CLOUD      = 29350,
-    //SPELL_PLAGUE_WAVE_SLOW    = 29351,                // removed from dbc. activates the traps during phase 1; triggers spell 30116, 30117, 30118, 30119 each 10 secs
-    //SPELL_PLAGUE_WAVE_FAST    = 30114,                // removed from dbc. activates the traps during phase 2; triggers spell 30116, 30117, 30118, 30119 each 3 secs
+    // SPELL_PLAGUE_WAVE_SLOW    = 29351,                // removed from dbc. activates the traps during phase 1; triggers spell 30116, 30117, 30118, 30119 each 10 secs
+    // SPELL_PLAGUE_WAVE_FAST    = 30114,                // removed from dbc. activates the traps during phase 2; triggers spell 30116, 30117, 30118, 30119 each 3 secs
 
     MAX_PLAYERS_TELEPORT    = 3
 };
@@ -90,13 +90,13 @@ struct MANGOS_DLL_DECL boss_heiganAI : public ScriptedAI
     void Reset()
     {
         m_uiPhase = PHASE_GROUND;
-        m_uiTauntTimer = urand(20000,60000);                // TODO, find information
+        m_uiTauntTimer = urand(20000, 60000);               // TODO, find information
         ResetPhase();
     }
 
     void Aggro(Unit* pWho)
     {
-        switch(urand(0, 2))
+        switch (urand(0, 2))
         {
             case 0: DoScriptText(SAY_AGGRO1, m_creature); break;
             case 1: DoScriptText(SAY_AGGRO2, m_creature); break;
@@ -219,7 +219,7 @@ struct MANGOS_DLL_DECL boss_heiganAI : public ScriptedAI
         // Taunt
         if (m_uiTauntTimer < uiDiff)
         {
-            switch(urand(0, 3))
+            switch (urand(0, 3))
             {
                 case 0: DoScriptText(SAY_TAUNT1, m_creature); break;
                 case 1: DoScriptText(SAY_TAUNT2, m_creature); break;

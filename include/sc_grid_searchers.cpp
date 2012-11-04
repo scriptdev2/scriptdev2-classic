@@ -10,7 +10,7 @@
 #include "GridNotifiersImpl.h"
 
 
-//return closest GO in grid, with range from pSource
+// return closest GO in grid, with range from pSource
 GameObject* GetClosestGameObjectWithEntry(WorldObject* pSource, uint32 uiEntry, float fMaxSearchRange)
 {
     GameObject* pGo = NULL;
@@ -23,7 +23,7 @@ GameObject* GetClosestGameObjectWithEntry(WorldObject* pSource, uint32 uiEntry, 
     return pGo;
 }
 
-//return closest creature alive in grid, with range from pSource
+// return closest creature alive in grid, with range from pSource
 Creature* GetClosestCreatureWithEntry(WorldObject* pSource, uint32 uiEntry, float fMaxSearchRange, bool bOnlyAlive/*=true*/, bool bOnlyDead/*=false*/)
 {
     Creature* pCreature = NULL;
@@ -50,9 +50,9 @@ class AllCreaturesOfEntryInRangeCheck
     public:
         AllCreaturesOfEntryInRangeCheck(const WorldObject* pObject, uint32 uiEntry, float fMaxRange) : m_pObject(pObject), m_uiEntry(uiEntry), m_fRange(fMaxRange) {}
         WorldObject const& GetFocusObject() const { return *m_pObject; }
-        bool operator() (Unit* pUnit)
+        bool operator()(Unit* pUnit)
         {
-            if (pUnit->GetEntry() == m_uiEntry && m_pObject->IsWithinDist(pUnit,m_fRange,false))
+            if (pUnit->GetEntry() == m_uiEntry && m_pObject->IsWithinDist(pUnit, m_fRange, false))
                 return true;
 
             return false;

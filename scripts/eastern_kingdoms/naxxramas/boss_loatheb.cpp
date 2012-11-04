@@ -26,16 +26,16 @@ EndScriptData */
 
 enum
 {
-    //EMOTE_AURA_BLOCKING   = -1533143,
-    //EMOTE_AURA_WANE       = -1533144,
-    //EMOTE_AURA_FADING     = -1533145,
+    // EMOTE_AURA_BLOCKING   = -1533143,
+    // EMOTE_AURA_WANE       = -1533144,
+    // EMOTE_AURA_FADING     = -1533145,
 
     SPELL_CORRUPTED_MIND    = 29201,            // this triggers the following spells on targets (based on class): 29185, 29194, 29196, 29198
     SPELL_POISON_AURA       = 29865,
     SPELL_INEVITABLE_DOOM   = 29204,
     SPELL_SUMMON_SPORE      = 29234,
     SPELL_REMOVE_CURSE      = 30281,
-    //SPELL_BERSERK         = 26662,
+    // SPELL_BERSERK         = 26662,
 
     NPC_SPORE               = 16286
 };
@@ -55,7 +55,7 @@ struct MANGOS_DLL_DECL boss_loathebAI : public ScriptedAI
     uint32 m_uiInevitableDoomTimer;
     uint32 m_uiRemoveCurseTimer;
     uint32 m_uiSummonTimer;
-    //uint32 m_uiBerserkTimer;
+    // uint32 m_uiBerserkTimer;
     uint8 m_uiCorruptedMindCount;
 
     void Reset()
@@ -63,9 +63,9 @@ struct MANGOS_DLL_DECL boss_loathebAI : public ScriptedAI
         m_uiPoisonAuraTimer = 5000;
         m_uiCorruptedMindTimer = 4000;
         m_uiRemoveCurseTimer = 2000;
-        m_uiInevitableDoomTimer = MINUTE*2*IN_MILLISECONDS;
+        m_uiInevitableDoomTimer = MINUTE * 2 * IN_MILLISECONDS;
         m_uiSummonTimer = urand(10000, 15000);              // first seen in vid after approx 12s
-        //m_uiBerserkTimer = MINUTE*12*IN_MILLISECONDS;     // not used
+        // m_uiBerserkTimer = MINUTE*12*IN_MILLISECONDS;    // not used
         m_uiCorruptedMindCount = 0;
     }
 

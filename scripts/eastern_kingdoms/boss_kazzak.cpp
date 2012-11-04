@@ -62,13 +62,13 @@ struct MANGOS_DLL_DECL boss_kazzakAI : public ScriptedAI
 
     void Reset()
     {
-        m_uiShadowVolleyTimer       = urand(3000,12000);
+        m_uiShadowVolleyTimer       = urand(3000, 12000);
         m_uiCleaveTimer             = 7000;
-        m_uiThunderClapTimer        = urand(16000,20000);
+        m_uiThunderClapTimer        = urand(16000, 20000);
         m_uiVoidBoltTimer           = 30000;
         m_uiMarkOfKazzakTimer       = 25000;
         m_uiTwistedReflectionTimer  = 33000;
-        m_uiSupremeTimer            = 3*MINUTE*IN_MILLISECONDS;
+        m_uiSupremeTimer            = 3 * MINUTE * IN_MILLISECONDS;
     }
 
     void JustRespawned()

@@ -70,7 +70,7 @@ bool GOUse_go_andorhal_tower(Player* pPlayer, GameObject* pGo)
     if (pPlayer->GetQuestStatus(QUEST_ALL_ALONG_THE_WATCHTOWERS_ALLIANCE) == QUEST_STATUS_INCOMPLETE || pPlayer->GetQuestStatus(QUEST_ALL_ALONG_THE_WATCHTOWERS_HORDE) == QUEST_STATUS_INCOMPLETE)
     {
         uint32 uiKillCredit = 0;
-        switch(pGo->GetEntry())
+        switch (pGo->GetEntry())
         {
             case GO_ANDORHAL_TOWER_1:   uiKillCredit = NPC_ANDORHAL_TOWER_1;   break;
             case GO_ANDORHAL_TOWER_2:   uiKillCredit = NPC_ANDORHAL_TOWER_2;   break;
