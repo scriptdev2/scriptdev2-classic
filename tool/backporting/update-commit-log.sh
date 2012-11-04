@@ -3,7 +3,7 @@
 # Simple helper script to create SD2-Backporting Lists
 
 # By user defined (remote/branch to the to-be-backported history)
-COMPARE_PATH="sd2-tbc/master"
+COMPARE_PATH="origin-tbc"
 TODO_FILE="tool/backporting/todo_tbc_commits.log"
 COMPARE_NAME="TBC"
 
