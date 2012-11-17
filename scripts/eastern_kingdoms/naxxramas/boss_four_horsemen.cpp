@@ -97,14 +97,14 @@ struct MANGOS_DLL_DECL boss_lady_blaumeuxAI : public ScriptedAI
     uint32 m_uiVoidZoneTimer;
     float m_fHealthCheck;
 
-    void Reset()
+    void Reset() override
     {
         m_uiMarkTimer       = 20000;
         m_uiVoidZoneTimer   = 15000;
         m_fHealthCheck      = 50.0f;
     }
 
-    void Aggro(Unit* pWho)
+    void Aggro(Unit* pWho) override
     {
         DoScriptText(SAY_BLAU_AGGRO, m_creature);
 
@@ -112,12 +112,12 @@ struct MANGOS_DLL_DECL boss_lady_blaumeuxAI : public ScriptedAI
             m_pInstance->SetData(TYPE_FOUR_HORSEMEN, IN_PROGRESS);
     }
 
-    void KilledUnit(Unit* pVictim)
+    void KilledUnit(Unit* pVictim) override
     {
         DoScriptText(SAY_BLAU_SLAY, m_creature);
     }
 
-    void JustDied(Unit* pKiller)
+    void JustDied(Unit* pKiller) override
     {
         DoScriptText(SAY_BLAU_DEATH, m_creature);
         DoCastSpellIfCan(m_creature, SPELL_SPIRIT_BLAUMEUX, CAST_TRIGGERED);
@@ -126,13 +126,13 @@ struct MANGOS_DLL_DECL boss_lady_blaumeuxAI : public ScriptedAI
             m_pInstance->SetData(TYPE_FOUR_HORSEMEN, SPECIAL);
     }
 
-    void JustReachedHome()
+    void JustReachedHome() override
     {
         if (m_pInstance)
             m_pInstance->SetData(TYPE_FOUR_HORSEMEN, FAIL);
     }
 
-    void UpdateAI(const uint32 uiDiff)
+    void UpdateAI(const uint32 uiDiff) override
     {
         if (!m_creature->SelectHostileTarget() || !m_creature->getVictim())
             return;
@@ -182,14 +182,14 @@ struct MANGOS_DLL_DECL boss_alexandros_mograineAI : public ScriptedAI
     uint32 m_uiRighteousFireTimer;
     float m_fHealthCheck;
 
-    void Reset()
+    void Reset() override
     {
         m_uiMarkTimer          = 20000;
         m_uiRighteousFireTimer = 15000;
         m_fHealthCheck         = 50.0f;
     }
 
-    void Aggro(Unit* pWho)
+    void Aggro(Unit* pWho) override
     {
         switch (urand(0, 2))
         {
@@ -202,12 +202,12 @@ struct MANGOS_DLL_DECL boss_alexandros_mograineAI : public ScriptedAI
             m_pInstance->SetData(TYPE_FOUR_HORSEMEN, IN_PROGRESS);
     }
 
-    void KilledUnit(Unit* pVictim)
+    void KilledUnit(Unit* pVictim) override
     {
         DoScriptText(urand(0, 1) ? SAY_MORG_SLAY1 : SAY_MORG_SLAY2, m_creature);
     }
 
-    void JustDied(Unit* pKiller)
+    void JustDied(Unit* pKiller) override
     {
         DoScriptText(SAY_MORG_DEATH, m_creature);
         DoCastSpellIfCan(m_creature, SPELL_SPIRIT_MOGRAINE, CAST_TRIGGERED);
@@ -216,13 +216,13 @@ struct MANGOS_DLL_DECL boss_alexandros_mograineAI : public ScriptedAI
             m_pInstance->SetData(TYPE_FOUR_HORSEMEN, SPECIAL);
     }
 
-    void JustReachedHome()
+    void JustReachedHome() override
     {
         if (m_pInstance)
             m_pInstance->SetData(TYPE_FOUR_HORSEMEN, FAIL);
     }
 
-    void UpdateAI(const uint32 uiDiff)
+    void UpdateAI(const uint32 uiDiff) override
     {
         if (!m_creature->SelectHostileTarget() || !m_creature->getVictim())
             return;
@@ -272,14 +272,14 @@ struct MANGOS_DLL_DECL boss_thane_korthazzAI : public ScriptedAI
     uint32 m_uiMeteorTimer;
     float m_fHealthCheck;
 
-    void Reset()
+    void Reset() override
     {
         m_uiMarkTimer       = 20000;
         m_uiMeteorTimer     = 30000;
         m_fHealthCheck      = 50.0f;
     }
 
-    void Aggro(Unit* pWho)
+    void Aggro(Unit* pWho) override
     {
         DoScriptText(SAY_KORT_AGGRO, m_creature);
 
@@ -287,12 +287,12 @@ struct MANGOS_DLL_DECL boss_thane_korthazzAI : public ScriptedAI
             m_pInstance->SetData(TYPE_FOUR_HORSEMEN, IN_PROGRESS);
     }
 
-    void KilledUnit(Unit* pVictim)
+    void KilledUnit(Unit* pVictim) override
     {
         DoScriptText(SAY_KORT_SLAY, m_creature);
     }
 
-    void JustDied(Unit* pKiller)
+    void JustDied(Unit* pKiller) override
     {
         DoScriptText(SAY_KORT_DEATH, m_creature);
         DoCastSpellIfCan(m_creature, SPELL_SPIRIT_KORTHAZZ, CAST_TRIGGERED);
@@ -301,13 +301,13 @@ struct MANGOS_DLL_DECL boss_thane_korthazzAI : public ScriptedAI
             m_pInstance->SetData(TYPE_FOUR_HORSEMEN, SPECIAL);
     }
 
-    void JustReachedHome()
+    void JustReachedHome() override
     {
         if (m_pInstance)
             m_pInstance->SetData(TYPE_FOUR_HORSEMEN, FAIL);
     }
 
-    void UpdateAI(const uint32 uiDiff)
+    void UpdateAI(const uint32 uiDiff) override
     {
         if (!m_creature->SelectHostileTarget() || !m_creature->getVictim())
             return;
@@ -357,14 +357,14 @@ struct MANGOS_DLL_DECL boss_sir_zeliekAI : public ScriptedAI
     uint32 m_uiHolyWrathTimer;
     float m_fHealthCheck;
 
-    void Reset()
+    void Reset() override
     {
         m_uiMarkTimer       = 20000;
         m_uiHolyWrathTimer  = 12000;
         m_fHealthCheck      = 50.0f;
     }
 
-    void Aggro(Unit* pWho)
+    void Aggro(Unit* pWho) override
     {
         DoScriptText(SAY_ZELI_AGGRO, m_creature);
 
@@ -372,12 +372,12 @@ struct MANGOS_DLL_DECL boss_sir_zeliekAI : public ScriptedAI
             m_pInstance->SetData(TYPE_FOUR_HORSEMEN, IN_PROGRESS);
     }
 
-    void KilledUnit(Unit* pVictim)
+    void KilledUnit(Unit* pVictim) override
     {
         DoScriptText(SAY_ZELI_SLAY, m_creature);
     }
 
-    void JustDied(Unit* pKiller)
+    void JustDied(Unit* pKiller) override
     {
         DoScriptText(SAY_ZELI_DEATH, m_creature);
         DoCastSpellIfCan(m_creature, SPELL_SPIRIT_ZELIEK, CAST_TRIGGERED);
@@ -386,13 +386,13 @@ struct MANGOS_DLL_DECL boss_sir_zeliekAI : public ScriptedAI
             m_pInstance->SetData(TYPE_FOUR_HORSEMEN, SPECIAL);
     }
 
-    void JustReachedHome()
+    void JustReachedHome() override
     {
         if (m_pInstance)
             m_pInstance->SetData(TYPE_FOUR_HORSEMEN, FAIL);
     }
 
-    void UpdateAI(const uint32 uiDiff)
+    void UpdateAI(const uint32 uiDiff) override
     {
         if (!m_creature->SelectHostileTarget() || !m_creature->getVictim())
             return;

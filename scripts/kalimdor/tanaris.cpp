@@ -60,7 +60,7 @@ struct MANGOS_DLL_DECL mob_aquementasAI : public ScriptedAI
     uint32 m_uiFrostShockTimer;
     uint32 m_uiAquaJetTimer;
 
-    void Reset()
+    void Reset() override
     {
         m_uiSwitchFactionTimer  = 10000;
         m_uiAquaJetTimer        = 5000;
@@ -81,7 +81,7 @@ struct MANGOS_DLL_DECL mob_aquementasAI : public ScriptedAI
         }
     }
 
-    void Aggro(Unit* pWho)
+    void Aggro(Unit* pWho) override
     {
         DoScriptText(AGGRO_YELL_AQUE, m_creature, pWho);
 
@@ -89,7 +89,7 @@ struct MANGOS_DLL_DECL mob_aquementasAI : public ScriptedAI
             SendItem(static_cast<Player*>(pWho));
     }
 
-    void UpdateAI(const uint32 uiDiff)
+    void UpdateAI(const uint32 uiDiff) override
     {
         if (m_uiSwitchFactionTimer)
         {
@@ -154,7 +154,7 @@ struct MANGOS_DLL_DECL npc_oox17tnAI : public npc_escortAI
 {
     npc_oox17tnAI(Creature* pCreature) : npc_escortAI(pCreature) { Reset(); }
 
-    void WaypointReached(uint32 i)
+    void WaypointReached(uint32 i) override
     {
         Player* pPlayer = GetPlayerForEscort();
 
@@ -189,9 +189,9 @@ struct MANGOS_DLL_DECL npc_oox17tnAI : public npc_escortAI
         }
     }
 
-    void Reset() { }
+    void Reset() override { }
 
-    void Aggro(Unit* who)
+    void Aggro(Unit* who) override
     {
         // For an small probability he say something when it aggros
         switch (urand(0, 9))
@@ -201,7 +201,7 @@ struct MANGOS_DLL_DECL npc_oox17tnAI : public npc_escortAI
         }
     }
 
-    void JustSummoned(Creature* summoned)
+    void JustSummoned(Creature* summoned) override
     {
         summoned->AI()->AttackStart(m_creature);
     }
@@ -321,7 +321,7 @@ struct MANGOS_DLL_DECL npc_toogaAI : public FollowerAI
 
     Unit* pTorta;
 
-    void Reset()
+    void Reset() override
     {
         m_uiCheckSpeechTimer = 2500;
         m_uiPostEventTimer = 1000;
@@ -330,7 +330,7 @@ struct MANGOS_DLL_DECL npc_toogaAI : public FollowerAI
         pTorta = NULL;
     }
 
-    void MoveInLineOfSight(Unit* pWho)
+    void MoveInLineOfSight(Unit* pWho) override
     {
         FollowerAI::MoveInLineOfSight(pWho);
 
@@ -350,7 +350,7 @@ struct MANGOS_DLL_DECL npc_toogaAI : public FollowerAI
         }
     }
 
-    void MovementInform(uint32 uiMotionType, uint32 uiPointId)
+    void MovementInform(uint32 uiMotionType, uint32 uiPointId) override
     {
         FollowerAI::MovementInform(uiMotionType, uiPointId);
 
@@ -361,7 +361,7 @@ struct MANGOS_DLL_DECL npc_toogaAI : public FollowerAI
             SetFollowComplete();
     }
 
-    void UpdateFollowerAI(const uint32 uiDiff)
+    void UpdateFollowerAI(const uint32 uiDiff) override
     {
         if (!m_creature->SelectHostileTarget() || !m_creature->getVictim())
         {

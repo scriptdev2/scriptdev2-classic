@@ -58,7 +58,7 @@ struct MANGOS_DLL_DECL boss_loathebAI : public ScriptedAI
     // uint32 m_uiBerserkTimer;
     uint8 m_uiCorruptedMindCount;
 
-    void Reset()
+    void Reset() override
     {
         m_uiPoisonAuraTimer = 5000;
         m_uiCorruptedMindTimer = 4000;
@@ -69,25 +69,25 @@ struct MANGOS_DLL_DECL boss_loathebAI : public ScriptedAI
         m_uiCorruptedMindCount = 0;
     }
 
-    void Aggro(Unit* pWho)
+    void Aggro(Unit* pWho) override
     {
         if (m_pInstance)
             m_pInstance->SetData(TYPE_LOATHEB, IN_PROGRESS);
     }
 
-    void JustDied(Unit* pKiller)
+    void JustDied(Unit* pKiller) override
     {
         if (m_pInstance)
             m_pInstance->SetData(TYPE_LOATHEB, DONE);
     }
 
-    void JustReachedHome()
+    void JustReachedHome() override
     {
         if (m_pInstance)
             m_pInstance->SetData(TYPE_LOATHEB, NOT_STARTED);
     }
 
-    void JustSummoned(Creature* pSummoned)
+    void JustSummoned(Creature* pSummoned) override
     {
         if (pSummoned->GetEntry() != NPC_SPORE)
             return;
@@ -96,7 +96,7 @@ struct MANGOS_DLL_DECL boss_loathebAI : public ScriptedAI
             pSummoned->AddThreat(pTarget);
     }
 
-    void UpdateAI(const uint32 uiDiff)
+    void UpdateAI(const uint32 uiDiff) override
     {
         if (!m_creature->SelectHostileTarget() || !m_creature->getVictim())
             return;

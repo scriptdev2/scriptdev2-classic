@@ -55,9 +55,9 @@ struct MANGOS_DLL_DECL npc_morokkAI : public npc_escortAI
 
     bool m_bIsSuccess;
 
-    void Reset() {}
+    void Reset() override {}
 
-    void WaypointReached(uint32 uiPointId)
+    void WaypointReached(uint32 uiPointId) override
     {
         switch (uiPointId)
         {
@@ -76,7 +76,7 @@ struct MANGOS_DLL_DECL npc_morokkAI : public npc_escortAI
         }
     }
 
-    void AttackedBy(Unit* pAttacker)
+    void AttackedBy(Unit* pAttacker) override
     {
         if (m_creature->getVictim())
             return;
@@ -87,7 +87,7 @@ struct MANGOS_DLL_DECL npc_morokkAI : public npc_escortAI
         AttackStart(pAttacker);
     }
 
-    void DamageTaken(Unit* pDoneBy, uint32& uiDamage)
+    void DamageTaken(Unit* pDoneBy, uint32& uiDamage) override
     {
         if (HasEscortState(STATE_ESCORT_ESCORTING))
         {
@@ -106,7 +106,7 @@ struct MANGOS_DLL_DECL npc_morokkAI : public npc_escortAI
         }
     }
 
-    void UpdateEscortAI(const uint32 uiDiff)
+    void UpdateEscortAI(const uint32 uiDiff) override
     {
         if (!m_creature->SelectHostileTarget() || !m_creature->getVictim())
         {
@@ -212,7 +212,7 @@ struct MANGOS_DLL_DECL npc_ogronAI : public npc_escortAI
     uint32 m_uiPhaseCounter;
     uint32 m_uiGlobalTimer;
 
-    void Reset()
+    void Reset() override
     {
         m_uiGlobalTimer = 5000;
 
@@ -227,7 +227,7 @@ struct MANGOS_DLL_DECL npc_ogronAI : public npc_escortAI
         }
     }
 
-    void MoveInLineOfSight(Unit* pWho)
+    void MoveInLineOfSight(Unit* pWho) override
     {
         if (HasEscortState(STATE_ESCORT_ESCORTING) && pWho->GetEntry() == NPC_REETHE && lCreatureList.empty())
             lCreatureList.push_back((Creature*)pWho);
@@ -249,7 +249,7 @@ struct MANGOS_DLL_DECL npc_ogronAI : public npc_escortAI
         return NULL;
     }
 
-    void WaypointReached(uint32 uiPointId)
+    void WaypointReached(uint32 uiPointId) override
     {
         switch (uiPointId)
         {
@@ -266,7 +266,7 @@ struct MANGOS_DLL_DECL npc_ogronAI : public npc_escortAI
         }
     }
 
-    void JustSummoned(Creature* pSummoned)
+    void JustSummoned(Creature* pSummoned) override
     {
         lCreatureList.push_back(pSummoned);
 
@@ -303,7 +303,7 @@ struct MANGOS_DLL_DECL npc_ogronAI : public npc_escortAI
         }
     }
 
-    void UpdateEscortAI(const uint32 uiDiff)
+    void UpdateEscortAI(const uint32 uiDiff) override
     {
         if (!m_creature->SelectHostileTarget() || !m_creature->getVictim())
         {
@@ -477,13 +477,13 @@ struct MANGOS_DLL_DECL npc_private_hendelAI : public ScriptedAI
 {
     npc_private_hendelAI(Creature* pCreature) : ScriptedAI(pCreature) { Reset(); }
 
-    void Reset()
+    void Reset() override
     {
         if (m_creature->getFaction() != m_creature->GetCreatureInfo()->faction_A)
             m_creature->setFaction(m_creature->GetCreatureInfo()->faction_A);
     }
 
-    void AttackedBy(Unit* pAttacker)
+    void AttackedBy(Unit* pAttacker) override
     {
         if (m_creature->getVictim())
             return;
@@ -494,7 +494,7 @@ struct MANGOS_DLL_DECL npc_private_hendelAI : public ScriptedAI
         AttackStart(pAttacker);
     }
 
-    void DamageTaken(Unit* pDoneBy, uint32& uiDamage)
+    void DamageTaken(Unit* pDoneBy, uint32& uiDamage) override
     {
         if (uiDamage > m_creature->GetHealth() || m_creature->GetHealthPercent() < 20.0f)
         {

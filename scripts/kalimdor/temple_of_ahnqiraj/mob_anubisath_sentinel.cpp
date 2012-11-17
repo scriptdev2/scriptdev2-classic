@@ -55,13 +55,23 @@ struct MANGOS_DLL_DECL npc_anubisath_sentinelAI : public ScriptedAI
 
     GuidList m_lAssistList;
 
-    void Reset()
+    void Reset() override
     {
         m_uiMyAbility = 0;
         m_bEnraged = false;
     }
 
-    void JustReachedHome()
+    void GetAIInformation(ChatHandler& reader) override
+    {
+        if (m_lAssistList.empty())
+            reader.PSendSysMessage("Anubisath Sentinel - group not assigned, will be assigned OnAggro");
+        if (m_lAssistList.size() == MAX_BUDDY)
+            reader.PSendSysMessage("Anubisath Sentinel - proper group found");
+        else
+            reader.PSendSysMessage("Anubisath Sentinel - not correct number of mobs for group found. Number found %u, should be %u", m_lAssistList.size(), MAX_BUDDY);
+    }
+
+    void JustReachedHome() override
     {
         for (GuidList::const_iterator itr = m_lAssistList.begin(); itr != m_lAssistList.end(); ++itr)
         {
@@ -76,13 +86,13 @@ struct MANGOS_DLL_DECL npc_anubisath_sentinelAI : public ScriptedAI
         }
     }
 
-    void Aggro(Unit* pWho)
+    void Aggro(Unit* pWho) override
     {
         SetAbility();
         InitSentinelsNear(pWho);
     }
 
-    void JustDied(Unit* pKiller)
+    void JustDied(Unit* pKiller) override
     {
         DoTransferAbility();
     }
@@ -163,7 +173,7 @@ struct MANGOS_DLL_DECL npc_anubisath_sentinelAI : public ScriptedAI
             error_log("SD2: npc_anubisath_sentinel found too few/too many buddies, expected %u.", MAX_BUDDY);
     }
 
-    void UpdateAI(const uint32 uiDiff)
+    void UpdateAI(const uint32 uiDiff) override
     {
         if (!m_creature->SelectHostileTarget() || !m_creature->getVictim())
             return;

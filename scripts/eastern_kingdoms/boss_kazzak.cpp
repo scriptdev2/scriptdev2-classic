@@ -60,7 +60,7 @@ struct MANGOS_DLL_DECL boss_kazzakAI : public ScriptedAI
     uint32 m_uiTwistedReflectionTimer;
     uint32 m_uiSupremeTimer;
 
-    void Reset()
+    void Reset() override
     {
         m_uiShadowVolleyTimer       = urand(3000, 12000);
         m_uiCleaveTimer             = 7000;
@@ -71,18 +71,18 @@ struct MANGOS_DLL_DECL boss_kazzakAI : public ScriptedAI
         m_uiSupremeTimer            = 3 * MINUTE * IN_MILLISECONDS;
     }
 
-    void JustRespawned()
+    void JustRespawned() override
     {
         DoScriptText(SAY_INTRO, m_creature);
     }
 
-    void Aggro(Unit* pWho)
+    void Aggro(Unit* pWho) override
     {
         DoCastSpellIfCan(m_creature, SPELL_CAPTURESOUL, CAST_TRIGGERED);
         DoScriptText(urand(0, 1) ? SAY_AGGRO1 : SAY_AGGRO2, m_creature);
     }
 
-    void KilledUnit(Unit* pVictim)
+    void KilledUnit(Unit* pVictim) override
     {
         if (pVictim->GetTypeId() != TYPEID_PLAYER)
             return;
@@ -95,12 +95,12 @@ struct MANGOS_DLL_DECL boss_kazzakAI : public ScriptedAI
         }
     }
 
-    void JustDied(Unit* pKiller)
+    void JustDied(Unit* pKiller) override
     {
         DoScriptText(SAY_DEATH, m_creature);
     }
 
-    void UpdateAI(const uint32 uiDiff)
+    void UpdateAI(const uint32 uiDiff) override
     {
         if (!m_creature->SelectHostileTarget() || !m_creature->getVictim())
             return;

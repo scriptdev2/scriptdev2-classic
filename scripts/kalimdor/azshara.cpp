@@ -96,7 +96,7 @@ struct MANGOS_DLL_DECL mobs_spitelashesAI : public ScriptedAI
 
     UNORDERED_MAP<uint8, uint32> m_mSpellTimers;
 
-    void Reset()
+    void Reset() override
     {
         m_uiMorphTimer = 0;
 
@@ -104,7 +104,7 @@ struct MANGOS_DLL_DECL mobs_spitelashesAI : public ScriptedAI
             itr->second = m_aSpitelashAbility[itr->first].m_uiInitialTimer;
     }
 
-    void SpellHit(Unit* pCaster, const SpellEntry* pSpell)
+    void SpellHit(Unit* pCaster, const SpellEntry* pSpell) override
     {
         // If already hit by the polymorph return
         if (m_uiMorphTimer)
@@ -145,7 +145,7 @@ struct MANGOS_DLL_DECL mobs_spitelashesAI : public ScriptedAI
         return false;
     }
 
-    void UpdateAI(const uint32 uiDiff)
+    void UpdateAI(const uint32 uiDiff) override
     {
         if (!m_creature->SelectHostileTarget() || !m_creature->getVictim())
             return;

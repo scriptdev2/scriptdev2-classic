@@ -61,14 +61,14 @@ struct MANGOS_DLL_DECL boss_faerlinaAI : public ScriptedAI
     uint32 m_uiEnrageTimer;
     bool   m_bHasTaunted;
 
-    void Reset()
+    void Reset() override
     {
         m_uiPoisonBoltVolleyTimer = 8000;
         m_uiRainOfFireTimer = 16000;
         m_uiEnrageTimer = 60000;
     }
 
-    void Aggro(Unit* pWho)
+    void Aggro(Unit* pWho) override
     {
         switch (urand(0, 3))
         {
@@ -82,7 +82,7 @@ struct MANGOS_DLL_DECL boss_faerlinaAI : public ScriptedAI
             m_pInstance->SetData(TYPE_FAERLINA, IN_PROGRESS);
     }
 
-    void MoveInLineOfSight(Unit* pWho)
+    void MoveInLineOfSight(Unit* pWho) override
     {
         if (!m_bHasTaunted && pWho->GetTypeId() == TYPEID_PLAYER && m_creature->IsWithinDistInMap(pWho, 80.0f) &&  m_creature->IsWithinLOSInMap(pWho))
         {
@@ -93,12 +93,12 @@ struct MANGOS_DLL_DECL boss_faerlinaAI : public ScriptedAI
         ScriptedAI::MoveInLineOfSight(pWho);
     }
 
-    void KilledUnit(Unit* pVictim)
+    void KilledUnit(Unit* pVictim) override
     {
         DoScriptText(urand(0, 1) ? SAY_SLAY_1 : SAY_SLAY_2, m_creature);
     }
 
-    void JustDied(Unit* pKiller)
+    void JustDied(Unit* pKiller) override
     {
         DoScriptText(SAY_DEATH, m_creature);
 
@@ -106,7 +106,7 @@ struct MANGOS_DLL_DECL boss_faerlinaAI : public ScriptedAI
             m_pInstance->SetData(TYPE_FAERLINA, DONE);
     }
 
-    void JustReachedHome()
+    void JustReachedHome() override
     {
         if (m_pInstance)
             m_pInstance->SetData(TYPE_FAERLINA, FAIL);
@@ -114,7 +114,7 @@ struct MANGOS_DLL_DECL boss_faerlinaAI : public ScriptedAI
 
     // Widow's Embrace prevents frenzy and poison bolt, if it removes frenzy, next frenzy is sceduled in 60s
     // It is likely that this _should_ be handled with some dummy aura(s) - but couldn't find any
-    void SpellHit(Unit* pCaster, const SpellEntry* pSpellEntry)
+    void SpellHit(Unit* pCaster, const SpellEntry* pSpellEntry) override
     {
         // Check if we hit with Widow's Embrave
         if (pSpellEntry->Id == SPELL_WIDOWS_EMBRACE)
@@ -137,7 +137,7 @@ struct MANGOS_DLL_DECL boss_faerlinaAI : public ScriptedAI
         }
     }
 
-    void UpdateAI(const uint32 uiDiff)
+    void UpdateAI(const uint32 uiDiff) override
     {
         if (!m_creature->SelectHostileTarget() || !m_creature->getVictim())
             return;
