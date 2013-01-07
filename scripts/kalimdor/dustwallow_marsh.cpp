@@ -17,7 +17,7 @@
 /* ScriptData
 SDName: Dustwallow_Marsh
 SD%Complete: 95
-SDComment: Quest support: 1173, 1273, 1324, 11209, 11180.
+SDComment: Quest support: 1173, 1273, 1324.
 SDCategory: Dustwallow Marsh
 EndScriptData */
 
@@ -522,31 +522,6 @@ CreatureAI* GetAI_npc_private_hendel(Creature* pCreature)
     return new npc_private_hendelAI(pCreature);
 }
 
-/*######
-## at_nats_landing
-######*/
-enum
-{
-    QUEST_NATS_BARGAIN = 11209,
-    SPELL_FISH_PASTE   = 42644,
-    NPC_LURKING_SHARK  = 23928
-};
-
-bool AreaTrigger_at_nats_landing(Player* pPlayer, const AreaTriggerEntry* pAt)
-{
-    if (pPlayer->GetQuestStatus(QUEST_NATS_BARGAIN) == QUEST_STATUS_INCOMPLETE && pPlayer->HasAura(SPELL_FISH_PASTE))
-    {
-        Creature* pShark = GetClosestCreatureWithEntry(pPlayer, NPC_LURKING_SHARK, 20.0f);
-
-        if (!pShark)
-            pShark = pPlayer->SummonCreature(NPC_LURKING_SHARK, -4246.243f, -3922.356f, -7.488f, 5.0f, TEMPSUMMON_TIMED_DESPAWN_OUT_OF_COMBAT, 100000);
-
-        pShark->AI()->AttackStart(pPlayer);
-        return false;
-    }
-    return true;
-}
-
 void AddSC_dustwallow_marsh()
 {
     Script* pNewScript;
@@ -567,10 +542,5 @@ void AddSC_dustwallow_marsh()
     pNewScript->Name = "npc_private_hendel";
     pNewScript->GetAI = &GetAI_npc_private_hendel;
     pNewScript->pQuestAcceptNPC = &QuestAccept_npc_private_hendel;
-    pNewScript->RegisterSelf();
-
-    pNewScript = new Script;
-    pNewScript->Name = "at_nats_landing";
-    pNewScript->pAreaTrigger = &AreaTrigger_at_nats_landing;
     pNewScript->RegisterSelf();
 }
