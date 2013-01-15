@@ -460,7 +460,7 @@ void instance_blackrock_spire::JustDidDialogueStep(int32 iEntry)
             if (Creature* pRend = GetSingleCreatureFromStorage(NPC_REND_BLACKHAND))
             {
                 pRend->ForcedDespawn(5000);
-                pRend->SetWalkFALSE;
+                pRend->SetWalk(false);
                 pRend->GetMotionMaster()->MovePoint(0, aStadiumLocs[6].m_fX, aStadiumLocs[6].m_fY, aStadiumLocs[6].m_fZ);
             }
             m_uiStadiumEventTimer = 30000;

@@ -69,7 +69,7 @@ struct MANGOS_DLL_DECL npc_lazy_peonAI : public ScriptedAI
             m_creature->RemoveAurasDueToSpell(SPELL_PEON_SLEEP);
 
             float fX, fY, fZ;
-            m_creature->SetWalkFALSE;
+            m_creature->SetWalk(false);
             pLumber->GetContactPoint(m_creature, fX, fY, fZ, CONTACT_DISTANCE);
 
             if (pInvoker->GetTypeId() == TYPEID_PLAYER)

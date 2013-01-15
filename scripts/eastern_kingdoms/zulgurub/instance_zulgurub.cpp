@@ -136,7 +136,7 @@ void instance_zulgurub::SetData(uint32 uiType, uint32 uiData)
             {
                 if (Creature* pMandokir = GetSingleCreatureFromStorage(NPC_BLOODLORD_MANDOKIR))
                 {
-                    pMandokir->SetWalkFALSE;
+                    pMandokir->SetWalk(false);
                     pMandokir->GetMotionMaster()->MovePoint(1, aMandokirDownstairsPos[0], aMandokirDownstairsPos[1], aMandokirDownstairsPos[2]);
                 }
             }

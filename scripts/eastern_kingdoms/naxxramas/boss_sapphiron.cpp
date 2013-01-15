@@ -105,7 +105,7 @@ struct MANGOS_DLL_DECL boss_sapphironAI : public ScriptedAI
         m_uiIceboltCount = 0;
 
         SetCombatMovement(true);
-        m_creature->SetLevitateFALSE;
+        m_creature->SetLevitate(false);
         // m_creature->ApplySpellMod(SPELL_FROST_AURA, SPELLMOD_DURATION, -1);
     }
 
@@ -144,7 +144,7 @@ struct MANGOS_DLL_DECL boss_sapphironAI : public ScriptedAI
         {
             DoScriptText(EMOTE_FLY, m_creature);
             m_creature->HandleEmote(EMOTE_ONESHOT_LIFTOFF);
-            m_creature->SetLevitateTRUE;
+            m_creature->SetLevitate(true);
             m_Phase = PHASE_AIR_BOLTS;
 
             m_uiFrostBreathTimer = 5000;
@@ -254,7 +254,7 @@ struct MANGOS_DLL_DECL boss_sapphironAI : public ScriptedAI
                         // Begin Landing
                         DoScriptText(EMOTE_GROUND, m_creature);
                         m_creature->HandleEmote(EMOTE_ONESHOT_LAND);
-                        m_creature->SetLevitateFALSE;
+                        m_creature->SetLevitate(false);
 
                         m_Phase = PHASE_LANDING;
                         m_uiLandTimer = 2000;

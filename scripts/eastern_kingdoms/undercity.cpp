@@ -78,7 +78,7 @@ struct MANGOS_DLL_DECL npc_lady_sylvanas_windrunnerAI : public ScriptedAI
         {
             pSummoned->CastSpell(pSummoned, SPELL_HIGHBORNE_AURA, false);
 
-            pSummoned->SetLevitateTRUE;
+            pSummoned->SetLevitate(true);
             pSummoned->GetMotionMaster()->MovePoint(0, pSummoned->GetPositionX(), pSummoned->GetPositionY(), pSummoned->GetPositionZ() + 5.0f);
         }
     }

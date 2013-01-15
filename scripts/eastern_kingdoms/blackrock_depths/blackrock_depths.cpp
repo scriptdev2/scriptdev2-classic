@@ -966,7 +966,7 @@ bool GossipSelect_npc_dughal_stormwing(Player* pPlayer, Creature* pCreature, uin
         DoScriptText(SAY_DUGHAL_FREE, pCreature, pPlayer);
         pCreature->RemoveFlag(UNIT_NPC_FLAGS, UNIT_NPC_FLAG_GOSSIP);
 
-        pCreature->SetWalkFALSE;
+        pCreature->SetWalk(false);
         pCreature->GetMotionMaster()->MoveWaypoint();
 
         pPlayer->CLOSE_GOSSIP_MENU();
@@ -1000,7 +1000,7 @@ bool GossipSelect_npc_tobias_seecher(Player* pPlayer, Creature* pCreature, uint3
         DoScriptText(urand(0, 1) ? SAY_TOBIAS_FREE_1 : SAY_TOBIAS_FREE_2, pCreature);
         pCreature->RemoveFlag(UNIT_NPC_FLAGS, UNIT_NPC_FLAG_GOSSIP);
 
-        pCreature->SetWalkFALSE;
+        pCreature->SetWalk(false);
         pCreature->GetMotionMaster()->MoveWaypoint();
 
         pPlayer->CLOSE_GOSSIP_MENU();

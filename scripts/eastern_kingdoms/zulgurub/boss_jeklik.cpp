@@ -109,7 +109,7 @@ struct MANGOS_DLL_DECL boss_jeklikAI : public ScriptedAI
 
         // Note: on aggro the bats from the cave behind the boss should fly outside!
         if (DoCastSpellIfCan(m_creature, SPELL_BAT_FORM) == CAST_OK)
-            m_creature->SetLevitateTRUE;
+            m_creature->SetLevitate(true);
     }
 
     void JustDied(Unit* pKiller) override
@@ -142,7 +142,7 @@ struct MANGOS_DLL_DECL boss_jeklikAI : public ScriptedAI
             m_lBombRiderGuidsList.push_back(pSummoned->GetObjectGuid());
         }
 
-        pSummoned->SetLevitateTRUE;
+        pSummoned->SetLevitate(true);
     }
 
     // Wrapper to despawn the bomb riders on evade / death
@@ -170,7 +170,7 @@ struct MANGOS_DLL_DECL boss_jeklikAI : public ScriptedAI
             if (m_creature->GetHealthPercent() < 50.0f)
             {
                 m_creature->RemoveAurasDueToSpell(SPELL_BAT_FORM);
-                m_creature->SetLevitateFALSE;
+                m_creature->SetLevitate(false);
                 DoResetThreat();
                 m_bIsPhaseOne = false;
                 return;

@@ -137,7 +137,7 @@ struct MANGOS_DLL_DECL boss_nefarianAI : public ScriptedAI
         if (m_creature->IsLevitating())
         {
             m_creature->SetByteValue(UNIT_FIELD_BYTES_1, 3, 0);
-            m_creature->SetLevitateFALSE;
+            m_creature->SetLevitate(false);
         }
 
         DoCastSpellIfCan(m_creature, SPELL_SHADOWFLAME_INITIAL);

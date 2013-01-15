@@ -96,7 +96,7 @@ struct MANGOS_DLL_DECL boss_ayamissAI : public ScriptedAI
 
     void Aggro(Unit* pWho) override
     {
-        m_creature->SetLevitateTRUE;
+        m_creature->SetLevitate(true);
         m_creature->GetMotionMaster()->MovePoint(0, m_creature->GetPositionX(), m_creature->GetPositionY(), m_creature->GetPositionZ() + 15.0f);
     }
 
@@ -108,7 +108,7 @@ struct MANGOS_DLL_DECL boss_ayamissAI : public ScriptedAI
         // move the larva to paralyze target position
         else if (pSummoned->GetEntry() == NPC_LARVA)
         {
-            pSummoned->SetWalkFALSE;
+            pSummoned->SetWalk(false);
             pSummoned->GetMotionMaster()->MovePoint(1, aAyamissSpawnLocs[3].m_fX, aAyamissSpawnLocs[3].m_fY, aAyamissSpawnLocs[3].m_fZ);
         }
         else if (pSummoned->GetEntry() == NPC_HORNET)
@@ -212,7 +212,7 @@ struct MANGOS_DLL_DECL boss_ayamissAI : public ScriptedAI
             {
                 m_uiPhase = PHASE_GROUND;
                 SetCombatMovement(true);
-                m_creature->SetLevitateFALSE;
+                m_creature->SetLevitate(false);
                 DoResetThreat();
 
                 if (m_creature->getVictim())

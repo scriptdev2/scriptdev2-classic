@@ -208,7 +208,7 @@ struct MANGOS_DLL_DECL npc_keeper_remulosAI : public npc_escortAI, private Dialo
                 // ToDo: uncomment the fly effect when it will be possible to cancel it properly
                 // pSummoned->SetByteValue(UNIT_FIELD_BYTES_1, 3, UNIT_BYTE1_FLAG_ALWAYS_STAND | UNIT_BYTE1_FLAG_UNK_2);
                 pSummoned->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NON_ATTACKABLE);
-                pSummoned->SetLevitateTRUE;
+                pSummoned->SetLevitate(true);
                 break;
             case NPC_NIGHTMARE_PHANTASM:
                 // ToDo: set faction to DB
@@ -398,7 +398,7 @@ struct MANGOS_DLL_DECL npc_keeper_remulosAI : public npc_escortAI, private Dialo
                     if (Creature* pEranikus = m_creature->GetMap()->GetCreature(m_eranikusGuid))
                     {
                         pEranikus->SetByteFlag(UNIT_FIELD_BYTES_1, 3, 0);
-                        pEranikus->SetLevitateFALSE;
+                        pEranikus->SetLevitate(false);
                         pEranikus->GetMotionMaster()->MovePoint(POINT_ID_ERANIKUS_COMBAT, aEranikusLocations[2].m_fX, aEranikusLocations[2].m_fY, aEranikusLocations[2].m_fZ);
                     }
                 }
@@ -594,13 +594,13 @@ struct MANGOS_DLL_DECL boss_eranikusAI : public ScriptedAI
         {
             case NPC_TYRANDE_WHISPERWIND:
                 m_tyrandeGuid = pSummoned->GetObjectGuid();
-                pSummoned->SetWalkFALSE;
+                pSummoned->SetWalk(false);
                 pSummoned->GetMotionMaster()->MovePoint(POINT_ID_TYRANDE_HEAL, aTyrandeLocations[1].m_fX, aTyrandeLocations[1].m_fY, aTyrandeLocations[1].m_fZ);
                 break;
             case NPC_ELUNE_PRIESTESS:
                 m_lPriestessList.push_back(pSummoned->GetObjectGuid());
                 float fX, fY, fZ;
-                pSummoned->SetWalkFALSE;
+                pSummoned->SetWalk(false);
                 m_creature->GetRandomPoint(aTyrandeLocations[1].m_fX, aTyrandeLocations[1].m_fY, aTyrandeLocations[1].m_fZ, 10.0f, fX, fY, fZ);
                 pSummoned->GetMotionMaster()->MovePoint(POINT_ID_TYRANDE_HEAL, fX, fY, fZ);
                 break;
@@ -691,7 +691,7 @@ struct MANGOS_DLL_DECL boss_eranikusAI : public ScriptedAI
                     case 3:
                         // Move Eranikus in front of Tyrande
                         m_creature->SetStandState(UNIT_STAND_STATE_STAND);
-                        m_creature->SetWalkTRUE;
+                        m_creature->SetWalk(true);
                         m_creature->GetMotionMaster()->MovePoint(POINT_ID_ERANIKUS_REDEEMED, aEranikusLocations[3].m_fX, aEranikusLocations[3].m_fY, aEranikusLocations[3].m_fZ);
                         m_uiEventTimer = 0;
                         break;

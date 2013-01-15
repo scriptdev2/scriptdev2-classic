@@ -370,11 +370,7 @@ void npc_escortAI::MovementInform(uint32 uiMoveType, uint32 uiPointId)
     {
         debug_log("SD2: EscortAI has returned to original position before combat");
 
-        if (!m_bIsRunning)                                  // Replace SetWalk(!m_bIsRunning)
-            m_creature->SetWalkTRUE;
-        else
-            m_creature->SetWalkFALSE;
-
+        m_creature->SetWalk(!m_bIsRunning);
         RemoveEscortState(STATE_ESCORT_RETURNING);
     }
     else if (uiPointId == POINT_HOME)
@@ -474,14 +470,14 @@ void npc_escortAI::SetRun(bool bRun)
     if (bRun)
     {
         if (!m_bIsRunning)
-            m_creature->SetWalkFALSE;
+            m_creature->SetWalk(false);
         else
             debug_log("SD2: EscortAI attempt to set run mode, but is already running.");
     }
     else
     {
         if (m_bIsRunning)
-            m_creature->SetWalkTRUE;
+            m_creature->SetWalk(true);
         else
             debug_log("SD2: EscortAI attempt to set walk mode, but is already walking.");
     }
@@ -541,10 +537,7 @@ void npc_escortAI::Start(bool bRun, const Player* pPlayer, const Quest* pQuest, 
     CurrentWP = WaypointList.begin();
 
     // Set initial speed
-    if (!m_bIsRunning)                                      // Replace SetWalk(!m_bIsRunning)
-        m_creature->SetWalkTRUE;
-    else
-        m_creature->SetWalkFALSE;
+    m_creature->SetWalk(!m_bIsRunning);
 
     AddEscortState(STATE_ESCORT_ESCORTING);
 

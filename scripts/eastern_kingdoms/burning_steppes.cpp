@@ -349,7 +349,7 @@ struct MANGOS_DLL_DECL npc_grark_lorkrubAI : public npc_escortAI, private Dialog
                 {
                     m_bIsFirstSearScale = false;
 
-                    pSummoned->SetLevitateTRUE;
+                    pSummoned->SetLevitate(true);
                     // ToDo: this guy should fly in circles above the creature
                 }
                 m_lSearscaleGuidList.push_back(pSummoned->GetObjectGuid());

@@ -217,7 +217,7 @@ struct MANGOS_DLL_DECL npc_general_andorovAI : public ScriptedAI, private Dialog
         {
             if (m_uiMoveTimer <= uiDiff)
             {
-                m_creature->SetWalkFALSE;
+                m_creature->SetWalk(false);
                 m_creature->GetMotionMaster()->MovePoint(m_uiPointId, aAndorovMoveLocs[m_uiPointId].m_fX, aAndorovMoveLocs[m_uiPointId].m_fY, aAndorovMoveLocs[m_uiPointId].m_fZ);
 
                 DoInitializeFollowers();
