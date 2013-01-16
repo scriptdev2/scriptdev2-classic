@@ -25,13 +25,6 @@ BOOL APIENTRY DllMain(HANDLE hModule, DWORD ul_reason_for_call, LPVOID lpReserve
 }
 #endif
 
-// Backport helpers
-#define UNIT_BYTE1_FLAG_UNK_2   0
-#define AREA_FLAG_LOWLEVEL      0
-
-// only used with remove mode, hence ok this way
-#define AURA_STATE_HEALTHLESS_35_PERCENT  AURA_STATE_HEALTHLESS_20_PERCENT
-
 // sc_gossip.h:             ADD_GOSSIP_ITEM_EXTENDED outcommented box-money (Required until professions are fixed)
 // sc_creature.cpp:         Used in ScriptedAI::SelectSpell, outcommented SchoolMask
 

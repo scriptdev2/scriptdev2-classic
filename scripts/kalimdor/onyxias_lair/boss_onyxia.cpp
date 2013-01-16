@@ -308,7 +308,7 @@ struct MANGOS_DLL_DECL boss_onyxiaAI : public ScriptedAI
 
                     // sort of a hack, it is unclear how this really work but the values appear to be valid
 
-                    m_creature->SetByteValue(UNIT_FIELD_BYTES_1, 3, UNIT_BYTE1_FLAG_ALWAYS_STAND | UNIT_BYTE1_FLAG_UNK_2);
+                    m_creature->SetByteValue(UNIT_FIELD_BYTES_1, 3, UNIT_BYTE1_FLAG_ALWAYS_STAND);
                     m_creature->SetLevitate(true);
 
                     if (m_pPointData)

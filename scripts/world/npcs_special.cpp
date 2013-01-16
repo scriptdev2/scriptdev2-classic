@@ -816,8 +816,9 @@ bool GossipHello_npc_innkeeper(Player* pPlayer, Creature* pCreature)
     // Should only apply to innkeeper close to start areas.
     if (AreaTableEntry const* pAreaEntry = GetAreaEntryByAreaID(pCreature->GetAreaId()))
     {
-        if (pAreaEntry->flags & AREA_FLAG_LOWLEVEL)
-            pPlayer->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, GOSSIP_ITEM_WHAT_TO_DO, GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 1);
+        // Note: this area flag doesn't exist in 1.12.1. The behavior of this gossip require additional research
+        //if (pAreaEntry->flags & AREA_FLAG_LOWLEVEL)
+        pPlayer->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, GOSSIP_ITEM_WHAT_TO_DO, GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 1);
     }
 
     pPlayer->TalkedToCreature(pCreature->GetEntry(), pCreature->GetObjectGuid());
