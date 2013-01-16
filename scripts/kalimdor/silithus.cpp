@@ -88,14 +88,11 @@ enum
     EMOTE_ANACHRONOS_PICKUP             = -1000769,
     SAY_ANACHRONOS_EPILOGUE_8           = -1000770,
 
-    // The transform spell for Anachronos was removed from DBC
-    DISPLAY_ID_BRONZE_DRAGON            = 15500,
-
     // Spells
     SPELL_GREEN_DRAGON_TRANSFORM        = 25105,
     SPELL_RED_DRAGON_TRANSFORM          = 25106,
     SPELL_BLUE_DRAGON_TRANSFORM         = 25107,
-    // SPELL_BRONZE_DRAGON_TRANSFORM       = 25108,         // Spell was removed - exists only before 2.0.1
+    SPELL_BRONZE_DRAGON_TRANSFORM       = 25108,
 
     SPELL_MERITHRA_WAKE                 = 25145,            // should trigger 25172 on targets
     SPELL_ARYGOS_VENGEANCE              = 25149,
@@ -547,9 +544,7 @@ struct MANGOS_DLL_DECL npc_anachronos_the_ancientAI : public ScriptedAI, private
                 m_uiEventTimer = 4000;
                 break;
             case POINT_ID_EXIT:
-                // Spell was removed, manually change the display
-                // DoCastSpellIfCan(m_creature, SPELL_BRONZE_DRAGON_TRANSFORM);
-                m_creature->SetDisplayId(DISPLAY_ID_BRONZE_DRAGON);
+                DoCastSpellIfCan(m_creature, SPELL_BRONZE_DRAGON_TRANSFORM);
                 m_uiEventTimer = 4000;
                 break;
         }

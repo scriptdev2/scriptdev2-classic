@@ -39,27 +39,27 @@ enum
 
     // submerge spells
     SPELL_SUBMERGE_VISUAL   = 26063,
-    SPELL_SUMMON_OURO_MOUND = 26058,                        // summons 5 dirt mounds
+    SPELL_SUMMON_OURO_MOUNDS= 26058,                        // summons 5 dirt mounds
     SPELL_SUMMON_TRIGGER    = 26284,
 
     SPELL_SUMMON_OURO       = 26642,
-    SPELL_QUAKE             = 26093,
+    //SPELL_QUAKE             = 26093,
 
     // other spells - not used
     // SPELL_SUMMON_SCARABS    = 26060,                     // triggered after 30 secs - cast by the Dirt Mounds
-    // SPELL_DIRTMOUND_PASSIVE = 26092,                     // casts 26093 every 1 sec - removed from DBC
+    SPELL_DIRTMOUND_PASSIVE = 26092,                        // casts 26093 every 1 sec
     // SPELL_SET_OURO_HEALTH   = 26075,                     // removed from DBC
     // SPELL_SAVE_OURO_HEALTH  = 26076,                     // removed from DBC
     // SPELL_TELEPORT_TRIGGER  = 26285,                     // removed from DBC
     // SPELL_SUBMERGE_TRIGGER  = 26104,                     // removed from DBC
-    // SPELL_SUMMON_OURO_MOUND = 26617,                     // removed from DBC
+    SPELL_SUMMON_OURO_MOUND = 26617,
     // SPELL_SCARABS_PERIODIC  = 26619,                     // cast by the Dirt Mounds in order to spawn the scarabs - removed from DBC
 
     // summoned npcs
     NPC_OURO                = 15517,
     // NPC_OURO_SCARAB       = 15718,                       // summoned by Dirt Mounds
     NPC_OURO_TRIGGER        = 15717,
-    NPC_DIRT_MOUND          = 15712,                        // summoned also by missing spell 26617
+    NPC_DIRT_MOUND          = 15712,
 };
 
 struct MANGOS_DLL_DECL boss_ouroAI : public Scripted_NoMovementAI
@@ -186,7 +186,7 @@ struct MANGOS_DLL_DECL boss_ouroAI : public Scripted_NoMovementAI
                 {
                     if (DoCastSpellIfCan(m_creature, SPELL_SUBMERGE_VISUAL) == CAST_OK)
                     {
-                        DoCastSpellIfCan(m_creature, SPELL_SUMMON_OURO_MOUND, CAST_TRIGGERED);
+                        DoCastSpellIfCan(m_creature, SPELL_SUMMON_OURO_MOUNDS, CAST_TRIGGERED);
                         DoCastSpellIfCan(m_creature, SPELL_SUMMON_TRIGGER, CAST_TRIGGERED);
 
                         m_creature->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NOT_SELECTABLE);
@@ -203,8 +203,8 @@ struct MANGOS_DLL_DECL boss_ouroAI : public Scripted_NoMovementAI
                 // Summon 1 mound every 10 secs when enraged
                 if (m_uiSummonMoundTimer < uiDiff)
                 {
-                    DoSpawnCreature(NPC_DIRT_MOUND, 0, 0, 0, 0, TEMPSUMMON_CORPSE_DESPAWN, 0);
-                    m_uiSummonMoundTimer = 10000;
+                    if (DoCastSpellIfCan(m_creature, SPELL_SUMMON_OURO_MOUND) == CAST_OK)
+                        m_uiSummonMoundTimer = 10000;
                 }
                 else
                     m_uiSummonMoundTimer -= uiDiff;
@@ -257,12 +257,10 @@ struct MANGOS_DLL_DECL npc_ouro_spawnerAI : public Scripted_NoMovementAI
 {
     npc_ouro_spawnerAI(Creature* pCreature) : Scripted_NoMovementAI(pCreature) {Reset();}
 
-    uint32 m_uiQuakeTimer;
     bool m_bHasSummoned;
 
     void Reset() override
     {
-        m_uiQuakeTimer = 1000;
         m_bHasSummoned = false;
     }
 
@@ -271,8 +269,11 @@ struct MANGOS_DLL_DECL npc_ouro_spawnerAI : public Scripted_NoMovementAI
         // Spawn Ouro on LoS check
         if (!m_bHasSummoned && pWho->GetTypeId() == TYPEID_PLAYER && !((Player*)pWho)->isGameMaster() && m_creature->IsWithinDistInMap(pWho, 50.0f))
         {
-            if (DoCastSpellIfCan(m_creature, SPELL_SUMMON_OURO) == CAST_OK)
+            if (DoCastSpellIfCan(m_creature, SPELL_SUMMON_OURO, CAST_TRIGGERED) == CAST_OK)
+            {
+                DoCastSpellIfCan(m_creature, SPELL_DIRTMOUND_PASSIVE, CAST_TRIGGERED);
                 m_bHasSummoned = true;
+            }
         }
 
         ScriptedAI::MoveInLineOfSight(pWho);
@@ -289,19 +290,7 @@ struct MANGOS_DLL_DECL npc_ouro_spawnerAI : public Scripted_NoMovementAI
         }
     }
 
-    void UpdateAI(const uint32 uiDiff) override
-    {
-        if (m_bHasSummoned)
-        {
-            if (m_uiQuakeTimer < uiDiff)
-            {
-                if (DoCastSpellIfCan(m_creature, SPELL_QUAKE) == CAST_OK)
-                    m_uiQuakeTimer = 1000;
-            }
-            else
-                m_uiQuakeTimer -= uiDiff;
-        }
-    }
+    void UpdateAI(const uint32 uiDiff) override { }
 };
 
 CreatureAI* GetAI_npc_ouro_spawner(Creature* pCreature)
