@@ -286,7 +286,7 @@ std::string generateNrHeader(char const* rev_str)
     std::ostringstream newData;
     newData << "#ifndef __SD2_REVISION_NR_H__" << std::endl;
     newData << "#define __SD2_REVISION_NR_H__"  << std::endl;
-    newData << " #define SD2_REVISION_NR \"s" << rev_str << "\"" << std::endl;
+    newData << " #define SD2_REVISION_NR \"z" << rev_str << "\"" << std::endl;
     newData << "#endif // __SD2_REVISION_NR_H__" << std::endl;
     return newData.str();
 }
