@@ -112,12 +112,12 @@ struct MANGOS_DLL_DECL boss_lady_blaumeuxAI : public ScriptedAI
             m_pInstance->SetData(TYPE_FOUR_HORSEMEN, IN_PROGRESS);
     }
 
-    void KilledUnit(Unit* pVictim) override
+    void KilledUnit(Unit* /*pVictim*/) override
     {
         DoScriptText(SAY_BLAU_SLAY, m_creature);
     }
 
-    void JustDied(Unit* pKiller) override
+    void JustDied(Unit* /*pKiller*/) override
     {
         DoScriptText(SAY_BLAU_DEATH, m_creature);
         DoCastSpellIfCan(m_creature, SPELL_SPIRIT_BLAUMEUX, CAST_TRIGGERED);
@@ -202,12 +202,12 @@ struct MANGOS_DLL_DECL boss_alexandros_mograineAI : public ScriptedAI
             m_pInstance->SetData(TYPE_FOUR_HORSEMEN, IN_PROGRESS);
     }
 
-    void KilledUnit(Unit* pVictim) override
+    void KilledUnit(Unit* /*pVictim*/) override
     {
         DoScriptText(urand(0, 1) ? SAY_MORG_SLAY1 : SAY_MORG_SLAY2, m_creature);
     }
 
-    void JustDied(Unit* pKiller) override
+    void JustDied(Unit* /*pKiller*/) override
     {
         DoScriptText(SAY_MORG_DEATH, m_creature);
         DoCastSpellIfCan(m_creature, SPELL_SPIRIT_MOGRAINE, CAST_TRIGGERED);
@@ -287,12 +287,12 @@ struct MANGOS_DLL_DECL boss_thane_korthazzAI : public ScriptedAI
             m_pInstance->SetData(TYPE_FOUR_HORSEMEN, IN_PROGRESS);
     }
 
-    void KilledUnit(Unit* pVictim) override
+    void KilledUnit(Unit* /*pVictim*/) override
     {
         DoScriptText(SAY_KORT_SLAY, m_creature);
     }
 
-    void JustDied(Unit* pKiller) override
+    void JustDied(Unit* /*pKiller*/) override
     {
         DoScriptText(SAY_KORT_DEATH, m_creature);
         DoCastSpellIfCan(m_creature, SPELL_SPIRIT_KORTHAZZ, CAST_TRIGGERED);
@@ -372,12 +372,12 @@ struct MANGOS_DLL_DECL boss_sir_zeliekAI : public ScriptedAI
             m_pInstance->SetData(TYPE_FOUR_HORSEMEN, IN_PROGRESS);
     }
 
-    void KilledUnit(Unit* pVictim) override
+    void KilledUnit(Unit* /*pVictim*/) override
     {
         DoScriptText(SAY_ZELI_SLAY, m_creature);
     }
 
-    void JustDied(Unit* pKiller) override
+    void JustDied(Unit* /*pKiller*/) override
     {
         DoScriptText(SAY_ZELI_DEATH, m_creature);
         DoCastSpellIfCan(m_creature, SPELL_SPIRIT_ZELIEK, CAST_TRIGGERED);

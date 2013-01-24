@@ -169,7 +169,7 @@ struct MANGOS_DLL_DECL boss_onyxiaAI : public ScriptedAI
             m_pInstance->SetData(TYPE_ONYXIA, FAIL);
     }
 
-    void JustDied(Unit* pKiller) override
+    void JustDied(Unit* /*pKiller*/) override
     {
         if (m_pInstance)
             m_pInstance->SetData(TYPE_ONYXIA, DONE);
@@ -202,7 +202,7 @@ struct MANGOS_DLL_DECL boss_onyxiaAI : public ScriptedAI
         pSummoned->SetInCombatWithZone();
     }
 
-    void KilledUnit(Unit* pVictim) override
+    void KilledUnit(Unit* /*pVictim*/) override
     {
         DoScriptText(SAY_KILL, m_creature);
     }
@@ -219,7 +219,8 @@ struct MANGOS_DLL_DECL boss_onyxiaAI : public ScriptedAI
                 pSpell->Id == SPELL_BREATH_NORTH_TO_SOUTH)
         {
             // This was sent with SendMonsterMove - which resulted in better speed than now
-            if (m_pPointData = GetMoveData())
+            m_pPointData = GetMoveData();
+            if (m_pPointData)
                 m_creature->GetMotionMaster()->MovePoint(m_pPointData->uiLocId, m_pPointData->fX, m_pPointData->fY, m_pPointData->fZ);
         }
     }
@@ -347,7 +348,8 @@ struct MANGOS_DLL_DECL boss_onyxiaAI : public ScriptedAI
                     switch (urand(0, 2))
                     {
                         case 0:                             // breath
-                            if (m_pPointData = GetMoveData())
+                            m_pPointData = GetMoveData();
+                            if (m_pPointData)
                             {
                                 DoScriptText(EMOTE_BREATH, m_creature);
                                 DoCastSpellIfCan(m_creature, m_pPointData->uiSpellId, CAST_INTERRUPT_PREVIOUS);
@@ -366,7 +368,8 @@ struct MANGOS_DLL_DECL boss_onyxiaAI : public ScriptedAI
                             break;
                     }
 
-                    if (m_pPointData = GetMoveData())
+                    m_pPointData = GetMoveData();
+                    if (m_pPointData)
                         m_creature->GetMotionMaster()->MovePoint(m_pPointData->uiLocId, m_pPointData->fX, m_pPointData->fY, m_pPointData->fZ);
                 }
                 else

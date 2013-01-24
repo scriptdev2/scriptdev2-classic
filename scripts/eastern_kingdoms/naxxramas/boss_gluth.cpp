@@ -84,7 +84,7 @@ struct MANGOS_DLL_DECL boss_gluthAI : public ScriptedAI
         m_uiBerserkTimer      = MINUTE * 8 * IN_MILLISECONDS;
     }
 
-    void JustDied(Unit* pKiller) override
+    void JustDied(Unit* /*pKiller*/) override
     {
         if (m_pInstance)
             m_pInstance->SetData(TYPE_GLUTH, DONE);
