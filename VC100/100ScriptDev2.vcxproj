@@ -418,7 +418,7 @@
     <ClInclude Include="..\scripts\eastern_kingdoms\deadmines\deadmines.h" />
     <ClInclude Include="..\scripts\eastern_kingdoms\gnomeregan\gnomeregan.h" />
     <ClInclude Include="..\scripts\eastern_kingdoms\molten_core\molten_core.h" />
-	<ClInclude Include="..\scripts\eastern_kingdoms\naxxramas\naxxramas.h" />
+    <ClInclude Include="..\scripts\eastern_kingdoms\naxxramas\naxxramas.h" />
     <ClInclude Include="..\scripts\eastern_kingdoms\scarlet_monastery\scarlet_monastery.h" />
     <ClInclude Include="..\scripts\eastern_kingdoms\scholomance\scholomance.h" />
     <ClInclude Include="..\scripts\eastern_kingdoms\shadowfang_keep\shadowfang_keep.h" />

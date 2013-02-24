@@ -309,7 +309,7 @@
     <ClCompile Include="..\scripts\eastern_kingdoms\molten_core\molten_core.cpp">
       <Filter>scripts\eastern_kingdoms\molten_core</Filter>
     </ClCompile>
-	<ClCompile Include="..\scripts\eastern_kingdoms\naxxramas\boss_anubrekhan.cpp">
+    <ClCompile Include="..\scripts\eastern_kingdoms\naxxramas\boss_anubrekhan.cpp">
       <Filter>scripts\eastern_kingdoms\naxxramas</Filter>
     </ClCompile>
     <ClCompile Include="..\scripts\eastern_kingdoms\naxxramas\boss_faerlina.cpp">
@@ -705,16 +705,10 @@
     <ClInclude Include="..\scripts\eastern_kingdoms\gnomeregan\gnomeregan.h">
       <Filter>scripts\eastern_kingdoms\gnomeregan</Filter>
     </ClInclude>
-    <ClInclude Include="..\scripts\eastern_kingdoms\karazhan\karazhan.h">
-      <Filter>scripts\eastern_kingdoms\karazhan</Filter>
-    </ClInclude>
-    <ClInclude Include="..\scripts\eastern_kingdoms\magisters_terrace\magisters_terrace.h">
-      <Filter>scripts\eastern_kingdoms\magisters_terrace</Filter>
-    </ClInclude>
     <ClInclude Include="..\scripts\eastern_kingdoms\molten_core\molten_core.h">
       <Filter>scripts\eastern_kingdoms\molten_core</Filter>
     </ClInclude>
-	<ClInclude Include="..\scripts\eastern_kingdoms\naxxramas\naxxramas.h">
+    <ClInclude Include="..\scripts\eastern_kingdoms\naxxramas\naxxramas.h">
       <Filter>scripts\eastern_kingdoms\naxxramas</Filter>
     </ClInclude>
     <ClInclude Include="..\scripts\eastern_kingdoms\scarlet_monastery\scarlet_monastery.h">
@@ -732,14 +726,8 @@
     <ClInclude Include="..\scripts\eastern_kingdoms\sunken_temple\sunken_temple.h">
       <Filter>scripts\eastern_kingdoms\sunken_temple</Filter>
     </ClInclude>
-    <ClInclude Include="..\scripts\eastern_kingdoms\sunwell_plateau\sunwell_plateau.h">
-      <Filter>scripts\eastern_kingdoms\sunwell_plateau</Filter>
-    </ClInclude>
     <ClInclude Include="..\scripts\eastern_kingdoms\uldaman\uldaman.h">
       <Filter>scripts\eastern_kingdoms\uldaman</Filter>
-    </ClInclude>
-    <ClInclude Include="..\scripts\eastern_kingdoms\zulaman\zulaman.h">
-      <Filter>scripts\eastern_kingdoms\zulaman</Filter>
     </ClInclude>
     <ClInclude Include="..\scripts\eastern_kingdoms\zulgurub\zulgurub.h">
       <Filter>scripts\eastern_kingdoms\zulgurub</Filter>
