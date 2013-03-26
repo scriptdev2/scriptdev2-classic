@@ -65,8 +65,8 @@ struct Script
         pQuestAcceptNPC(NULL), pQuestAcceptGO(NULL), pQuestAcceptItem(NULL),
         pQuestRewardedNPC(NULL), pQuestRewardedGO(NULL),
         pGOUse(NULL), pItemUse(NULL), pAreaTrigger(NULL), pProcessEventId(NULL),
-        pEffectDummyNPC(NULL), pEffectDummyGO(NULL), pEffectDummyItem(NULL), pEffectAuraDummy(NULL),
-        GetAI(NULL), GetInstanceData(NULL)
+        pEffectDummyNPC(NULL), pEffectDummyGO(NULL), pEffectDummyItem(NULL), pEffectScriptEffectNPC(NULL),
+        pEffectAuraDummy(NULL), GetAI(NULL), GetInstanceData(NULL)
     {}
 
     std::string Name;
@@ -91,6 +91,7 @@ struct Script
     bool (*pEffectDummyNPC)(Unit*, uint32, SpellEffectIndex, Creature*);
     bool (*pEffectDummyGO)(Unit*, uint32, SpellEffectIndex, GameObject*);
     bool (*pEffectDummyItem)(Unit*, uint32, SpellEffectIndex, Item*);
+    bool (*pEffectScriptEffectNPC)(Unit*, uint32, SpellEffectIndex, Creature*);
     bool (*pEffectAuraDummy)(const Aura*, bool);
 
     CreatureAI* (*GetAI)(Creature*);
