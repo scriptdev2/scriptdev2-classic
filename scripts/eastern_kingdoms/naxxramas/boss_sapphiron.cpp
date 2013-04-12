@@ -109,7 +109,7 @@ struct MANGOS_DLL_DECL boss_sapphironAI : public ScriptedAI
         // m_creature->ApplySpellMod(SPELL_FROST_AURA, SPELLMOD_DURATION, -1);
     }
 
-    void Aggro(Unit* pWho) override
+    void Aggro(Unit* /*pWho*/) override
     {
         DoCastSpellIfCan(m_creature, SPELL_FROST_AURA);
 
@@ -138,7 +138,7 @@ struct MANGOS_DLL_DECL boss_sapphironAI : public ScriptedAI
         }
     }
 
-    void MovementInform(uint32 uiType, uint32 uiPointId) override
+    void MovementInform(uint32 uiType, uint32 /*uiPointId*/) override
     {
         if (uiType == POINT_MOTION_TYPE && m_Phase == PHASE_LIFT_OFF)
         {

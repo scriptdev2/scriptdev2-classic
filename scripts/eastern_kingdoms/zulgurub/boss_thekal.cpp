@@ -71,7 +71,7 @@ struct MANGOS_DLL_DECL boss_thekalBaseAI : public ScriptedAI
     virtual void OnFakeingDeath() {}
     virtual void OnRevive() {}
 
-    void DamageTaken(Unit* pKiller, uint32& uiDamage) override
+    void DamageTaken(Unit* /*pKiller*/, uint32& uiDamage) override
     {
         if (uiDamage < m_creature->GetHealth())
             return;
@@ -175,7 +175,7 @@ struct MANGOS_DLL_DECL boss_thekalAI : public boss_thekalBaseAI
         Revive(true);
     }
 
-    void Aggro(Unit* pWho) override
+    void Aggro(Unit* /*pWho*/) override
     {
         DoScriptText(SAY_AGGRO, m_creature);
     }
@@ -386,7 +386,7 @@ struct MANGOS_DLL_DECL mob_zealot_lorkhanAI : public boss_thekalBaseAI
         Revive(true);
     }
 
-    void Aggro(Unit* pWho) override
+    void Aggro(Unit* /*pWho*/) override
     {
         if (m_pInstance)
             m_pInstance->SetData(TYPE_LORKHAN, IN_PROGRESS);
@@ -527,7 +527,7 @@ struct MANGOS_DLL_DECL mob_zealot_zathAI : public boss_thekalBaseAI
         Revive(true);
     }
 
-    void Aggro(Unit* pWho) override
+    void Aggro(Unit* /*pWho*/) override
     {
         if (m_pInstance)
             m_pInstance->SetData(TYPE_ZATH, IN_PROGRESS);
@@ -627,7 +627,7 @@ struct MANGOS_DLL_DECL mob_zealot_zathAI : public boss_thekalBaseAI
     }
 };
 
-bool EffectDummyCreature_thekal_resurrection(Unit* pCaster, uint32 uiSpellId, SpellEffectIndex uiEffIndex, Creature* pCreatureTarget)
+bool EffectDummyCreature_thekal_resurrection(Unit* /*pCaster*/, uint32 uiSpellId, SpellEffectIndex uiEffIndex, Creature* pCreatureTarget)
 {
     // always check spellid and effectindex
     if (uiSpellId == SPELL_RESURRECT && uiEffIndex == EFFECT_INDEX_0)

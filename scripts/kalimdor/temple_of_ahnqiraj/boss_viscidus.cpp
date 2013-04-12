@@ -74,7 +74,7 @@ struct MANGOS_DLL_DECL boss_viscidusAI : public ScriptedAI
         DoCastSpellIfCan(m_creature, SPELL_MEMBRANE_VISCIDUS);
     }
 
-    void Aggro(Unit* pWho) override
+    void Aggro(Unit* /*pWho*/) override
     {
         DoCastSpellIfCan(m_creature, SPELL_TOXIN);
 

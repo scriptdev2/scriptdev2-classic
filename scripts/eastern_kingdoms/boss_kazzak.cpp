@@ -76,7 +76,7 @@ struct MANGOS_DLL_DECL boss_kazzakAI : public ScriptedAI
         DoScriptText(SAY_INTRO, m_creature);
     }
 
-    void Aggro(Unit* pWho) override
+    void Aggro(Unit* /*pWho*/) override
     {
         DoCastSpellIfCan(m_creature, SPELL_CAPTURESOUL, CAST_TRIGGERED);
         DoScriptText(urand(0, 1) ? SAY_AGGRO1 : SAY_AGGRO2, m_creature);

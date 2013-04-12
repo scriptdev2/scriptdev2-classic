@@ -44,7 +44,7 @@ struct MANGOS_DLL_DECL world_map_eastern_kingdoms : public ScriptedMap
         }
     }
 
-    void SetData(uint32 uiType, uint32 uiData) {}
+    void SetData(uint32 /*uiType*/, uint32 /*uiData*/) {}
 };
 
 InstanceData* GetInstanceData_world_map_eastern_kingdoms(Map* pMap)
@@ -129,7 +129,7 @@ struct MANGOS_DLL_DECL world_map_kalimdor : public ScriptedMap
         }
     }
 
-    void SetData(uint32 uiType, uint32 uiData) {}
+    void SetData(uint32 /*uiType*/, uint32 /*uiData*/) {}
 };
 
 InstanceData* GetInstanceData_world_map_kalimdor(Map* pMap)

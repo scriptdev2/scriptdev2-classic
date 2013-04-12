@@ -38,7 +38,7 @@ enum
     SPELL_LEARN_FELCLOTH_BAG  = 26095
 };
 
-bool GOUse_go_barov_journal(Player* pPlayer, GameObject* pGo)
+bool GOUse_go_barov_journal(Player* pPlayer, GameObject* /*pGo*/)
 {
     if (pPlayer->HasSkill(SKILL_TAILORING) && pPlayer->GetBaseSkillValue(SKILL_TAILORING) >= 280 && !pPlayer->HasSpell(SPELL_TAILOR_FELCLOTH_BAG))
     {
