@@ -198,9 +198,6 @@
     <ClCompile Include="..\scripts\eastern_kingdoms\blackrock_depths\boss_ambassador_flamelash.cpp">
       <Filter>scripts\eastern_kingdoms\blackrock_depths</Filter>
     </ClCompile>
-    <ClCompile Include="..\scripts\eastern_kingdoms\blackrock_depths\boss_coren_direbrew.cpp">
-      <Filter>scripts\eastern_kingdoms\blackrock_depths</Filter>
-    </ClCompile>
     <ClCompile Include="..\scripts\eastern_kingdoms\blackrock_depths\boss_emperor_dagran_thaurissan.cpp">
       <Filter>scripts\eastern_kingdoms\blackrock_depths</Filter>
     </ClCompile>

@@ -30,7 +30,6 @@ extern void AddSC_world_map_scripts();
 // eastern kingdoms
 extern void AddSC_blackrock_depths();                       // blackrock_depths
 extern void AddSC_boss_ambassador_flamelash();
-extern void AddSC_boss_coren_direbrew();
 extern void AddSC_boss_draganthaurissan();
 extern void AddSC_boss_general_angerforge();
 extern void AddSC_boss_high_interrogator_gerstahn();
@@ -229,7 +228,6 @@ void AddScripts()
     // eastern kingdoms
     AddSC_blackrock_depths();                               // blackrock_depths
     AddSC_boss_ambassador_flamelash();
-    AddSC_boss_coren_direbrew();
     AddSC_boss_draganthaurissan();
     AddSC_boss_general_angerforge();
     AddSC_boss_high_interrogator_gerstahn();
