@@ -39,7 +39,7 @@ enum
 
     // submerge spells
     SPELL_SUBMERGE_VISUAL   = 26063,
-    SPELL_SUMMON_OURO_MOUNDS= 26058,                        // summons 5 dirt mounds
+    SPELL_SUMMON_OURO_MOUNDS = 26058,                       // summons 5 dirt mounds
     SPELL_SUMMON_TRIGGER    = 26284,
 
     SPELL_SUMMON_OURO       = 26642,
