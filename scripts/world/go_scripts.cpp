@@ -96,9 +96,4 @@ void AddSC_go_scripts()
     pNewScript->Name = "go_andorhal_tower";
     pNewScript->pGOUse =          &GOUse_go_andorhal_tower;
     pNewScript->RegisterSelf();
-
-    pNewScript = new Script;
-    pNewScript->Name = "go_andorhal_tower";
-    pNewScript->pGOUse =          &GOUse_go_andorhal_tower;
-    pNewScript->RegisterSelf();
 }
