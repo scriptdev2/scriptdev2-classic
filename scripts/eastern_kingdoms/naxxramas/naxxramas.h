@@ -79,6 +79,7 @@ enum
     NPC_SPIRIT_OF_ZELIREK       = 16777,
     NPC_SPIRIT_OF_KORTHAZZ      = 16778,
 
+    NPC_SAPPHIRON               = 15989,
     NPC_KELTHUZAD               = 15990,
     NPC_THE_LICHKING            = 16980,
     NPC_MR_BIGGLESWORTH         = 16998,
@@ -171,6 +172,8 @@ struct GothTrigger
     bool bIsAnchorHigh;
 };
 
+static const float aSapphPositions[4] = {3521.48f, -5234.87f, 137.626f, 4.53329f};
+
 class MANGOS_DLL_DECL instance_naxxramas : public ScriptedInstance
 {
     public:
@@ -181,6 +184,7 @@ class MANGOS_DLL_DECL instance_naxxramas : public ScriptedInstance
 
         bool IsEncounterInProgress() const override;
 
+        void OnPlayerEnter(Player* pPlayer) override;
         void OnCreatureCreate(Creature* pCreature) override;
         void OnObjectCreate(GameObject* pGo) override;
 
@@ -225,6 +229,7 @@ class MANGOS_DLL_DECL instance_naxxramas : public ScriptedInstance
         float m_fChamberCenterY;
         float m_fChamberCenterZ;
 
+        uint32 m_uiSapphSpawnTimer;
         uint32 m_uiTauntTimer;
         uint8 m_uiHorseMenKilled;
 
