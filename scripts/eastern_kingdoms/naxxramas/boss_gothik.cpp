@@ -77,7 +77,6 @@ struct MANGOS_DLL_DECL boss_gothikAI : public ScriptedAI
     }
 
     instance_naxxramas* m_pInstance;
-    bool m_bIsRegularMode;
 
     GuidList m_lSummonedAddGuids;
     GuidList m_lTraineeSummonPosGuids;
