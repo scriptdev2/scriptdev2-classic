@@ -639,9 +639,6 @@
     <ClCompile Include="..\scripts\world\mob_generic_creature.cpp">
       <Filter>scripts\world</Filter>
     </ClCompile>
-    <ClCompile Include="..\scripts\world\npc_professions.cpp">
-      <Filter>scripts\world</Filter>
-    </ClCompile>
     <ClCompile Include="..\scripts\world\npcs_special.cpp">
       <Filter>scripts\world</Filter>
     </ClCompile>

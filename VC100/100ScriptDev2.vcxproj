@@ -386,7 +386,6 @@
     <ClCompile Include="..\scripts\world\guards.cpp" />
     <ClCompile Include="..\scripts\world\item_scripts.cpp" />
     <ClCompile Include="..\scripts\world\mob_generic_creature.cpp" />
-    <ClCompile Include="..\scripts\world\npc_professions.cpp" />
     <ClCompile Include="..\scripts\world\npcs_special.cpp" />
     <ClCompile Include="..\scripts\world\spell_scripts.cpp" />
     <ClCompile Include="..\scripts\world\world_map_scripts.cpp" />
