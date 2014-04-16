@@ -22,7 +22,6 @@ extern void AddSC_generic_creature();
 extern void AddSC_go_scripts();
 extern void AddSC_guards();
 extern void AddSC_item_scripts();
-extern void AddSC_npc_professions();
 extern void AddSC_npcs_special();
 extern void AddSC_spell_scripts();
 extern void AddSC_world_map_scripts();
@@ -220,7 +219,6 @@ void AddScripts()
     AddSC_go_scripts();
     AddSC_guards();
     AddSC_item_scripts();
-    AddSC_npc_professions();
     AddSC_npcs_special();
     AddSC_spell_scripts();
     AddSC_world_map_scripts();
