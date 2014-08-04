@@ -255,6 +255,7 @@ UPDATE creature_template SET ScriptName='npc_kroshius' WHERE entry=14467;
 
 /* FERALAS */
 UPDATE creature_template SET ScriptName='npc_oox22fe' WHERE entry=7807;
+UPDATE creature_template SET ScriptName='npc_shay_leafrunner' WHERE entry=7774;
 
 /* GNOMEREGAN */
 UPDATE creature_template SET ScriptName='boss_thermaplugg' WHERE entry=7800;
