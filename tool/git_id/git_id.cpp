@@ -146,8 +146,8 @@ bool find_path()
 
     // don't count the root
     int count_fwd = 0, count_back = 0;
-    for (ptr = cur_path - 1; ptr = strchr(ptr + 1, '/'); count_fwd++);
-    for (ptr = cur_path - 1; ptr = strchr(ptr + 1, '\\'); count_back++);
+    for (ptr = cur_path - 1; (ptr = strchr(ptr + 1, '/')); count_fwd++);
+    for (ptr = cur_path - 1; (ptr = strchr(ptr + 1, '\\')); count_back++);
     int count = std::max(count_fwd, count_back);
 
     char path[MAX_PATH];
@@ -431,7 +431,8 @@ bool get_sql_update_info(const char* buffer, sql_update_info& info)
     info.table[0] = '\0';
     int dummy[2];
     char dummyStr[MAX_BUF];
-    if (sscanf(buffer, SQL_REV_SCAN "_%[^_]_%d_%d", &dummy[0], &dummyStr, &dummy[1]) == 3)
+    
+    if (sscanf(buffer, SQL_REV_SCAN "_%[^_]_%d", &dummy[0], dummyStr, &dummy[1]) == 3)
         return false;
 
     if (sscanf(buffer, SQL_REV_SCAN "_%[^.].sql", &info.rev, info.db) != 2)
