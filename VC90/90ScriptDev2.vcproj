@@ -480,10 +480,6 @@
 					>
 				</File>
 				<File
-					RelativePath="..\scripts\eastern_kingdoms\undercity.cpp"
-					>
-				</File>
-				<File
 					RelativePath="..\scripts\eastern_kingdoms\western_plaguelands.cpp"
 					>
 				</File>
