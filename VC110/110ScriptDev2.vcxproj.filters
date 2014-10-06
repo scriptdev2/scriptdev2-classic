@@ -180,9 +180,6 @@
     <ClCompile Include="..\scripts\eastern_kingdoms\tirisfal_glades.cpp">
       <Filter>scripts\eastern_kingdoms</Filter>
     </ClCompile>
-    <ClCompile Include="..\scripts\eastern_kingdoms\undercity.cpp">
-      <Filter>scripts\eastern_kingdoms</Filter>
-    </ClCompile>
     <ClCompile Include="..\scripts\eastern_kingdoms\western_plaguelands.cpp">
       <Filter>scripts\eastern_kingdoms</Filter>
     </ClCompile>
