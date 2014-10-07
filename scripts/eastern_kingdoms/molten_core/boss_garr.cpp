@@ -16,8 +16,8 @@
 
 /* ScriptData
 SDName: Boss_Garr
-SD%Complete: 50
-SDComment: Garr's enrage is missing
+SD%Complete: 100
+SDComment: add explode only triggers > 10% hp
 SDCategory: Molten Core
 EndScriptData */
 
@@ -29,13 +29,12 @@ enum
     // Garr spells
     SPELL_ANTIMAGICPULSE        = 19492,
     SPELL_MAGMASHACKLES         = 19496,
-    SPELL_ENRAGE                = 19516,                    // TODO Stacking enrage (stacks to 10 times)
+    SPELL_ENRAGE                = 19516,
 
     // Add spells
     SPELL_ERUPTION              = 19497,
-    SPELL_MASSIVE_ERUPTION      = 20483,                    // TODO possible on death
     SPELL_IMMOLATE              = 20294,
-    SPELL_SEPARATION_ANXIETY    = 23492,                    // Used if separated too far from Garr, 21095 use unknown.
+    SPELL_SEPARATION_ANXIETY    = 23492,
 };
 
 struct MANGOS_DLL_DECL boss_garrAI : public ScriptedAI
@@ -158,6 +157,13 @@ struct MANGOS_DLL_DECL mob_fireswornAI : public ScriptedAI
         }
 
         DoMeleeAttackIfReady();
+    }
+
+    void JustDied(Unit* /*pKiller*/) override
+    {
+        Creature* pGarr = m_pInstance->GetSingleCreatureFromStorage(NPC_GARR);
+        if (pGarr && pGarr->isAlive())
+            pGarr->CastSpell(pGarr, SPELL_ENRAGE, true, NULL, NULL, pGarr->GetObjectGuid());
     }
 };
 
