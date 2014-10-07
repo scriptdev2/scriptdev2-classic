@@ -16,8 +16,8 @@
 
 /* ScriptData
 SDName: Boss_Golemagg
-SD%Complete: 80
-SDComment: Rager need to be tied to boss (Despawn on boss-death)
+SD%Complete: 100
+SDComment:
 SDCategory: Molten Core
 EndScriptData */
 
@@ -58,12 +58,12 @@ struct MANGOS_DLL_DECL boss_golemaggAI : public ScriptedAI
         m_uiEarthquakeTimer = 3 * IN_MILLISECONDS;
         m_uiBuffTimer       = 1.5 * IN_MILLISECONDS;
         m_bEnraged = false;
-
-        m_creature->CastSpell(m_creature, SPELL_MAGMA_SPLASH, true);
     }
 
     void Aggro(Unit* /*pWho*/) override
     {
+        m_creature->CastSpell(m_creature, SPELL_MAGMA_SPLASH, true);
+
         if (m_pInstance)
             m_pInstance->SetData(TYPE_GOLEMAGG, IN_PROGRESS);
     }
