@@ -49,7 +49,7 @@ void npc_escortAI::GetAIInformation(ChatHandler& reader)
             oss << "\nNext Waypoint Id = " << CurrentWP->uiId << " Position: " << CurrentWP->fX << " " << CurrentWP->fY << " " << CurrentWP->fZ;
     }
 
-    reader.PSendSysMessage(oss.str().c_str());
+    reader.PSendSysMessage("%s", oss.str().c_str());
 }
 
 bool npc_escortAI::IsVisible(Unit* pWho) const
