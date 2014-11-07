@@ -16,14 +16,6 @@ enum
     NPC_CENARION_INFANTRY           = 15184
 };
 
-enum eShattrathGuard
-{
-    SPELL_BANISHED_SHATTRATH_A      = 36642,
-    SPELL_BANISHED_SHATTRATH_S      = 36671,
-    SPELL_BANISH_TELEPORT           = 36643,
-    SPELL_EXILE                     = 39533
-};
-
 struct MANGOS_DLL_DECL guardAI : public ScriptedAI
 {
     public:
