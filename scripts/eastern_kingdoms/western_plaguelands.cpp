@@ -35,7 +35,7 @@ EndContentData */
 ## npc_the_scourge_cauldron
 ######*/
 
-struct MANGOS_DLL_DECL npc_the_scourge_cauldronAI : public ScriptedAI
+struct npc_the_scourge_cauldronAI : public ScriptedAI
 {
     npc_the_scourge_cauldronAI(Creature* pCreature) : ScriptedAI(pCreature) {Reset();}
 
@@ -219,7 +219,7 @@ static const DialogueEntry aScarletDialogue[] =
     {0, 0, 0},
 };
 
-struct MANGOS_DLL_DECL npc_taelan_fordringAI: public npc_escortAI, private DialogueHelper
+struct npc_taelan_fordringAI: public npc_escortAI, private DialogueHelper
 {
     npc_taelan_fordringAI(Creature* pCreature): npc_escortAI(pCreature),
         DialogueHelper(aScarletDialogue)
@@ -648,7 +648,7 @@ bool EffectDummyCreature_npc_taelan_fordring(Unit* pCaster, uint32 uiSpellId, Sp
 ## npc_isillien
 ######*/
 
-struct MANGOS_DLL_DECL npc_isillienAI: public npc_escortAI
+struct npc_isillienAI: public npc_escortAI
 {
     npc_isillienAI(Creature* pCreature): npc_escortAI(pCreature)
     {
@@ -814,7 +814,7 @@ CreatureAI* GetAI_npc_isillien(Creature* pCreature)
 ## npc_tirion_fordring
 ######*/
 
-struct MANGOS_DLL_DECL npc_tirion_fordringAI: public npc_escortAI
+struct npc_tirion_fordringAI: public npc_escortAI
 {
     npc_tirion_fordringAI(Creature* pCreature): npc_escortAI(pCreature) { Reset(); }
 
