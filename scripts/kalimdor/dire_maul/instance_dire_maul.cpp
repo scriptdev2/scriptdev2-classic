@@ -49,6 +49,12 @@ void instance_dire_maul::OnPlayerEnter(Player* pPlayer)
     DoToggleGameObjectFlags(GO_WEST_LIBRARY_DOOR, GO_FLAG_LOCKED, !m_bDoNorthBeforeWest);
 }
 
+void instance_dire_maul::OnPlayerLeave(Player* pPlayer)
+{
+    if (pPlayer->HasAura(SPELL_KING_GORDOK))
+        pPlayer->RemoveAurasDueToSpell(SPELL_KING_GORDOK);
+}
+
 void instance_dire_maul::OnCreatureCreate(Creature* pCreature)
 {
     switch (pCreature->GetEntry())
@@ -60,7 +66,7 @@ void instance_dire_maul::OnCreatureCreate(Creature* pCreature)
             // West
         case NPC_PRINCE_TORTHELDRIN:
             if (m_auiEncounter[TYPE_IMMOLTHAR] == DONE)
-                pCreature->SetFactionTemporary(FACTION_HOSTILE, TEMPFACTION_RESTORE_RESPAWN | TEMPFACTION_TOGGLE_OOC_NOT_ATTACK);
+                pCreature->SetFactionTemporary(FACTION_PRINCE_HOSTILE, TEMPFACTION_RESTORE_RESPAWN | TEMPFACTION_TOGGLE_OOC_NOT_ATTACK);
             break;
         case NPC_ARCANE_ABERRATION:
         case NPC_MANA_REMNANT:
@@ -74,6 +80,7 @@ void instance_dire_maul::OnCreatureCreate(Creature* pCreature)
 
             // North
         case NPC_CHORUSH:
+        case NPC_CAPTAIN_KROMCRUSH:
         case NPC_KING_GORDOK:
         case NPC_MIZZLE_THE_CRAFTY:
             break;
@@ -148,6 +155,7 @@ void instance_dire_maul::OnObjectCreate(GameObject* pGo)
 
             // North
         case GO_NORTH_LIBRARY_DOOR:
+        case GO_GORDOK_TRIBUTE:
             break;
 
         default:
@@ -213,7 +221,7 @@ void instance_dire_maul::SetData(uint32 uiType, uint32 uiData)
                 if (Creature* pPrince = GetSingleCreatureFromStorage(NPC_PRINCE_TORTHELDRIN))
                 {
                     DoScriptText(SAY_FREE_IMMOLTHAR, pPrince);
-                    pPrince->SetFactionTemporary(FACTION_HOSTILE, TEMPFACTION_RESTORE_RESPAWN | TEMPFACTION_TOGGLE_OOC_NOT_ATTACK);
+                    pPrince->SetFactionTemporary(FACTION_PRINCE_HOSTILE, TEMPFACTION_RESTORE_RESPAWN | TEMPFACTION_TOGGLE_OOC_NOT_ATTACK);
                     // Despawn Chest-Aura
                     if (GameObject* pChestAura = GetSingleGameObjectFromStorage(GO_PRINCES_CHEST_AURA))
                         pChestAura->Use(pPrince);
@@ -243,12 +251,23 @@ void instance_dire_maul::SetData(uint32 uiType, uint32 uiData)
             m_auiEncounter[uiType] = uiData;
             if (uiData == DONE)
             {
-                // Apply Aura to players in the map
-                Map::PlayerList const& players = instance->GetPlayers();
-                for (Map::PlayerList::const_iterator itr = players.begin(); itr != players.end(); ++itr)
+                Creature* pCreature = GetSingleCreatureFromStorage(NPC_CHORUSH);
+
+                if (pCreature && pCreature->isAlive())
                 {
-                    if (Player* pPlayer = itr->getSource())
-                        pPlayer->CastSpell(pPlayer, SPELL_KING_OF_GORDOK, true);
+                    DoScriptText(SAY_KING_DEAD, pCreature);
+                    pCreature->setFaction(FACTION_OGRE_FRIENDLY);
+                    pCreature->AI()->EnterEvadeMode();
+                }
+
+                pCreature->SummonCreature(NPC_MIZZLE_THE_CRAFTY, 683.2966f, 484.3845f, 29.54451f, 0.01745329f, TEMPSUMMON_MANUAL_DESPAWN, 0, false);
+
+                pCreature = GetSingleCreatureFromStorage(NPC_CAPTAIN_KROMCRUSH);
+
+                if (pCreature && pCreature->isAlive())
+                {
+                    pCreature->setFaction(FACTION_OGRE_FRIENDLY);
+                    pCreature->AI()->EnterEvadeMode();
                 }
             }
             break;
@@ -256,6 +275,7 @@ void instance_dire_maul::SetData(uint32 uiType, uint32 uiData)
         case TYPE_FENGUS:
         case TYPE_SLIPKIK:
         case TYPE_KROMCRUSH:
+        case TYPE_TRIBUTE:
             m_auiEncounter[uiType] = uiData;
             break;
     }
@@ -270,7 +290,7 @@ void instance_dire_maul::SetData(uint32 uiType, uint32 uiData)
                       << m_auiEncounter[6] << " " << m_auiEncounter[7] << " " << m_auiEncounter[8] << " "
                       << m_auiEncounter[9] << " " << m_auiEncounter[10] << " " << m_auiEncounter[11] << " "
                       << m_auiEncounter[12] << " " << m_auiEncounter[13] << " " << m_auiEncounter[14] << " "
-                      << m_auiEncounter[15];
+                      << m_auiEncounter[15] << " " << m_auiEncounter[16];
 
         m_strInstData = saveStream.str();
 
@@ -368,7 +388,7 @@ void instance_dire_maul::Load(const char* chrIn)
                m_auiEncounter[6] >> m_auiEncounter[7] >> m_auiEncounter[8] >>
                m_auiEncounter[9] >> m_auiEncounter[10] >> m_auiEncounter[11] >>
                m_auiEncounter[12] >> m_auiEncounter[13] >> m_auiEncounter[14] >>
-               m_auiEncounter[15];
+               m_auiEncounter[15] >> m_auiEncounter[16];
 
     if (m_auiEncounter[TYPE_ALZZIN] >= DONE)
         m_bWallDestroyed = true;

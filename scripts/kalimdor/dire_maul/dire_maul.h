@@ -7,7 +7,7 @@
 
 enum
 {
-    MAX_ENCOUNTER               = 16,
+    MAX_ENCOUNTER               = 17,
     MAX_GENERATORS              = 5,
 
     // East
@@ -31,6 +31,7 @@ enum
     TYPE_FENGUS                 = 13,
     TYPE_SLIPKIK                = 14,
     TYPE_KROMCRUSH              = 15,
+    TYPE_TRIBUTE                = 16,
 
     // East
     GO_CRUMBLE_WALL             = 177220,
@@ -79,9 +80,12 @@ enum
     SAY_FREE_IMMOLTHAR          = -1429000,
     SAY_KILL_IMMOLTHAR          = -1429001,
     SAY_IRONBARK_REDEEM         = -1429002,
+    SAY_KING_DEAD               = -1999927,
 
-    FACTION_HOSTILE             = 14,
-    SPELL_KING_OF_GORDOK        = 22799,
+    FACTION_PRINCE_HOSTILE      = 14,
+    FACTION_OGRE_FRIENDLY       = 35,
+
+    SPELL_KING_GORDOK           = 22799,
 };
 
 class instance_dire_maul : public ScriptedInstance
@@ -93,6 +97,7 @@ class instance_dire_maul : public ScriptedInstance
         void Initialize() override;
 
         void OnPlayerEnter(Player* pPlayer) override;
+        void OnPlayerLeave(Player* pPlayer) override;
 
         void OnCreatureCreate(Creature* pCreature) override;
         void OnObjectCreate(GameObject* pGo) override;
