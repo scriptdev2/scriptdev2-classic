@@ -142,6 +142,7 @@ extern void AddSC_wetlands();
 extern void AddSC_instance_blackfathom_deeps();             // blackfathom_deeps
 extern void AddSC_dire_maul();                              // dire_maul
 extern void AddSC_instance_dire_maul();
+extern void AddSC_npc_mizzle_the_crafty();
 extern void AddSC_boss_noxxion();                           // maraudon
 extern void AddSC_boss_onyxia();                            // onyxias_lair
 extern void AddSC_instance_onyxias_lair();
@@ -340,6 +341,7 @@ void AddScripts()
     AddSC_instance_blackfathom_deeps();                     // blackfathom deeps
     AddSC_dire_maul();                                      // dire_maul
     AddSC_instance_dire_maul();
+    AddSC_npc_mizzle_the_crafty();
     AddSC_boss_noxxion();                                   // maraudon
     AddSC_boss_onyxia();                                    // onyxias_lair
     AddSC_instance_onyxias_lair();
