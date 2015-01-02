@@ -15,5 +15,5 @@ INSERT INTO `gossip_texts` (`entry`, `content_default`, `comment`) VALUES
 DELETE FROM `script_texts` WHERE `entry` IN ('-1999925', '-1999926', '-1999927');
 INSERT INTO `script_texts` (`entry`, `content_default`, `type`, `comment`) VALUES
 ('-1999925', 'OH NOES!  Da king is dead!  Uh... hail to da new king!  Yeah!', '1', 'Mizzle the Crafty'),
-('-1999926', 'Yar, he\'s dead all right.  That makes you da new king... well, all of you!  Gordok is yours now, boss!  You should talk to me so you can learn everything there is about being da king!  I was... is his assistant!  Yeah, that\'s why I\'m called da crafty one!', '1', 'Mizzle the Crafty'),
-('-1999927', 'The king is dead - OH NOES!  Summon Mizzle da Crafty!  He knows what to do next!', '0', 'Cho\'Rush the Observer');
+('-1999926', 'Yar, he\'s dead all right.  That makes you da new king... well, all of you!  Gordok is yours now, boss!  You should talk to me so you can learn everything there is about being da king!  I was... is his assistant!  Yeah, that\'s why I\'m called da crafty one!', '0', 'Mizzle the Crafty'),
+('-1999927', 'The king is dead - OH NOES!  Summon Mizzle da Crafty!  He knows what to do next!', '1', 'Cho\'Rush the Observer');

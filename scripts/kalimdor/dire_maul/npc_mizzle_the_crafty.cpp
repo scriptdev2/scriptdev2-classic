@@ -27,13 +27,18 @@ EndScriptData */
 
 enum
 {
-    SAY_KING_DEAD_1          = -1999925,
-    SAY_KING_DEAD_2          = -1999926,
+    SAY_KING_DEAD_1               = -1999925,
+    SAY_KING_DEAD_2               = -1999926,
 	
-    GOSSIP_GORDOK_BUFF       = -3509002,
-    GOSSIP_GORDOK_BUFF_SUB   = -3509003,
-    GOSSIP_TRIBUTE_CHEST     = -3509004,
-    GOSSIP_TRIBUTE_CHEST_SUB = -3509005,
+    GOSSIP_GORDOK_BUFF            = -3509002,
+    GOSSIP_GORDOK_BUFF_SUB        = -3509003,
+    GOSSIP_TRIBUTE_CHEST          = -3509004,
+    GOSSIP_TRIBUTE_CHEST_SUB      = -3509005,
+
+    GOSSIP_TEXT_GORDOK_BUFF       = 5,
+    GOSSIP_TEXT_GORDOK_BUFF_SUB   = 6,
+    GOSSIP_TEXT_TRIBUTE_CHEST     = 7,
+    GOSSIP_TEXT_TRIBUTE_CHEST_SUB = 8,
 };
 
 struct npc_mizzle_the_craftyAI : public npc_escortAI
@@ -86,11 +91,15 @@ CreatureAI* GetAI_npc_mizzle_the_crafty(Creature* pCreature)
 bool GossipHello_npc_mizzle_the_crafty(Player* pPlayer, Creature* pCreature)
 {
     if (!pPlayer->HasAura(SPELL_KING_GORDOK))
+    {
         pPlayer->ADD_GOSSIP_ITEM_ID(GOSSIP_ICON_CHAT, GOSSIP_GORDOK_BUFF, GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 0);
+        pPlayer->SEND_GOSSIP_MENU(GOSSIP_TEXT_GORDOK_BUFF, pCreature->GetObjectGuid());
+    }
     else if (pPlayer->HasAura(SPELL_KING_GORDOK))
+    {
         pPlayer->ADD_GOSSIP_ITEM_ID(GOSSIP_ICON_CHAT, GOSSIP_TRIBUTE_CHEST, GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 2);
-
-    pPlayer->SEND_GOSSIP_MENU(pPlayer->GetGossipTextId(pCreature), pCreature->GetObjectGuid());
+        pPlayer->SEND_GOSSIP_MENU(GOSSIP_TEXT_TRIBUTE_CHEST, pCreature->GetObjectGuid());
+    }
 
     return true;
 }
@@ -103,14 +112,14 @@ bool GossipSelect_npc_mizzle_the_crafty(Player* pPlayer, Creature* pCreature, ui
             if (!pPlayer->HasAura(SPELL_KING_GORDOK))
                 pCreature->CastSpell(pPlayer, SPELL_KING_GORDOK, false);
             pPlayer->ADD_GOSSIP_ITEM_ID(GOSSIP_ICON_CHAT, GOSSIP_GORDOK_BUFF_SUB, GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 1);
-            pPlayer->SEND_GOSSIP_MENU(pPlayer->GetGossipTextId(pCreature), pCreature->GetObjectGuid());
+            pPlayer->SEND_GOSSIP_MENU(GOSSIP_TEXT_GORDOK_BUFF_SUB, pCreature->GetObjectGuid());
             break;
         case GOSSIP_ACTION_INFO_DEF + 1:
             pPlayer->CLOSE_GOSSIP_MENU();
             break;
         case GOSSIP_ACTION_INFO_DEF + 2:
             pPlayer->ADD_GOSSIP_ITEM_ID(GOSSIP_ICON_CHAT, GOSSIP_TRIBUTE_CHEST_SUB, GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 3);
-            pPlayer->SEND_GOSSIP_MENU(pPlayer->GetGossipTextId(pCreature), pCreature->GetObjectGuid());
+            pPlayer->SEND_GOSSIP_MENU(GOSSIP_TEXT_TRIBUTE_CHEST_SUB, pCreature->GetObjectGuid());
             break;
         case GOSSIP_ACTION_INFO_DEF + 3:
             ScriptedInstance* m_pInstance = (ScriptedInstance*)pCreature->GetInstanceData();
