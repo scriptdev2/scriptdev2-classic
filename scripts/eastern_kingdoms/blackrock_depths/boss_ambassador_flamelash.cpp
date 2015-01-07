@@ -86,7 +86,7 @@ struct boss_ambassador_flamelashAI : public ScriptedAI
         {
             if (m_uiSpiritTimer[i] < uiDiff)
             {
-                pGObject = m_pInstance->GetSingleGameObjectFromStorage(GO_DARKIRONDWARFRUNE_A01 + i);
+                pGObject = m_pInstance->GetSingleGameObjectFromStorage(GO_DWARFRUNE_A01 + i);
                 m_creature->SummonCreature(NPC_BURNING_SPIRIT, pGObject->GetPositionX(), pGObject->GetPositionY(), pGObject->GetPositionZ(), pGObject->GetOrientation(), TEMPSUMMON_DEAD_DESPAWN, 0, false);
                 m_uiSpiritTimer[i] = urand(15 * IN_MILLISECONDS, 30 * IN_MILLISECONDS);
             }

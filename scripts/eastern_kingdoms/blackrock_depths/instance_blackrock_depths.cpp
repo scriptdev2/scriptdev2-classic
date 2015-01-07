@@ -108,13 +108,13 @@ void instance_blackrock_depths::OnObjectCreate(GameObject* pGo)
         case GO_SECRET_DOOR:
         case GO_JAIL_DOOR_SUPPLY:
         case GO_JAIL_SUPPLY_CRATE:
-        case GO_DARKIRONDWARFRUNE_A01:
-        case GO_DARKIRONDWARFRUNE_B01:
-        case GO_DARKIRONDWARFRUNE_C01:
-        case GO_DARKIRONDWARFRUNE_D01:
-        case GO_DARKIRONDWARFRUNE_E01:
-        case GO_DARKIRONDWARFRUNE_F01:
-        case GO_DARKIRONDWARFRUNE_G01:
+        case GO_DWARFRUNE_A01:
+        case GO_DWARFRUNE_B01:
+        case GO_DWARFRUNE_C01:
+        case GO_DWARFRUNE_D01:
+        case GO_DWARFRUNE_E01:
+        case GO_DWARFRUNE_F01:
+        case GO_DWARFRUNE_G01:
             break;
 
         default:
@@ -236,14 +236,14 @@ void instance_blackrock_depths::SetData(uint32 uiType, uint32 uiData)
             if (uiData == IN_PROGRESS)
                 for (int i = 0; i < MAX_RUNES; i++)
                 {
-                    pGObject = GetSingleGameObjectFromStorage(GO_DARKIRONDWARFRUNE_A01 + i);
+                    pGObject = GetSingleGameObjectFromStorage(GO_DWARFRUNE_A01 + i);
                     pGObject->UseDoorOrButton();
                 }
             if (uiData == FAIL || uiData == DONE)
             {
                 for (int i = 0; i < MAX_RUNES; i++)
                 {
-                    pGObject = GetSingleGameObjectFromStorage(GO_DARKIRONDWARFRUNE_A01 + i);
+                    pGObject = GetSingleGameObjectFromStorage(GO_DWARFRUNE_A01 + i);
                     pGObject->ResetDoorOrButton();
                 }
 
