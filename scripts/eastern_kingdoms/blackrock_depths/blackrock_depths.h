@@ -79,6 +79,7 @@ enum
     GO_ARENA_SPOILS         = 181074,
     GO_SECRET_DOOR          = 174553,
 
+    // Jail break event related
     GO_JAIL_DOOR_SUPPLY     = 170561,
     GO_JAIL_SUPPLY_CRATE    = 166872,
 
@@ -90,31 +91,31 @@ enum
 enum ArenaNPCs
 {
     // Gladiators
-    NPC_LEFTY                = 16049,
-    NPC_ROTFANG              = 16050,
-    NPC_SNOKH                = 16051,
-    NPC_MALGEN               = 16052,
-    NPC_KORV                 = 16053,
-    NPC_REZZNIK              = 16054,
-    NPC_VAJASHNI             = 16055,
-    NPC_VOLIDA               = 16058,
-    NPC_THELDREN             = 16059,
+    NPC_LEFTY               = 16049,
+    NPC_ROTFANG             = 16050,
+    NPC_SNOKH               = 16051,
+    NPC_MALGEN              = 16052,
+    NPC_KORV                = 16053,
+    NPC_REZZNIK             = 16054,
+    NPC_VAJASHNI            = 16055,
+    NPC_VOLIDA              = 16058,
+    NPC_THELDREN            = 16059,
 
     // Ring mobs
-    NPC_WORM                 = 8925,
-    NPC_STINGER              = 8926,
-    NPC_SCREECHER            = 8927,
-    NPC_THUNDERSNOUT         = 8928,
-    NPC_CREEPER              = 8933,
-    NPC_BEETLE               = 8932,
+    NPC_WORM                = 8925,
+    NPC_STINGER             = 8926,
+    NPC_SCREECHER           = 8927,
+    NPC_THUNDERSNOUT        = 8928,
+    NPC_CREEPER             = 8933,
+    NPC_BEETLE              = 8932,
 
     // Ring bosses
-    NPC_GOROSH               = 9027,
-    NPC_GRIZZLE              = 9028,
-    NPC_EVISCERATOR          = 9029,
-    NPC_OKTHOR               = 9030,
-    NPC_ANUBSHIAH            = 9031,
-    NPC_HEDRUM               = 9032
+    NPC_GOROSH              = 9027,
+    NPC_GRIZZLE             = 9028,
+    NPC_EVISCERATOR         = 9029,
+    NPC_OKTHOR              = 9030,
+    NPC_ANUBSHIAH           = 9031,
+    NPC_HEDRUM              = 9032
 };
 
 static const uint32 aArenaNPCs[] =
