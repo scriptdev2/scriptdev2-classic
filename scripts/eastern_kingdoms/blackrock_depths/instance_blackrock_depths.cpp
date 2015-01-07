@@ -61,7 +61,11 @@ void instance_blackrock_depths::OnCreatureCreate(Creature* pCreature)
         case NPC_JAZ:
         case NPC_TOBIAS:
         case NPC_DUGHAL:
+        case NPC_FLAMELASH:
             m_mNpcEntryGuidStore[pCreature->GetEntry()] = pCreature->GetObjectGuid();
+            break;
+        case NPC_BURNING_SPIRIT:
+            lBurningSpiritList.push_back(pCreature);
             break;
 
         case NPC_WARBRINGER_CONST:
@@ -104,6 +108,13 @@ void instance_blackrock_depths::OnObjectCreate(GameObject* pGo)
         case GO_SECRET_DOOR:
         case GO_JAIL_DOOR_SUPPLY:
         case GO_JAIL_SUPPLY_CRATE:
+        case GO_DARKIRONDWARFRUNE_A01:
+        case GO_DARKIRONDWARFRUNE_B01:
+        case GO_DARKIRONDWARFRUNE_C01:
+        case GO_DARKIRONDWARFRUNE_D01:
+        case GO_DARKIRONDWARFRUNE_E01:
+        case GO_DARKIRONDWARFRUNE_F01:
+        case GO_DARKIRONDWARFRUNE_G01:
             break;
 
         default:
@@ -221,6 +232,28 @@ void instance_blackrock_depths::SetData(uint32 uiType, uint32 uiData)
         case TYPE_QUEST_JAIL_BREAK:
             m_auiEncounter[6] = uiData;
             return;
+        case TYPE_FLAMELASH:
+            if (uiData == IN_PROGRESS)
+                for (int i = 0; i < MAX_RUNES; i++)
+                {
+                    pGObject = GetSingleGameObjectFromStorage(GO_DARKIRONDWARFRUNE_A01 + i);
+                    pGObject->UseDoorOrButton();
+                }
+            if (uiData == FAIL || uiData == DONE)
+            {
+                for (int i = 0; i < MAX_RUNES; i++)
+                {
+                    pGObject = GetSingleGameObjectFromStorage(GO_DARKIRONDWARFRUNE_A01 + i);
+                    pGObject->ResetDoorOrButton();
+                }
+
+                for each (Creature* c in lBurningSpiritList)
+                    c->ForcedDespawn();
+                lBurningSpiritList.clear();
+            }
+
+            m_auiEncounter[7] = uiData;
+            break;
     }
 
     if (uiData == DONE)
@@ -229,7 +262,7 @@ void instance_blackrock_depths::SetData(uint32 uiType, uint32 uiData)
 
         std::ostringstream saveStream;
         saveStream << m_auiEncounter[0] << " " << m_auiEncounter[1] << " " << m_auiEncounter[2] << " "
-                   << m_auiEncounter[3] << " " << m_auiEncounter[4] << " " << m_auiEncounter[5] << " " << m_auiEncounter[6];
+            << m_auiEncounter[3] << " " << m_auiEncounter[4] << " " << m_auiEncounter[5] << " " << m_auiEncounter[6] << " " << m_auiEncounter[7];
 
         m_strInstData = saveStream.str();
 
@@ -259,6 +292,8 @@ uint32 instance_blackrock_depths::GetData(uint32 uiType) const
             return m_auiEncounter[5];
         case TYPE_QUEST_JAIL_BREAK:
             return m_auiEncounter[6];
+        case TYPE_FLAMELASH:
+            return m_auiEncounter[7];
         default:
             return 0;
     }
@@ -276,7 +311,7 @@ void instance_blackrock_depths::Load(const char* chrIn)
 
     std::istringstream loadStream(chrIn);
     loadStream >> m_auiEncounter[0] >> m_auiEncounter[1] >> m_auiEncounter[2] >> m_auiEncounter[3]
-               >> m_auiEncounter[4] >> m_auiEncounter[5] >> m_auiEncounter[6];
+        >> m_auiEncounter[4] >> m_auiEncounter[5] >> m_auiEncounter[6] >> m_auiEncounter[7];
 
     for (uint8 i = 0; i < MAX_ENCOUNTER; ++i)
         if (m_auiEncounter[i] == IN_PROGRESS)

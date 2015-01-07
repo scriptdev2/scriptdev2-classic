@@ -7,99 +7,114 @@
 
 enum
 {
-    MAX_ENCOUNTER           = 7,
-    MAX_RELIC_DOORS         = 12,
-    MAX_DWARFS              = 7,
+    MAX_ENCOUNTER            = 8,
+    MAX_RELIC_DOORS          = 12,
+    MAX_DWARFS               = 7,
+    MAX_RUNES                = 7,
 
-    TYPE_RING_OF_LAW        = 1,
-    TYPE_VAULT              = 2,
-    TYPE_BAR                = 3,
-    TYPE_TOMB_OF_SEVEN      = 4,
-    TYPE_LYCEUM             = 5,
-    TYPE_IRON_HALL          = 6,
-    TYPE_QUEST_JAIL_BREAK   = 7,
+    TYPE_RING_OF_LAW         = 1,
+    TYPE_VAULT               = 2,
+    TYPE_BAR                 = 3,
+    TYPE_TOMB_OF_SEVEN       = 4,
+    TYPE_LYCEUM              = 5,
+    TYPE_IRON_HALL           = 6,
+    TYPE_QUEST_JAIL_BREAK    = 7,
+    TYPE_FLAMELASH           = 8,
 
-    NPC_EMPEROR             = 9019,
-    NPC_PRINCESS            = 8929,
-    NPC_PHALANX             = 9502,
-    NPC_HATEREL             = 9034,
-    NPC_ANGERREL            = 9035,
-    NPC_VILEREL             = 9036,
-    NPC_GLOOMREL            = 9037,
-    NPC_SEETHREL            = 9038,
-    NPC_DOOMREL             = 9039,
-    NPC_DOPEREL             = 9040,
-    NPC_MAGMUS              = 9938,
-    NPC_WATCHER_DOOMGRIP    = 9476,
-    NPC_WARBRINGER_CONST    = 8905,                         // Four of them in Relict Vault are related to Doomgrip summon event
+    NPC_EMPEROR              = 9019,
+    NPC_PRINCESS             = 8929,
+    NPC_PHALANX              = 9502,
+    NPC_HATEREL              = 9034,
+    NPC_ANGERREL             = 9035,
+    NPC_VILEREL              = 9036,
+    NPC_GLOOMREL             = 9037,
+    NPC_SEETHREL             = 9038,
+    NPC_DOOMREL              = 9039,
+    NPC_DOPEREL              = 9040,
+    NPC_MAGMUS               = 9938,
+    NPC_WATCHER_DOOMGRIP     = 9476,
+    NPC_WARBRINGER_CONST     = 8905,                         // Four of them in Relict Vault are related to Doomgrip summon event
+
+    // Ambassador Flamelash
+    NPC_FLAMELASH            = 9156,
+    NPC_BURNING_SPIRIT       = 9178,
+
+    GO_DARKIRONDWARFRUNE_A01 = 170578,
+    GO_DARKIRONDWARFRUNE_B01 = 170579,
+    GO_DARKIRONDWARFRUNE_C01 = 170580,
+    GO_DARKIRONDWARFRUNE_D01 = 170581,
+    GO_DARKIRONDWARFRUNE_E01 = 170582,
+    GO_DARKIRONDWARFRUNE_F01 = 170583,
+    GO_DARKIRONDWARFRUNE_G01 = 170584,
 
     // Jail Break event related
-    NPC_OGRABISI            = 9677,
-    NPC_SHILL               = 9678,
-    NPC_CREST               = 9680,
-    NPC_JAZ                 = 9681,
-    NPC_TOBIAS              = 9679,
-    NPC_DUGHAL              = 9022,
+    NPC_OGRABISI             = 9677,
+    NPC_SHILL                = 9678,
+    NPC_CREST                = 9680,
+    NPC_JAZ                  = 9681,
+    NPC_TOBIAS               = 9679,
+    NPC_DUGHAL               = 9022,
 
-    GO_ARENA_1              = 161525,
-    GO_ARENA_2              = 161522,
-    GO_ARENA_3              = 161524,
-    GO_ARENA_4              = 161523,
+    GO_ARENA_1               = 161525,
+    GO_ARENA_2               = 161522,
+    GO_ARENA_3               = 161524,
+    GO_ARENA_4               = 161523,
 
-    GO_SHADOW_LOCK          = 161460,
-    GO_SHADOW_MECHANISM     = 161461,
-    GO_SHADOW_GIANT_DOOR    = 157923,
-    GO_SHADOW_DUMMY         = 161516,
-    GO_BAR_KEG_SHOT         = 170607,
-    GO_BAR_KEG_TRAP         = 171941,
-    GO_BAR_DOOR             = 170571,
-    GO_TOMB_ENTER           = 170576,
-    GO_TOMB_EXIT            = 170577,
-    GO_LYCEUM               = 170558,
-    GO_GOLEM_ROOM_N         = 170573,
-    GO_GOLEM_ROOM_S         = 170574,
-    GO_THRONE_ROOM          = 170575,
+    GO_SHADOW_LOCK           = 161460,
+    GO_SHADOW_MECHANISM      = 161461,
+    GO_SHADOW_GIANT_DOOR     = 157923,
+    GO_SHADOW_DUMMY          = 161516,
+    GO_BAR_KEG_SHOT          = 170607,
+    GO_BAR_KEG_TRAP          = 171941,
+    GO_BAR_DOOR              = 170571,
+    GO_TOMB_ENTER            = 170576,
+    GO_TOMB_EXIT             = 170577,
+    GO_LYCEUM                = 170558,
+    GO_GOLEM_ROOM_N          = 170573,
+    GO_GOLEM_ROOM_S          = 170574,
+    GO_THRONE_ROOM           = 170575,
 
-    GO_SPECTRAL_CHALICE     = 164869,
-    GO_CHEST_SEVEN          = 169243,
-    GO_ARENA_SPOILS         = 181074,
-    GO_SECRET_DOOR          = 174553,
+    GO_SPECTRAL_CHALICE      = 164869,
+    GO_CHEST_SEVEN           = 169243,
+    GO_ARENA_SPOILS          = 181074,
+    GO_SECRET_DOOR           = 174553,
 
-    // Jail break event related
-    GO_JAIL_DOOR_SUPPLY     = 170561,
-    GO_JAIL_SUPPLY_CRATE    = 166872,
+    GO_JAIL_DOOR_SUPPLY      = 170561,
+    GO_JAIL_SUPPLY_CRATE     = 166872,
 
-    SPELL_STONED            = 10255,                        // Aura of Warbringer Constructs in Relict Vault
+    SPELL_STONED             = 10255,                        // Aura of Warbringer Constructs in Relict Vault
 
-    FACTION_DWARF_HOSTILE   = 754,                          // Hostile faction for the Tomb of the Seven dwarfs
+    FACTION_DWARF_HOSTILE    = 754,                          // Hostile faction for the Tomb of the Seven dwarfs
 };
 
 enum ArenaNPCs
 {
     // Gladiators
-    NPC_LEFTY               = 16049,
-    NPC_ROTFANG             = 16050,
-    NPC_SNOKH               = 16051,
-    NPC_MALGEN              = 16052,
-    NPC_KORV                = 16053,
-    NPC_REZZNIK             = 16054,
-    NPC_VAJASHNI            = 16055,
-    NPC_VOLIDA              = 16058,
-    NPC_THELDREN            = 16059,
+    NPC_LEFTY                = 16049,
+    NPC_ROTFANG              = 16050,
+    NPC_SNOKH                = 16051,
+    NPC_MALGEN               = 16052,
+    NPC_KORV                 = 16053,
+    NPC_REZZNIK              = 16054,
+    NPC_VAJASHNI             = 16055,
+    NPC_VOLIDA               = 16058,
+    NPC_THELDREN             = 16059,
+
     // Ring mobs
-    NPC_WORM                = 8925,
-    NPC_STINGER             = 8926,
-    NPC_SCREECHER           = 8927,
-    NPC_THUNDERSNOUT        = 8928,
-    NPC_CREEPER             = 8933,
-    NPC_BEETLE              = 8932,
+    NPC_WORM                 = 8925,
+    NPC_STINGER              = 8926,
+    NPC_SCREECHER            = 8927,
+    NPC_THUNDERSNOUT         = 8928,
+    NPC_CREEPER              = 8933,
+    NPC_BEETLE               = 8932,
+
     // Ring bosses
-    NPC_GOROSH              = 9027,
-    NPC_GRIZZLE             = 9028,
-    NPC_EVISCERATOR         = 9029,
-    NPC_OKTHOR              = 9030,
-    NPC_ANUBSHIAH           = 9031,
-    NPC_HEDRUM              = 9032
+    NPC_GOROSH               = 9027,
+    NPC_GRIZZLE              = 9028,
+    NPC_EVISCERATOR          = 9029,
+    NPC_OKTHOR               = 9030,
+    NPC_ANUBSHIAH            = 9031,
+    NPC_HEDRUM               = 9032
 };
 
 static const uint32 aArenaNPCs[] =
@@ -159,6 +174,10 @@ class instance_blackrock_depths : public ScriptedInstance
         float m_fArenaCenterX, m_fArenaCenterY, m_fArenaCenterZ;
 
         GuidSet m_sVaultNpcGuids;
+
+        std::list<Creature*> lBurningSpiritList;
+
+        GameObject* pGObject;
 };
 
 #endif
