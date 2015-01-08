@@ -248,7 +248,8 @@ void instance_blackrock_depths::SetData(uint32 uiType, uint32 uiData)
                 }
 
                 for each (Creature* c in lBurningSpiritList)
-                    c->ForcedDespawn();
+                    if (c && c->isAlive())
+                        c->ForcedDespawn();
                 lBurningSpiritList.clear();
             }
 
