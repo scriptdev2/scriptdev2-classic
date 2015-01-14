@@ -64,9 +64,6 @@ void instance_blackrock_depths::OnCreatureCreate(Creature* pCreature)
         case NPC_FLAMELASH:
             m_mNpcEntryGuidStore[pCreature->GetEntry()] = pCreature->GetObjectGuid();
             break;
-        case NPC_BURNING_SPIRIT:
-            lBurningSpiritList.push_back(pCreature);
-            break;
 
         case NPC_WARBRINGER_CONST:
             // Golems not in the Relict Vault?
@@ -233,6 +230,8 @@ void instance_blackrock_depths::SetData(uint32 uiType, uint32 uiData)
             m_auiEncounter[6] = uiData;
             return;
         case TYPE_FLAMELASH:
+            GameObject* pGObject;
+
             if (uiData == IN_PROGRESS)
                 for (int i = 0; i < MAX_RUNES; i++)
                 {
@@ -240,18 +239,11 @@ void instance_blackrock_depths::SetData(uint32 uiType, uint32 uiData)
                     pGObject->UseDoorOrButton();
                 }
             if (uiData == FAIL || uiData == DONE)
-            {
                 for (int i = 0; i < MAX_RUNES; i++)
                 {
                     pGObject = GetSingleGameObjectFromStorage(GO_DWARFRUNE_A01 + i);
                     pGObject->ResetDoorOrButton();
                 }
-
-                for each (Creature* c in lBurningSpiritList)
-                    if (c && c->isAlive())
-                        c->ForcedDespawn();
-                lBurningSpiritList.clear();
-            }
 
             m_auiEncounter[7] = uiData;
             break;

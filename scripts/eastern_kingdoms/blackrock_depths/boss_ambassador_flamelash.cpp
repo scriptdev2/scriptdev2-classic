@@ -122,7 +122,7 @@ struct npc_burning_spiritAI : public ScriptedAI
 
     void Reset() override
     {
-
+        m_creature->SetWalk(false);
     }
 
     void UpdateAI(const uint32 uiDiff) override

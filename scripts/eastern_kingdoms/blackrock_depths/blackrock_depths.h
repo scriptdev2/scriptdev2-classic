@@ -175,10 +175,6 @@ class instance_blackrock_depths : public ScriptedInstance
         float m_fArenaCenterX, m_fArenaCenterY, m_fArenaCenterZ;
 
         GuidSet m_sVaultNpcGuids;
-
-        std::list<Creature*> lBurningSpiritList;
-
-        GameObject* pGObject;
 };
 
 #endif
