@@ -127,7 +127,7 @@ struct npc_burning_spiritAI : public ScriptedAI
 
     void UpdateAI(const uint32 uiDiff) override
     {
-        if (!m_creature->SelectHostileTarget() || !m_creature->getVictim())
+        if (m_pInstance->GetData(TYPE_FLAMELASH) == IN_PROGRESS && (!m_creature->SelectHostileTarget() || !m_creature->getVictim()))
         {
             pCreature = m_pInstance->GetSingleCreatureFromStorage(NPC_FLAMELASH);
 
