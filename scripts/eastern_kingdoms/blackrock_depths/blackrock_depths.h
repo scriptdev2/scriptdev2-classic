@@ -7,9 +7,10 @@
 
 enum
 {
-    MAX_ENCOUNTER           = 7,
+    MAX_ENCOUNTER           = 8,
     MAX_RELIC_DOORS         = 12,
     MAX_DWARFS              = 7,
+    MAX_RUNES               = 7,
 
     TYPE_RING_OF_LAW        = 1,
     TYPE_VAULT              = 2,
@@ -18,6 +19,7 @@ enum
     TYPE_LYCEUM             = 5,
     TYPE_IRON_HALL          = 6,
     TYPE_QUEST_JAIL_BREAK   = 7,
+    TYPE_FLAMELASH          = 8,
 
     NPC_EMPEROR             = 9019,
     NPC_PRINCESS            = 8929,
@@ -32,6 +34,18 @@ enum
     NPC_MAGMUS              = 9938,
     NPC_WATCHER_DOOMGRIP    = 9476,
     NPC_WARBRINGER_CONST    = 8905,                         // Four of them in Relict Vault are related to Doomgrip summon event
+
+    // Ambassador Flamelash
+    NPC_FLAMELASH           = 9156,
+    NPC_BURNING_SPIRIT      = 9178,
+
+    GO_DWARFRUNE_A01        = 170578,
+    GO_DWARFRUNE_B01        = 170579,
+    GO_DWARFRUNE_C01        = 170580,
+    GO_DWARFRUNE_D01        = 170581,
+    GO_DWARFRUNE_E01        = 170582,
+    GO_DWARFRUNE_F01        = 170583,
+    GO_DWARFRUNE_G01        = 170584,
 
     // Jail Break event related
     NPC_OGRABISI            = 9677,
@@ -86,6 +100,7 @@ enum ArenaNPCs
     NPC_VAJASHNI            = 16055,
     NPC_VOLIDA              = 16058,
     NPC_THELDREN            = 16059,
+
     // Ring mobs
     NPC_WORM                = 8925,
     NPC_STINGER             = 8926,
@@ -93,6 +108,7 @@ enum ArenaNPCs
     NPC_THUNDERSNOUT        = 8928,
     NPC_CREEPER             = 8933,
     NPC_BEETLE              = 8932,
+
     // Ring bosses
     NPC_GOROSH              = 9027,
     NPC_GRIZZLE             = 9028,
