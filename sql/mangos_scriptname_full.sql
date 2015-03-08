@@ -49,6 +49,8 @@ DELETE FROM scripted_areatrigger WHERE entry IN (4047,4052);
 INSERT INTO scripted_areatrigger VALUES
 (4047,'at_temple_ahnqiraj'),
 (4052,'at_temple_ahnqiraj');
+DELETE FROM scripted_areatrigger WHERE entry=3587;
+INSERT INTO scripted_areatrigger VALUES (3587,'at_ancient_leaf');
 
 
 /* BATTLEGROUNDS */
