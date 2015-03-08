@@ -1,5 +1,4 @@
 = ScriptDev2 TODO Points =
 
 == Classic content ==
-* Various quests which still require script (examples: 667, 3367, 5721)
-* Temple of AQ - Add missing script part for Viscidus
+* Various quests which still require script (examples: 5721)
