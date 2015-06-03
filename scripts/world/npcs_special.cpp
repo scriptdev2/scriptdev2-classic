@@ -573,7 +573,8 @@ struct npc_garments_of_questsAI : public npc_escortAI
         m_uiRunAwayTimer = 5000;
 
         m_creature->SetStandState(UNIT_STAND_STATE_KNEEL);
-		m_creature->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_PVP);		 // add this, not sure why database setting of unitflags does not work, also why is shaya working without this code change yet has the same db setting as roberts?
+        m_creature->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_PVP);   // add this, not sure why database setting of unitflags does not work, also why is shaya working without this code change yet has the same db setting as roberts?
+        
         // expect database to have RegenHealth=0
         m_creature->SetHealth(int(m_creature->GetMaxHealth() * 0.7));
     }
