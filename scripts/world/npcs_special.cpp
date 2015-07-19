@@ -573,6 +573,8 @@ struct npc_garments_of_questsAI : public npc_escortAI
         m_uiRunAwayTimer = 5000;
 
         m_creature->SetStandState(UNIT_STAND_STATE_KNEEL);
+        // special pvp flag applies to Classic only
+        m_creature->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_PVP);
         // expect database to have RegenHealth=0
         m_creature->SetHealth(int(m_creature->GetMaxHealth() * 0.7));
     }
