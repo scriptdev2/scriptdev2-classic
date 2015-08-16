@@ -42,7 +42,8 @@ enum
     SPELL_SUMMON_OURO_MOUNDS = 26058,                       // summons 5 dirt mounds
     SPELL_SUMMON_TRIGGER    = 26284,
 
-    SPELL_SUMMON_OURO       = 26642,
+    // SPELL_SUMMON_OURO_TRIGG = 26642,
+    SPELL_SUMMON_OURO       = 26061,                        // used by the script to summon the boss directly
     //SPELL_QUAKE             = 26093,
 
     // other spells - not used
@@ -262,21 +263,17 @@ struct npc_ouro_spawnerAI : public Scripted_NoMovementAI
     void Reset() override
     {
         m_bHasSummoned = false;
+
+        DoCastSpellIfCan(m_creature, SPELL_DIRTMOUND_PASSIVE);
     }
 
-    void MoveInLineOfSight(Unit* pWho) override
+    void Aggro(Unit* /*pWho*/) override
     {
-        // Spawn Ouro on LoS check
-        if (!m_bHasSummoned && pWho->GetTypeId() == TYPEID_PLAYER && !((Player*)pWho)->isGameMaster() && m_creature->IsWithinDistInMap(pWho, 50.0f))
+        if (!m_bHasSummoned)
         {
-            if (DoCastSpellIfCan(m_creature, SPELL_SUMMON_OURO, CAST_TRIGGERED) == CAST_OK)
-            {
-                DoCastSpellIfCan(m_creature, SPELL_DIRTMOUND_PASSIVE, CAST_TRIGGERED);
-                m_bHasSummoned = true;
-            }
+            DoCastSpellIfCan(m_creature, SPELL_SUMMON_OURO, CAST_TRIGGERED);
+            m_bHasSummoned = true;
         }
-
-        ScriptedAI::MoveInLineOfSight(pWho);
     }
 
     void JustSummoned(Creature* pSummoned) override
@@ -290,7 +287,7 @@ struct npc_ouro_spawnerAI : public Scripted_NoMovementAI
         }
     }
 
-    void UpdateAI(const uint32 uiDiff) override { }
+    void UpdateAI(const uint32 /*uiDiff*/) override { }
 };
 
 CreatureAI* GetAI_npc_ouro_spawner(Creature* pCreature)
