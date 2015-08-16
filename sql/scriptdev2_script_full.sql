@@ -1269,7 +1269,9 @@ INSERT INTO script_texts (entry,content_default,sound,type,language,emote,commen
 (-1230030,'We made it!',0,0,0,4,'reginald_windsor SAY_FREE_1'),
 (-1230031,'Meet me at Maxwell\'s encampment. We\'ll go over the next stages of the plan there and figure out a way to decode my tablets without the decryption ring.',0,0,0,1,'reginald_windsor SAY_FREE_2'),
 (-1230032,'Thank you! I will run for safety immediately!',0,0,0,0,'tobias SAY_TOBIAS_FREE_1'),
-(-1230033,'Finally!! I can leave this dump.',0,0,0,0,'tobias SAY_TOBIAS_FREE_2');
+(-1230033,'Finally!! I can leave this dump.',0,0,0,0,'tobias SAY_TOBIAS_FREE_2'),
+
+(-1230035,'%s cries out an alarm!',0,2,0,0,'general_angerforge EMOTE_ALARM');
 
 -- -1 249 000 ONYXIA'S LAIR
 INSERT INTO script_texts (entry,content_default,sound,type,language,emote,comment) VALUES
